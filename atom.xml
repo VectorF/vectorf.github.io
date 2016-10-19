@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Vector Blog</title>
+  <subtitle>Vector Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-10-19T05:33:21.168Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>VectorF</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第一篇博文</title>
+    <link href="http://yoursite.com/2016/10/19/my-first-post/"/>
+    <id>http://yoursite.com/2016/10/19/my-first-post/</id>
+    <published>2016-10-19T05:31:17.000Z</published>
+    <updated>2016-10-19T05:33:21.168Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello,world!"></a>Hello,world!</h2><p><a id="more"></a>你好呀！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Hello-world&quot;&gt;&lt;a href=&quot;#Hello-world&quot; class=&quot;headerlink&quot; title=&quot;Hello,world!&quot;&gt;&lt;/a&gt;Hello,world!&lt;/h2&gt;&lt;p&gt;
+    
+    </summary>
+    
+      <category term="mood" scheme="http://yoursite.com/categories/mood/"/>
+    
+    
+      <category term="闲扯" scheme="http://yoursite.com/tags/%E9%97%B2%E6%89%AF/"/>
+    
+  </entry>
+  
+</feed>
