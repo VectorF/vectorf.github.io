@@ -3,18 +3,21 @@
 
 
     
-    
   <url>
     <loc>http://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/</loc>
-    <lastmod>2016-10-21T14:10:54.804Z</lastmod>
+    <lastmod>2016-10-21T15:01:21.052Z</lastmod>
     <data>
         <display>
         <title>永不过时的 K 均值算法</title>
         <pubTime>2016-10-21T13:27:17.000Z</pubTime>
         
-        <tag>翻译</tag>
-         
         <tag>K均值</tag>
+         
+        <tag>聚类</tag>
+         
+        <tag>机器学习</tag>
+         
+        <tag>翻译</tag>
          
          
            
@@ -25,6 +28,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://VectorF.github.io/2016/10/19/20161019-my-first-post/</loc>
