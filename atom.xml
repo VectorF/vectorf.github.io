@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://VectorF.github.io/"/>
-  <updated>2016-10-19T13:18:13.631Z</updated>
+  <updated>2016-10-21T14:10:54.804Z</updated>
   <id>http://VectorF.github.io/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>永不过时的 K 均值算法</title>
+    <link href="http://VectorF.github.io/2016/10/21/%E2%80%9C%E6%B0%B8%E4%B8%8D%E8%BF%87%E6%97%B6%E7%9A%84K%20%E5%9D%87%E5%80%BC%E7%AE%97%E6%B3%95%E2%80%9D/"/>
+    <id>http://VectorF.github.io/2016/10/21/“永不过时的K 均值算法”/</id>
+    <published>2016-10-21T13:27:17.000Z</published>
+    <updated>2016-10-21T14:10:54.804Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>原文地址：<a href="http://quantdare.com/2016/04/k-means-vs-k-medoids/" target="_blank" rel="external">《”K-Means never fails”, they said…》</a> &ensp; 原文作者：Fjrodriguez2</p>
+<p>译文于2016/09/14发表在 <a href="http://datartisan.com/article/detail/168.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
+</blockquote>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>众所周知，数据挖掘算法并非十全十美，在某些情况下他们也会失效。 使用 K 均值算法（K-Means）时就可能会出现这种情况，当然此时你可以尝试一下另一种方法—— K 中心聚类算法（K-Medoids），也许效果会更好。</p>
+<p>在该网站之前的文章《揭开机器学习的面纱》中，已经指出， K 均值算法用于聚类时效果良好，而且在数据挖掘和机器学习领域，它也有着重要的地位。Psanchezcri 就曾在他的文章《将 K 均值方法用于金融时序回报率聚类》中，将 K 均值算法用于分析金融时间序列的趋势。</p>
+<p>然而，即使在网络上有关算法的文档浩如烟海的情况下，关于机器学习算法有时会失效的讨论却并不多见。</p>
+<p>因此，本文借由一个金融案例来反映这个问题。</p>
+<hr>
+<h2 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h2><p>1）首先，我们在欧洲斯托克600指数的成分股中选择三组共6只股票（在三个不同的部门中各选两只）：</p>
+<ul>
+<li><p>金融部门：  西班牙毕尔巴鄂比斯开银行 &amp; 桑坦德银行</p>
+</li>
+<li><p>非必需消费品：  法国酩悦·轩尼诗－路易·威登 &amp; 迪奥</p>
+</li>
+<li><p>能源部门：  英国石油公司 &amp; 锡尼什港能源公司</p>
+</li>
+</ul>
+<p>2）搜集数据，并绘出在2013/01/01至2015/12/31期间这六只股票的价格走势曲线。如下所示：</p>
+<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/1.png" alt="1"><br></div>
+
+
+<p>3）选择日回报率作为计算指标，我们算出三组股票序列的相关距离。然后通过距离矩阵降维的方法，在二维欧氏空间中绘出每个点。</p>
+<p>结果显示这六只股票可以按部门进行分类效果显著。下图以蓝色菱形点、绿色正方形点、红色圆点来标记六只股票，明显可以按部门分为三类：</p>
+<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/2.png" alt="2"><br></div>
+
+
+<p>4）最后，我们将 K 均值算法运用于距离矩阵，聚类目标预先设定分成3类。由于 K 均值算法是从随机点开始的，每次运行结果可能有所不同，本文我们预先设定运行这个算法15次，即产生15个结果。当然，我们希望得到聚类结果符合股票所属部门的实际情况。</p>
+<hr>
+<h2 id="3-结论"><a href="#3-结论" class="headerlink" title="3. 结论"></a>3. 结论</h2><p>１）在约80%的聚类结果中，K 均值聚类算法取得了理想的结果，聚类结果与这六只股票所属部门相符，如下图所示：</p>
+<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/3.png" alt="3"><br></div>
+
+
+<p>２）在剩下的20%的聚类结果中，算法则出现了聚类的错误。例如，下图中错将两个不同部门的四只股票聚为一类（图中蓝色菱形点和绿色正方形点），而将同一部门的两只股票分为两类（图中红色圆点）：</p>
+<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/4.png" alt="4"><br></div>
+
+
+<p>如果我们使用与之思想类似的 K 中心聚类算法，结果则可以达到100%的正确聚类率。这表明在聚类时，似乎使用重心会比用均值来衡量距离，效果更好。</p>
+<hr>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;原文地址：&lt;a href=&quot;http://quantdare.com/2016/04/k-means-vs-k-medoids/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《”K-Means never fails”, the
+    
+    </summary>
+    
+      <category term="翻译" scheme="http://VectorF.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+    
+      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
+    
+      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
   
   <entry>
     <title>第一篇博文</title>
