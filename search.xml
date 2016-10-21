@@ -60,16 +60,18 @@
   
     
     <entry>
-      <title><![CDATA[读书]]></title>
-      <url>http://VectorF.github.io/reading/index.html</url>
-      <content type="html"></content>
+      <title><![CDATA[关于]]></title>
+      <url>http://VectorF.github.io/about/index.html</url>
+      <content type="html"><![CDATA[<p>统计专业本科在读</p>
+<p>R 语言学习 ing</p>
+<p>说不定哪天就真的变成码农了呢~</p>
+]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[关于]]></title>
-      <url>http://VectorF.github.io/about/index.html</url>
-      <content type="html"><![CDATA[<p>Here is Vector’s blog, thanks for your reading!</p>
-]]></content>
+      <title><![CDATA[读书]]></title>
+      <url>http://VectorF.github.io/reading/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
