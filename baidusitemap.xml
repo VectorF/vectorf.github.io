@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>http://VectorF.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2016-11-06T12:57:47.381Z</lastmod>
+    <data>
+        <display>
+        <title>Git 教程</title>
+        <pubTime>2016-11-06T12:30:30.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://VectorF.github.io/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/</loc>
-    <lastmod>2016-10-21T15:01:21.052Z</lastmod>
+    <lastmod>2016-11-06T12:20:38.371Z</lastmod>
     <data>
         <display>
         <title>永不过时的 K 均值算法</title>

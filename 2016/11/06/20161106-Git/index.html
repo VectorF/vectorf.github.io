@@ -1,52 +1,314 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Vector Blog</title>
-  <subtitle>Vector Blog</subtitle>
-  <link href="/atom.xml" rel="self"/>
-  
-  <link href="http://VectorF.github.io/"/>
-  <updated>2016-11-06T12:57:47.381Z</updated>
-  <id>http://VectorF.github.io/</id>
-  
-  <author>
-    <name>VectorF</name>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="u22-6QbrrTexEK-LhL3KVFGlEL_TqtKkteNtervFo5E" />
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Git 教程</title>
-    <link href="http://VectorF.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/"/>
-    <id>http://VectorF.github.io/2016/11/06/20161106-Git 教程/</id>
-    <published>2016-11-06T12:30:30.000Z</published>
-    <updated>2016-11-06T12:57:47.381Z</updated>
+
+    <title>Git 教程 | Vector Blog</title>
+    <meta name="author" content="VectorF">
     
-    <content type="html"><![CDATA[<blockquote>
+    <meta name="description" content="Here is Vector&#39;s blog, thanks for your reading!">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Git 教程"/>
+    <meta property="og:site_name" content="Vector Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Vector Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="red darken-2">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Vector Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav red darken-2" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ofa07l4yq.bkt.clouddn.com/about_me.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Vector</p>
+                        <p class="desc">统计/R语言/初学者</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav red darken-2" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/翻译/">
+                    翻译 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/教程/">
+                    教程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper red darken-2">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/教程/">教程</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Git 教程</h1>
+    
+
+
+            </div>
+            <time class="red-link-context" datetime="2016-11-06T12:25:30.000Z"><a href="/2016/11/06/20161106-Git/">2016-11-06</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Git/" class="chip red">Git</a>
+        
+            <a href="/tags/教程/" class="chip red">教程</a>
+        
+    </div>
+
+
+            <div class="toc red-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装后的配置："><span class="section table-of-contents-text">安装后的配置：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#创建版本库："><span class="section table-of-contents-text">创建版本库：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#远程仓库"><span class="section table-of-contents-text">远程仓库</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#分支管理"><span class="section table-of-contents-text">分支管理</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#标签管理"><span class="section table-of-contents-text">标签管理</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Github"><span class="section table-of-contents-text">Github</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#自定义-Git"><span class="section table-of-contents-text">自定义 Git</span></a></li></ol>
+</div>
+
+
+            <div class="entry red-link-context">
+                <blockquote>
 <p>本 Git 教程根据<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的 Git 教程</a> 整理总结而来，其中代码和说明均来源于廖大神，非原创。</p>
 </blockquote>
-<h2 id="安装后的配置"><a href="#安装后的配置" class="headerlink" title="安装后的配置"></a><strong>安装后的配置</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
-<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a><strong>创建版本库</strong></h2><p>1.创建新的目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir gittest</div><div class="line">$ cd ngittest</div><div class="line">$ pwd</div></pre></td></tr></table></figure>
+<h3 id="安装后的配置："><a href="#安装后的配置：" class="headerlink" title="安装后的配置："></a>安装后的配置：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
+<h3 id="创建版本库："><a href="#创建版本库：" class="headerlink" title="创建版本库："></a>创建版本库：</h3><ol>
+<li>创建新的目录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir gittest</div><div class="line">$ cd ngittest</div><div class="line">$ pwd</div><div class="line">~\Documents\git\gittest</div></pre></td></tr></table></figure>
 <p><code>mkdir</code>创建新目录，<code>cd</code>定位到该目录，<code>pwd</code>显示当前目录。</p>
-<p>2.<code>git init</code>将该目录编程git可以管理的仓库</p>
+<ol>
+<li><code>git init</code>将该目录编程git可以管理的仓库</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ ls -ah</div></pre></td></tr></table></figure>
-<p>3.把文件添加到版本库</p>
+<ol>
+<li>把文件添加到版本库</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add readme.txt</div><div class="line">$ git commit -m &quot;wrote a readme flie&quot;</div></pre></td></tr></table></figure>
-<p>4.查看仓库的状态</p>
+<ol>
+<li>查看仓库的状态</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status</div></pre></td></tr></table></figure>
-<p>5.查看更改</p>
+<ol>
+<li>查看更改</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff</div></pre></td></tr></table></figure>
-<p>6.查看提交历史记录，按<code>q</code>可退出该命令</p>
+<ol>
+<li>查看提交历史记录，按<code>q</code>可退出该命令</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git log</div><div class="line">$ git log --pretty=oneline</div></pre></td></tr></table></figure>
-<p>7.查看命令历史记录</p>
+<ol>
+<li>查看命令历史记录</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reflog</div></pre></td></tr></table></figure>
-<p>8.版本回退及撤销回退</p>
+<ol>
+<li>版本回退及撤销回退</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git reset --hard HEAD^^</div><div class="line">$ cat readme.txt</div><div class="line">$ git reset --hard commit_id</div></pre></td></tr></table></figure>
-<p>**注意：原教程中，用<code>HEAD</code>表示当前版本，上一个版本就是<code>HEAD^</code>，上上一个版本就是<code>HEAD^^</code>，往上100个版本写成<code>HEAD~100</code>；但在实际中，貌似<code>HEAD^</code>是当前版本，<code>HEAD^^</code>是恢复到上一个版本。</p>
-<p>9.对比工作区和版本库中的区别</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff HEAD^ -- readme.txt</div></pre></td></tr></table></figure>
-<p>10.撤销修改</p>
+<p>**注意：原教程中，用<code>HEAD</code>表示当前版本，上一个版本就是<code>HEAD^</code>，上上一个版本就是<code>HEAD^^</code>，往上100个版本写成<code>HEAD~100</code>；但在实际中，<code>HEAD^^</code>是恢复到上一个版本。</p>
+<ol>
+<li>对比工作区和版本库中的区别</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff HEAD^ -- README.md</div></pre></td></tr></table></figure>
+<ol>
+<li>撤销修改</li>
+</ol>
 <ul>
 <li>当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- file</code>。</li>
 </ul>
@@ -62,7 +324,9 @@
 <ul>
 <li>已经提交了不合适的修改到版本库时，想要撤销本次提交，可使用版本回退，不过前提是没有推送到远程库。</li>
 </ul>
-<p>11.删除文件</p>
+<ol>
+<li>删除文件</li>
+</ol>
 <p>删除工作区的文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rm test.txt</div></pre></td></tr></table></figure>
 <ul>
@@ -73,22 +337,30 @@
 <li>如果是在工作区误删了文件，则需通过版本库恢复到最新版本。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout --test.txt</div></pre></td></tr></table></figure>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a><strong>远程仓库</strong></h2><p>1.创建 SSH key</p>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><ol>
+<li>创建 SSH key</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div></pre></td></tr></table></figure>
 <p>在用户主目录中找到<code>id_rsa.pub</code>，粘贴进 Github。</p>
-<p>2.添加远程库</p>
+<ol>
+<li>添加远程库</li>
+</ol>
 <p>先在 Github 上创建一个仓库。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:yourusername/gittest.git</div></pre></td></tr></table></figure>
 <p>**注意：远程库的名字就是<code>origin</code>，也可改成别的，但一般用<code>origin</code>。</p>
 <p>将本地库的内容推送到远程库上：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
 <p>第一次推送<code>master</code>分支时，要用<code>-u</code>参数。之后就可以只用<code>git push origin master</code></p>
-<p>3.从远程库克隆</p>
+<ol>
+<li>从远程库克隆</li>
+</ol>
 <p>先在 Github 上创建一个新的仓库，名字叫<code>gitskills</code>。</p>
 <p>用命令<code>git clone</code>克隆一个本地库。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone git@github.com:yourusername/gitskills.git</div><div class="line">$ cd gitskills</div><div class="line">$ ls</div></pre></td></tr></table></figure>
 <p>**注意：Git支持多种协议，包括<code>https</code>，但通过<code>ssh</code>支持的原生<code>git</code>协议速度最快。</p>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a><strong>分支管理</strong></h2><p>1.创建与合并分支</p>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><ol>
+<li>创建与合并分支</li>
+</ol>
 <ul>
 <li>创建<code>dev</code>分支，并切换到<code>dev</code>分支：</li>
 </ul>
@@ -121,7 +393,9 @@
 <li>合并后，可删除<code>dev</code>分支：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git branch -d dev</div><div class="line">$ git branch</div><div class="line">* master</div></pre></td></tr></table></figure>
-<p>2.解决冲突</p>
+<ol>
+<li>解决冲突</li>
+</ol>
 <ul>
 <li>准备新的<code>feature1</code>分支：</li>
 </ul>
@@ -161,7 +435,9 @@
 <p>用<code>git log --graph</code>命令可以看到分支合并图。</p>
 </li>
 </ul>
-<p>3.分支策略管理</p>
+<ol>
+<li>分支策略管理</li>
+</ol>
 <p>通常，Git 会用<code>Fast forward</code>模式，但这种模式下，删除分支后，会丢失分支信息。</p>
 <p>如果强制禁用<code>Fast forward</code>模式，Git 就会在merge时生成一个新的commit，这样分支历史上就可看到分支信息。</p>
 <p>实际开发中，<code>master</code>分支应当是稳定的，仅用来发布新版本，平时不在上面干活；</p>
@@ -181,7 +457,9 @@
 <p>**注意：因为本次合并要创建一个新的commit，所以加上<code>-m</code>参数，把commit描述写进去。</p>
 <p>合并后，用<code>git log</code>查看分支历史：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git log --graph --pretty=oneline --abbrev-commit</div><div class="line">*   f808280 merge with no-ff</div><div class="line">|\</div><div class="line">| * 081f9ca add merge</div><div class="line">|/</div><div class="line">*   fe3d2cc conflict fixed</div></pre></td></tr></table></figure>
-<p>4.Bug 分支</p>
+<ol>
+<li>Bug 分支</li>
+</ol>
 <p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
 <p>当手头工作没有完成时，先把工作现场<code>git stash</code>一下，然后去修复bug，修复后，再<code>git stash pop</code>，回到工作现场。</p>
 <p>假定此时需要创建一个分支<code>issue-101</code>来修复代号101的bug的任务。</p>
@@ -214,7 +492,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git stash list</div></pre></td></tr></table></figure>
 <p>你可以多次stash，恢复的时候，先用<code>git stash list</code>查看，然后恢复指定的stash，用命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git stash apply stash@&#123;0&#125;</div></pre></td></tr></table></figure>
-<p>5.Feature 分支</p>
+<ol>
+<li>Feature 分支</li>
+</ol>
 <p>开发一个新feature，最好新建一个分支；</p>
 <p>如果要丢弃一个没有被合并过的分支，可以通过<code>git branch -D</code>强行删除。</p>
 <ul>
@@ -228,7 +508,9 @@
 <p>销毁失败。Git友情提醒，<code>feature-vulcan</code>分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用命令<code>git branch -D feature-vulcan</code>。</p>
 <p>现在，强行删除：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -D feature-vulcan</div></pre></td></tr></table></figure>
-<p>6.多人协作</p>
+<ol>
+<li>多人协作</li>
+</ol>
 <p>多人协作的工作模式通常是这样：</p>
 <ol>
 <li>首先，可以试图用<code>git push origin branch-name</code>推送自己的修改；</li>
@@ -273,10 +555,12 @@
 <p>**注意：原教程中使用的是<code>git branch --set-upstream dev origin/&lt;branch&gt;</code>命令。</p>
 <p>这回<code>git pull</code>成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的”解决冲突”完全一样。解决后，提交，再push：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;merge &amp; fix devtest.txt&quot;</div><div class="line">$ git push origin dev</div></pre></td></tr></table></figure>
-<h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a><strong>标签管理</strong></h2><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），标签也是版本库的一个快照。</p>
+<h3 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h3><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），标签也是版本库的一个快照。</p>
 <p>标签是指向某个 commit 的指针（和分支相似，但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。</p>
 <p>tag 就是一个让人容易记住的有意义的名字，它跟某个 commit 绑在一起。</p>
-<p>1.创建标签</p>
+<ol>
+<li>创建标签</li>
+</ol>
 <p>首先，切换到需要到打标签的分支上：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line">$ git checkout master</div></pre></td></tr></table></figure>
 <p>然后，命令<code>git tag</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id。</p>
@@ -305,7 +589,9 @@
 <p>用命令<code>git show</code>可以看到PGP签名信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git show v0.2</div></pre></td></tr></table></figure>
 <p>用PGP签名的标签是不可伪造的，因为可以验证PGP签名。</p>
-<p>2.操作标签</p>
+<ol>
+<li>操作标签</li>
+</ol>
 <p>删除标签，使用命令<code>git tag -d &lt;tagname&gt;</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag -d v0.1</div></pre></td></tr></table></figure>
 <p>因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。</p>
@@ -313,16 +599,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git push origin v1.0</div><div class="line">$ git push origin --tags</div></pre></td></tr></table></figure>
 <p>如果标签已经推送到远程，先从本地删除，再从远程删除，使用命令<code>git push origin :refs/tags/</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag -d v0.9</div><div class="line">$ git push origin :refs/tags/v0.9</div></pre></td></tr></table></figure>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a><strong>Github</strong></h2><p>访问想要 Fork 的仓库，在自己的账号下克隆，然后使用<code>git clone &lt;address&gt;</code>命令 clone 到本地进行修改。</p>
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><p>访问想要 Fork 的仓库，在自己的账号下克隆，然后使用<code>git clone &lt;address&gt;</code>命令 clone 到本地进行修改。</p>
 <ul>
 <li>在GitHub上，可以任意Fork开源仓库；</li>
 <li>自己拥有Fork后的仓库的读写权限；</li>
 <li>可以推送pull request给官方仓库来贡献代码。</li>
 </ul>
-<h2 id="自定义-Git"><a href="#自定义-Git" class="headerlink" title="自定义 Git"></a><strong>自定义 Git</strong></h2><p>在“安装Git”一节中，已经配置了<code>user.name</code>和<code>user.email</code>。</p>
+<h3 id="自定义-Git"><a href="#自定义-Git" class="headerlink" title="自定义 Git"></a>自定义 Git</h3><p>在“安装Git”一节中，已经配置了<code>user.name</code>和<code>user.email</code>。</p>
 <p>如果想让 Git 显示颜色，让命令输出看起来更醒目：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global color.ui true</div></pre></td></tr></table></figure>
-<p>1.忽略特殊文件</p>
+<ol>
+<li>忽略特殊文件</li>
+</ol>
 <ul>
 <li>忽略某些文件时，需要编写<code>.gitignore</code>；</li>
 <li><code>.gitignore</code>文件本身要放到版本库里，并且可以对<code>.gitignore</code>做版本管理！</li>
@@ -346,7 +634,9 @@
 <p>或者你发现，可能是<code>.gitignore</code>写得有问题，需要找出来到底哪个规则写错了，可以用<code>git check-ignore</code>命令检查：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git check-ignore -v App.class</div><div class="line">.gitignore:3:*.class    App.class</div></pre></td></tr></table></figure>
 <p>Git会告诉我们，<code>.gitignore</code>的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。</p>
-<p>2.配置别名</p>
+<ol>
+<li>配置别名</li>
+</ol>
 <p>如果想敲<code>git st</code>就可以表示<code>git status</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global alias.st status</div></pre></td></tr></table></figure>
 <p>当然可以用<code>co</code>表示<code>checkout</code>，<code>ci</code>表示<code>commit</code>，<code>br</code>表示<code>branch</code>：</p>
@@ -365,121 +655,339 @@
 </ul>
 <p>配置Git的时候，加上<code>--global</code>是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。</p>
 <p>每个仓库的Git配置文件都放在<code>.git/config</code>文件中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ cat .git/config </div><div class="line">[core]</div><div class="line">    repositoryformatversion = 0</div><div class="line">    filemode = true</div><div class="line">    bare = false</div><div class="line">    logallrefupdates = true</div><div class="line">    ignorecase = true</div><div class="line">    precomposeunicode = true</div><div class="line">[remote &quot;origin&quot;]</div><div class="line">    url = git@github.com:yourusername/gittest.git</div><div class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</div><div class="line">[branch &quot;master&quot;]</div><div class="line">    remote = origin</div><div class="line">    merge = refs/heads/master</div><div class="line">[alias]</div><div class="line">    last = log -1</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ cat .git/config </div><div class="line">[core]</div><div class="line">    repositoryformatversion = 0</div><div class="line">    filemode = true</div><div class="line">    bare = false</div><div class="line">    logallrefupdates = true</div><div class="line">    ignorecase = true</div><div class="line">    precomposeunicode = true</div><div class="line">[remote &quot;origin&quot;]</div><div class="line">    url = git@github.com:michaelliao/learngit.git</div><div class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</div><div class="line">[branch &quot;master&quot;]</div><div class="line">    remote = origin</div><div class="line">    merge = refs/heads/master</div><div class="line">[alias]</div><div class="line">    last = log -1</div></pre></td></tr></table></figure>
 <p>别名就在<code>[alias]</code>后面，要删除别名，直接把对应的行删掉即可。</p>
 <p>而当前用户的Git配置文件放在用户主目录下的一个隐藏文件<code>.gitconfig</code>中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat .gitconfig</div><div class="line">[alias]</div><div class="line">    co = checkout</div><div class="line">    ci = commit</div><div class="line">    br = branch</div><div class="line">    st = status</div><div class="line">[user]</div><div class="line">    name = Your Name</div><div class="line">    email = your@email.com</div></pre></td></tr></table></figure>
 <p>配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。</p>
-<p>3.搭建 Git 服务器</p>
+<ol>
+<li>搭建 Git 服务器</li>
+</ol>
 <p>等我装个 ubuntu 再试试……</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;本 Git 教程根据&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000&quot; target=&quot;_blank&quot; rel=&quot;
-    
-    </summary>
-    
-      <category term="Git" scheme="http://VectorF.github.io/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://VectorF.github.io/tags/Git/"/>
-    
-      <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>永不过时的 K 均值算法</title>
-    <link href="http://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/"/>
-    <id>http://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/</id>
-    <published>2016-10-21T13:27:17.000Z</published>
-    <updated>2016-11-06T12:20:38.371Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>原文地址：<a href="http://quantdare.com/2016/04/k-means-vs-k-medoids/" target="_blank" rel="external">《”K-Means never fails”, they said…》</a> &ensp; 原文作者：Fjrodriguez2</p>
-<p>译文于2016/09/14发表在 <a href="http://datartisan.com/article/detail/168.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
-</blockquote>
-<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>众所周知，数据挖掘算法并非十全十美，在某些情况下他们也会失效。 使用 K 均值算法（K-Means）时就可能会出现这种情况，当然此时你可以尝试一下另一种方法—— K 中心聚类算法（K-Medoids），也许效果会更好。</p>
-<p>在该网站之前的文章《揭开机器学习的面纱》中，已经指出， K 均值算法用于聚类时效果良好，而且在数据挖掘和机器学习领域，它也有着重要的地位。Psanchezcri 就曾在他的文章《将 K 均值方法用于金融时序回报率聚类》中，将 K 均值算法用于分析金融时间序列的趋势。</p>
-<p>然而，即使在网络上有关算法的文档浩如烟海的情况下，关于机器学习算法有时会失效的讨论却并不多见。</p>
-<p>因此，本文借由一个金融案例来反映这个问题。</p>
-<hr>
-<h2 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h2><p>1）首先，我们在欧洲斯托克600指数的成分股中选择三组共6只股票（在三个不同的部门中各选两只）：</p>
-<ul>
-<li><p>金融部门：  西班牙毕尔巴鄂比斯开银行 &amp; 桑坦德银行</p>
-</li>
-<li><p>非必需消费品：  法国酩悦·轩尼诗－路易·威登 &amp; 迪奥</p>
-</li>
-<li><p>能源部门：  英国石油公司 &amp; 锡尼什港能源公司</p>
-</li>
-</ul>
-<p>2）搜集数据，并绘出在2013/01/01至2015/12/31期间这六只股票的价格走势曲线。如下所示：</p>
-<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/1.png" alt="1"><br></div>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<br>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记">印象笔记</a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16},"image":{"viewList":["tsina","qzone","weixin","evernotecn"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","evernotecn"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<br>
+ 
 
 
-<p>3）选择日回报率作为计算指标，我们算出三组股票序列的相关距离。然后通过距离矩阵降维的方法，在二维欧氏空间中绘出每个点。</p>
-<p>结果显示这六只股票可以按部门进行分类效果显著。下图以蓝色菱形点、绿色正方形点、红色圆点来标记六只股票，明显可以按部门分为三类：</p>
-<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/2.png" alt="2"><br></div>
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2016/11/06/20161106-Git/" data-title="Git 教程" data-url="http://VectorF.github.io/2016/11/06/20161106-Git/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'vectorblogcomment'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
 
 
-<p>4）最后，我们将 K 均值算法运用于距离矩阵，聚类目标预先设定分成3类。由于 K 均值算法是从随机点开始的，每次运行结果可能有所不同，本文我们预先设定运行这个算法15次，即产生15个结果。当然，我们希望得到聚类结果符合股票所属部门的实际情况。</p>
-<hr>
-<h2 id="3-结论"><a href="#3-结论" class="headerlink" title="3. 结论"></a>3. 结论</h2><p>１）在约80%的聚类结果中，K 均值聚类算法取得了理想的结果，聚类结果与这六只股票所属部门相符，如下图所示：</p>
-<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/3.png" alt="3"><br></div>
 
 
-<p>２）在剩下的20%的聚类结果中，算法则出现了聚类的错误。例如，下图中错将两个不同部门的四只股票聚为一类（图中蓝色菱形点和绿色正方形点），而将同一部门的两只股票分为两类（图中红色圆点）：</p>
-<div align="center"><br><img src="http://od7vqa3z1.bkt.clouddn.com/4.png" alt="4"><br></div>
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large grey darken-4">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect grey darken-3" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse grey darken-3"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer red darken-2 darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://github.com/VectorF" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">该博客主题raytaylorism作者</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright red-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+	
+</footer>
 
 
-<p>如果我们使用与之思想类似的 K 中心聚类算法，结果则可以达到100%的正确聚类率。这表明在聚类时，似乎使用重心会比用均值来衡量距离，效果更好。</p>
-<hr>
-<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;原文地址：&lt;a href=&quot;http://quantdare.com/2016/04/k-means-vs-k-medoids/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《”K-Means never fails”, the
-    
-    </summary>
-    
-      <category term="翻译" scheme="http://VectorF.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
-    
-    
-      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
-    
-      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
-    
-      <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第一篇博文</title>
-    <link href="http://VectorF.github.io/2016/10/19/20161019-my-first-post/"/>
-    <id>http://VectorF.github.io/2016/10/19/20161019-my-first-post/</id>
-    <published>2016-10-19T05:31:17.000Z</published>
-    <updated>2016-10-19T13:18:13.631Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello,world!"></a>Hello,world!</h2><p><a id="more"></a>你好呀！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Hello-world&quot;&gt;&lt;a href=&quot;#Hello-world&quot; class=&quot;headerlink&quot; title=&quot;Hello,world!&quot;&gt;&lt;/a&gt;Hello,world!&lt;/h2&gt;&lt;p&gt;
-    
-    </summary>
-    
-      <category term="日常" scheme="http://VectorF.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-      <category term="日常" scheme="http://VectorF.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
-    
-  </entry>
-  
-</feed>
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('red lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge grey darken-3"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword red lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword red lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85974320-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=59046748" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+</body>
+</html>
