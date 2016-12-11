@@ -179,16 +179,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/翻译/">
-                    翻译 <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/教程/">
+                    教程 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/教程/">
-                    教程 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/翻译/">
+                    翻译 <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -274,7 +274,7 @@
 <p>原文地址：<a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">《 Gavagai 》</a>   原文作者：Federico Vaggi</p>
 <p>译文于2016/12/10发表在 <a href="http://datartisan.com/article/detail/181.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
 </blockquote>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/fenmian.jpg" alt="dota2"><br><br></div>
+<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/fenmian.jpg" width="800" height="350" alt="dota2"><br><br></div>
 
 <p>本文使用自然语言处理（ NLP ）方法对 DOTA2 英雄角色属性做了简要的分析。</p>
 <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a><strong>1. 引言</strong></h2><p>如果有人问你“兔子”是什么意思，你会怎么回答？你可能会跑出去，每次看到一只兔子就指给那个人看，说“喏，那就是兔子。”当然那个人得和你三观相近，你才能解释得通。那如果对方对世界的认知方式和你不同，你要怎么向他解释？<br>这就是为什么要引入”词向量（ word vector ）”这个概念。”词向量”基于分布假定，即“语义相近的词语往往会出现在相似的内容中”。<br>在语言学中，如果你发现“ negotiate ”和“ bargain ”总是出现在相似的内容里，它们的语义就可能也是相近的。通过将词语向量化，再去计算向量化后“ negotiate ”和“ bargain ”的余弦相似度（一种测量两个向量间相似性的方法），你会发现相似度的值会接近 1 。词向量也常用于利用相似性去解释一些东西，比如说“皇帝”是“男人”，“皇后”就是“女人”。</p>
@@ -304,7 +304,7 @@
 <p>如上图所示，每一列对应一个英雄，并把行列以树状图的形式展示出来。不过除非你已经看惯了这些图，不然直观地分清哪些英雄是一类的或者判断出哪个英雄和别的相似还是挺难的。<br>我们将树状图精简展示出来，来看看那些英雄是相似的，结果如下图所示：</p>
 <div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/3.png" alt="3"><br><br></div>
 
-<p>截至目前，我们已经得到了一些有意义（虽然并不完美）的英雄分类群体了，比如“劣势路单”群体包括了末日使者、司夜刺客、黑暗贤者、钢背兽和半人马战行者，“强核心”群体包括了卓尔游侠、斯拉克、幻影长矛手和噬魂鬼，而“力量支持”群体则包括了冥魂大帝、巨牙海民和亚巴顿。<br>当然有其他方式来展示分类的结果。我们可以使用 <a href="https://lvdmaaten.github.io/tsne/" target="_blank" rel="external">t-SNE</a> 将 50 维的数据以二维的形式展示出来。 t-SNE 是一种在尽可能不破坏原有高维数据结构的基础上以低维形式展示数据的方法。<br>在对数据进行处理并在二维空间绘图后，我们可以得到下图：</p>
+<p>截至目前，我们已经得到了一些有意义（虽然并不完美）的英雄分类群体了，比如“劣势路单”群体包括了末日使者、司夜刺客、黑暗贤者、钢背兽和半人马战行者，“强核心”群体包括了卓尔游侠、斯拉克、幻影长矛手和噬魂鬼，而“力量支持”群体则包括了冥魂大帝、巨牙海民和亚巴顿。<br>当然有其他方式来展示分类的结果。我们可以使用 <a href="https://lvdmaaten.github.io/tsne/" target="_blank" rel="external">t-SNE</a> 将 50 维的数据以二维的形式展示出来。 <a href="https://lvdmaaten.github.io/tsne/" target="_blank" rel="external">t-SNE</a> 是一种在尽可能不破坏原有高维数据结构的基础上以低维形式展示数据的方法。<br>在对数据进行处理并在二维空间绘图后，我们可以得到下图：</p>
 <div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/4.png" alt="4"><br><br></div>
 
 <p>图中英雄不同的颜色来自于上文的分类结果，直观地看这些离散分类还是具有一定意义的。</p>
