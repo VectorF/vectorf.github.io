@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[ECharts 测试]]></title>
-      <url>http://VectorF.github.io/2016/12/29/test/</url>
+      <url>http://VectorF.github.io/2016/12/29/20161229-ECharts%E6%B5%8B%E8%AF%95/</url>
       <content type="html"><![CDATA[<script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
 <div id="main" style="width: 600px;height:400px;" align="center"></div>
 <script type="text/javascript">
