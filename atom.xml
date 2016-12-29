@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://VectorF.github.io/"/>
-  <updated>2016-12-11T08:19:26.515Z</updated>
+  <updated>2016-12-29T13:45:48.483Z</updated>
   <id>http://VectorF.github.io/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ECharts 测试</title>
+    <link href="http://VectorF.github.io/2016/12/29/test/"/>
+    <id>http://VectorF.github.io/2016/12/29/test/</id>
+    <published>2016-12-29T12:30:30.000Z</published>
+    <updated>2016-12-29T13:45:48.483Z</updated>
+    
+    <content type="html"><![CDATA[<script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
+<div id="main" style="width: 600px;height:400px;" align="center"></div>
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('main'));
+
+var option = {
+title: {
+text: 'ECharts 入门示例'
+},
+tooltip: {},
+legend: {
+data:['销量']
+},
+xAxis: {
+data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+},
+yAxis: {},
+series: [{
+name: '销量',
+type: 'bar',
+data: [5, 20, 36, 10, 10, 20]
+}]
+};
+
+myChart.setOption(option);
+</script>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;http://oiy82v3pb.bkt.clouddn.com/echarts.js&quot;&gt;&lt;/script&gt;
+&lt;div id=&quot;main&quot; style=&quot;width: 600px;height:400px;&quot; align=&quot;center&quot;&gt;&lt;/div&gt;
+
+    
+    </summary>
+    
+      <category term="ECharts" scheme="http://VectorF.github.io/categories/ECharts/"/>
+    
+    
+      <category term="ECharts" scheme="http://VectorF.github.io/tags/ECharts/"/>
+    
+      <category term="测试" scheme="http://VectorF.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>机器学习与 Dota2 英雄属性</title>
@@ -84,13 +136,13 @@
     
       <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="dota2" scheme="http://VectorF.github.io/tags/dota2/"/>
     
       <category term="自然语言处理" scheme="http://VectorF.github.io/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
       <category term="词向量" scheme="http://VectorF.github.io/tags/%E8%AF%8D%E5%90%91%E9%87%8F/"/>
+    
+      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -532,13 +584,13 @@
       <category term="翻译" scheme="http://VectorF.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
-    
-      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
-    
       <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
+    
+      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
     
   </entry>
   
