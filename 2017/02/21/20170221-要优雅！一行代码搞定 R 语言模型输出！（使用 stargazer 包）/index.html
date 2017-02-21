@@ -7,7 +7,7 @@
 	<meta name="google-site-verification" content="u22-6QbrrTexEK-LhL3KVFGlEL_TqtKkteNtervFo5E" />
     
 
-    <title>机器学习与 Dota2 英雄属性 | Vector Blog</title>
+    <title>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包） | Vector Blog</title>
     <meta name="author" content="VectorF">
     
     <meta name="description" content="Here is Vector&#39;s blog, thanks for your reading!">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="机器学习与 Dota2 英雄属性"/>
+    <meta property="og:title" content="要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）"/>
     <meta property="og:site_name" content="Vector Blog"/>
 
     
@@ -240,7 +240,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/翻译/">翻译</a>
+    <a class="breadcrumb" href="/categories/教程/">教程</a><a class="breadcrumb" href="/categories/教程/R/">R</a>
 
 
         
@@ -257,82 +257,120 @@
             <div class="article-title">
                 
     
-        <h1>机器学习与 Dota2 英雄属性</h1>
+        <h1>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）</h1>
     
 
 
             </div>
-            <time class="red-link-context" datetime="2016-12-11T08:30:30.000Z"><a href="/2016/12/11/20161210-机器学习与Dota2英雄属性/">2016-12-11</a></time>
+            <time class="red-link-context" datetime="2017-02-21T08:30:30.000Z"><a href="/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/">2017-02-21</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/机器学习/" class="chip red">机器学习</a>
+            <a href="/tags/教程/" class="chip red">教程</a>
         
-            <a href="/tags/翻译/" class="chip red">翻译</a>
-        
-            <a href="/tags/dota2/" class="chip red">dota2</a>
-        
-            <a href="/tags/自然语言处理/" class="chip red">自然语言处理</a>
-        
-            <a href="/tags/词向量/" class="chip red">词向量</a>
+            <a href="/tags/R-语言/" class="chip red">R 语言</a>
         
     </div>
 
 
             <div class="toc red-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-引言"><span class="section table-of-contents-text">1. 引言</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-从词向量到英雄向量"><span class="section table-of-contents-text">2. 从词向量到英雄向量</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-全局视角"><span class="section table-of-contents-text">3. 全局视角</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-向量到底代表什么？"><span class="section table-of-contents-text">4. 向量到底代表什么？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-结论"><span class="section table-of-contents-text">5. 结论</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#引言"><span class="section table-of-contents-text">引言</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#安装及加载"><span class="section table-of-contents-text">安装及加载</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#使用说明"><span class="section table-of-contents-text">使用说明</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#与-rmarkdown-一起食用"><span class="section table-of-contents-text">与 rmarkdown 一起食用</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
 </div>
 
 
             <div class="entry red-link-context">
                 <blockquote>
-<p>原文地址：<a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">《 Gavagai 》</a>   原文作者：Federico Vaggi</p>
-<p>译文于 2016/12/10 发表在 <a href="http://datartisan.com/article/detail/181.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
+<p>本文于 2017/02/08 发表在 <a href="http://datartisan.com/article/detail/202.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
 </blockquote>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/fenmian.jpg" width="800" height="350" alt="dota2"><br><br></div>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>使用<code>stargazer</code>包可以将 R 构建的模型结果以<code>LATEX</code>、<code>HTML</code>和<code>ASCII</code>格式输出，方便我们生成标准格式的表格。</p>
+<p>再结合<code>rmarkdown</code>，你就可以轻轻松松输出一篇优雅的文章啦~</p>
+<p>本文“使用说明”部分主要参考<code>stargazer</code>的<a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf" title="stargezer.pdf" target="_blank" rel="external">说明文档</a>。</p>
+<h2 id="安装及加载"><a href="#安装及加载" class="headerlink" title="安装及加载"></a>安装及加载</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">install.packages(<span class="string">"stargazer"</span>)</div><div class="line"><span class="keyword">library</span>(stargazer)</div></pre></td></tr></table></figure>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>**注意：<code>stargazer</code>包的输出结果是相应格式的，例如输出<code>LATEX</code>格式，可以直接将结果粘贴进<code>WinEdt</code>等编辑器中输出表格。下文直接将结果以表格的形式展示。</p>
+<p>我们使用 R 中自带的数据集<code>attitude</code>来简要说明<code>stargazer</code>包的用法。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data(<span class="string">"attitude"</span>)</div></pre></td></tr></table></figure>
+<p><code>attitude</code>数据集中包括<code>rating</code>、<code>complaints</code>等八个变量：</p>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/0.png" alt="0"><br><br></div>
 
-<p>本文使用自然语言处理（ NLP ）方法对 DOTA2 英雄角色属性做了简要的分析。</p>
-<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a><strong>1. 引言</strong></h2><p>如果有人问你“兔子”是什么意思，你会怎么回答？你可能会跑出去，每次看到一只兔子就指给那个人看，说“喏，那就是兔子。”当然那个人得和你三观相近，你才能解释得通。那如果对方对世界的认知方式和你不同，你要怎么向他解释？<br>这就是为什么要引入”词向量（ word vector ）”这个概念。”词向量”基于分布假定，即“语义相近的词语往往会出现在相似的内容中”。<br>在语言学中，如果你发现“ negotiate ”和“ bargain ”总是出现在相似的内容里，它们的语义就可能也是相近的。通过将词语向量化，再去计算向量化后“ negotiate ”和“ bargain ”的余弦相似度（一种测量两个向量间相似性的方法），你会发现相似度的值会接近 1 。词向量也常用于利用相似性去解释一些东西，比如说“皇帝”是“男人”，“皇后”就是“女人”。</p>
-<h2 id="2-从词向量到英雄向量"><a href="#2-从词向量到英雄向量" class="headerlink" title="2. 从词向量到英雄向量"></a><strong>2. 从词向量到英雄向量</strong></h2><p>那么词向量怎么帮助我们去认识 Dota2 中的队伍呢？你可以想象每只 Dota2 的队伍配置都是由不同英雄做单词从而组成的句子，比如说：蝙蝠骑士、干扰者、拉席克、娜迦海妖、编织者，又或者：龙骑士、编织者、水晶室女、风行者、树精卫士。<br>正如上文提到的分布假定所说的那样，只是这次我们不通过每个词所在的句子去判断词语的意思，而是通过每个 Dota2 英雄所在的队伍去判断每个英雄的角色属性。具体来说，如果我们发现“巫医”和“莱恩”总是出现在相似的队伍里，那么他们可能就具有相似的角色属性。<br>本文使用 <a href="http://www.datdota.com/" target="_blank" rel="external">datdota</a> 作为数据来源，并使用 <a href="https://radimrehurek.com/gensim/index.html" target="_blank" rel="external">gensim library</a> 使我们的英雄向量化。<br>举例来说，通过对数据集的训练，“影魔”这个英雄向量化后大致如下：<br>[-0.06813218, -0.00902375, 0.10162564, -0.01908037, 0.03013835,<br>0.16538762, 0.03104097, 0.02496031, -0.16785616, 0.3313826 ,<br>-0.21904311, -0.07945664, 0.19140202, 0.12729862, 0.36308175,<br>0.19962946, 0.13561839, 0.23637122, -0.32607114, 0.05647549,<br>0.09655968, -0.21899879, 0.04926173, 0.12474103, 0.14504923,<br>0.06281823, 0.14728694, -0.03583163, -0.00227163, 0.1205247 ,<br>0.01127683, 0.01522848, 0.13806115, 0.0216765 , 0.13671157,<br>-0.1683237 , 0.00408782, 0.10514087, -0.17610508, 0.04697264,<br>-0.03406512, -0.14956233, 0.20201634, 0.00907436, -0.05804597,<br>-0.00481437, 0.11493918, -0.07718568, -0.13443205, -0.01155808]<br>这样，“影魔”这个英雄现在变成了 50 维空间里的一个点，但是把一个词变成 50 个数字并没有什么用处。现在来做一些炫酷的事吧！还是拿“影魔”为例，我们找出和它相似的一些英雄向量：</p>
-<ol>
-<li>痛苦女王：0.9340388774871826</li>
-<li>风暴之灵：0.9170020818710327</li>
-<li>冥界亚龙：0.9082884788513184</li>
-<li>狙击手：0.8958033919334412</li>
-<li>宙斯：0.8526902794837952</li>
-</ol>
-<p>（数字代表这些向量化后的英雄和“影魔”的余弦相似性）<br>下图则更直观地将结果进行展示，图中每行代表一个向量化后的英雄。</p>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/1.png" alt="1"><br><br></div>
+<p>1.展示数据集的描述性分析和部分数据集内容</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 展示数据集的描述性分析</span></div><div class="line">stargazer(attitude,header = <span class="literal">F</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/1.png" alt="1"><br><br></div>
 
-<p>这就看起来有点感觉了，接下来再尝试一些更难的东西看看我们是不是能通过这些向量化后的英雄来解释它们之间的相似性，就像“莱恩”和“敌法师”相似，而“巫医”则和以下英雄相似：</p>
-<ol>
-<li>幽鬼：0.9638912677764893</li>
-<li>幻影长矛手：0.9185065031051636</li>
-<li>幻影刺客：0.9039324522018433</li>
-<li>变体精灵：0.858444333076477</li>
-<li>噬魂鬼：0.8570600748062134</li>
-</ol>
-<p>虽然这些分析可能不能帮助你打赢 PPD ,但至少下次你就知道该挑选哪些英雄来组队。</p>
-<h2 id="3-全局视角"><a href="#3-全局视角" class="headerlink" title="3. 全局视角"></a><strong>3. 全局视角</strong></h2><p>我们可以把所有英雄同时展示在一张图里，但这难免让人眼花缭乱。</p>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/2.png" alt="2"><br><br></div>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 展示attitude数据集的前四行</span></div><div class="line">stargazer(attitude[<span class="number">1</span>:<span class="number">4</span>,], summary=<span class="literal">FALSE</span>, rownames=<span class="literal">FALSE</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/2.png" alt="2"><br><br></div>
 
-<p>如上图所示，每一列对应一个英雄，并把行列以树状图的形式展示出来。不过除非你已经看惯了这些图，不然直观地分清哪些英雄是一类的或者判断出哪个英雄和别的相似还是挺难的。<br>我们将树状图精简展示出来，来看看那些英雄是相似的，结果如下图所示：</p>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/3.png" alt="3"><br><br></div>
+<p>怎么样？！是不是感觉还不错~</p>
+<p>2.展示线性模型结果，并加上表名</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 构建线性和Probit模型</span></div><div class="line">linear.1 &lt;- lm(rating ~ complaints + privileges + learning + raises + critical,data=attitude)</div><div class="line">linear.2 &lt;- lm(rating ~ complaints + privileges + learning, data=attitude)</div><div class="line">attitude$high.rating &lt;- (attitude$rating &gt; <span class="number">70</span>)</div><div class="line">probit.model &lt;- glm(high.rating ~ learning + critical + advance, data=attitude,family = binomial(link = <span class="string">"probit"</span>))</div><div class="line"><span class="comment"># 展示模型结果</span></div><div class="line">stargazer(linear.1, linear.2, probit.model, title=<span class="string">"Results"</span>,align=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/3.png" alt="3"><br><br></div>
 
-<p>截至目前，我们已经得到了一些有意义（虽然并不完美）的英雄分类群体了，比如“劣势路单”群体包括了末日使者、司夜刺客、黑暗贤者、钢背兽和半人马战行者，“强核心”群体包括了卓尔游侠、斯拉克、幻影长矛手和噬魂鬼，而“力量支持”群体则包括了冥魂大帝、巨牙海民和亚巴顿。<br>当然有其他方式来展示分类的结果。我们可以使用 <a href="https://lvdmaaten.github.io/tsne/" target="_blank" rel="external">t-SNE</a> 将 50 维的数据以二维的形式展示出来。 <a href="https://lvdmaaten.github.io/tsne/" target="_blank" rel="external">t-SNE</a> 是一种在尽可能不破坏原有高维数据结构的基础上以低维形式展示数据的方法。<br>在对数据进行处理并在二维空间绘图后，我们可以得到下图：</p>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/4.png" alt="4"><br><br></div>
+<p>我们构建了两个线性模型和一个 Probit 模型，并将结果输出。</p>
+<p>使用<code>title</code>参数将其命名为“Results”；</p>
+<p>使用<code>align</code>参数使数字排列整齐。</p>
+<p>3.对模型结果输出做部分调整：</p>
+<ul>
+<li>更改变量名；</li>
+<li>删除极大似然统计量、残差标准差、F统计量；</li>
+<li>删除表中的空行。</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, probit.model, </div><div class="line">          title=<span class="string">"Regression Results"</span>, align=<span class="literal">TRUE</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>), no.space=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/4.png" alt="4"><br><br></div>
 
-<p>图中英雄不同的颜色来自于上文的分类结果，直观地看这些离散分类还是具有一定意义的。</p>
-<h2 id="4-向量到底代表什么？"><a href="#4-向量到底代表什么？" class="headerlink" title="4. 向量到底代表什么？"></a><strong>4. 向量到底代表什么？</strong></h2><p>那么我们给每个英雄赋的值到底代表什么呢？“影魔”在第一维空间里的值为 -0.06813218 ，这个值代表什么意思？通常情况下，我们会说这些是潜在的属性值，就不再深究了。但在这个实例里，我们可以再深入一点。<br><a href="http://dota2.gamepedia.com/Dota_2_Wiki" target="_blank" rel="external">Dota2 gamepedia</a> 给每个英雄都赋予了一系列角色属性。虽然这个属性有待商榷，而且在打完补丁之后有的英雄可能会从辅助变成核心，但是这仍然可以作为一个不错的出发点。<br>现在，我们已经为接下来的分析做好准备了。回想一下之前我们已经用 50 个数字来刻画每个英雄了，并且从 <a href="http://dota2.gamepedia.com/Dota_2_Wiki" target="_blank" rel="external">Dota2 gamepedia</a> 网站中也有了每个英雄对应的角色属性。<br>我们想验证向量维度和英雄的角色属性之间是否有一定的联系。有很多方法可以实现，但可能最简单的方式就是使用 Logistic 回归了。<br>为了能得到稀疏集，我们使用 L1 范数规则化。<br>结果如下图所示：</p>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/5.png" alt="5"><br><br></div>
+<p>使用<code>dep.var.labels</code>和<code>covariate.lables</code>参数分别将因变量和自变量重命名为容易理解的形式；</p>
+<p>使用<code>omit.stat</code>参数控制对数似然比（“LL”）、标准化残差（“ser”）和F统计量（“f”），这三个统计量不在输出结果中展示；</p>
+<p>使用<code>no.space</code>参数将输出表格中的空行删去。</p>
+<p>4.展示置信区间</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">targazer(linear.1, linear.2, </div><div class="line">          title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>),</div><div class="line">         ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/5.png" alt="5"><br><br></div>
 
-<p>这幅图又意味着什么呢？我们可以看到第 46 个向量和“辅助”有很强的相关性，第 38 个向量和“远程英雄”联系紧密。下图是所有英雄第 38 和第 46 个向量值的散点图：</p>
-<div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/6.png" alt="6"><br><br></div>
+<p>使用<code>ci</code>和<code>ci.level</code>参数展示90%的置信区间；</p>
+<p>使用<code>single.row</code>参数使估计量与置信区间并排展示。</p>
+<p>5.调整变量展示顺序，加上样本量，并移除其他统计量</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          order=c(<span class="string">"learning"</span>, <span class="string">"privileges"</span>),</div><div class="line">          keep.stat=<span class="string">"n"</span>, ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/6.png" alt="6"><br><br></div>
 
-<p>可以看出第 46 个向量值大的英雄很可能是辅助英雄。相似地，第 38 个向量值大的英雄很可能是打远程的。当然，你可能注意到这两个向量似乎有点相关（虽然相关性并不是那么强），不过这也正好与辅助英雄往往也是打远程的情况相符。上图也将不朽尸王、上古巨神、亚巴顿这些近战支援（辅助属性高，远程属性低）的英雄正确识别出来了，但卓尔游侠的向量值却和角色属性不符，而且克林克兹也是一个近战支援的英雄（图中其第 38 和 46 个向量值都不高，与事实不太相符）。</p>
-<h2 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a><strong>5. 结论</strong></h2><p>一旦涉及到计算机领域，每次英雄的选派都可以看作是没有实际意义的随机序列，但是从这里出发，却能得到可以被较好解释的信息。因此，在训练这些向量值时，我们并没有使用任何从 Dota2 得到的英雄属性信息。<br>我们可以将 Dota2 英雄的选派看作是我们不会说的一门外语。通过观察这些词的使用模式，找出词意相近的词语。<br>进一步地，通过连接在无监督学习下得到的分类特征，我们能够解释这些潜在属性。</p>
+<p>使用<code>order</code>参数控制自变量展示的顺序，即将<code>learning</code>和<code>privileges</code>放在表的前两行；</p>
+<p>使用<code>keep.stat</code>参数控制要展示的统计量，<code>keep.stat=&quot;n&quot;</code>即只展示样本量的大小，并移除其他统计量。</p>
+<p>6.以<code>ASCII</code>格式输出：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, type=<span class="string">"text"</span>, title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>), ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/7.png" alt="7"><br><br></div>
+
+<p>使用<code>type</code>参数控制以<code>ASCII</code>格式输出，还可以选择输出<code>HTML</code>格式。默认为<code>LATEX</code>格式。</p>
+<p>相应地，将<code>type</code>参数分别设置为<code>text</code>、<code>html</code>、<code>latex</code>即可。</p>
+<p>7.展示矩阵</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">correlation.matrix &lt;-cor(attitude[,c(<span class="string">"rating"</span>,<span class="string">"complaints"</span>,<span class="string">"privileges"</span>)])</div><div class="line">stargazer(correlation.matrix, title=<span class="string">"Correlation Matrix"</span>)</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/8.png" alt="8"><br><br></div>
+
+<p><code>stargazer</code>也可以用来展示向量、矩阵或者数据框的内容。</p>
+<p>我们建立了<code>attitude</code>数据集中变量<code>rating</code>、<code>complaints</code>、<code>privileges</code>的相关系数矩阵，并展示出来。</p>
+<p>8.自定义变量</p>
+<p>我们使用<code>sandwich</code>包来计算异方差-稳健标准误，并将其与默认计算的标准差一同展示。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装及加载"sandwich"包</span></div><div class="line">install.packages(<span class="string">"sandwich"</span>)</div><div class="line"><span class="keyword">library</span>(sandwich)</div><div class="line"><span class="comment"># 计算异方差-稳健标准误</span></div><div class="line">cov&lt;-vcovHC(linear.1,type=<span class="string">"HC"</span>)</div><div class="line">robust.se&lt;-sqrt(diag(cov))</div><div class="line">stargazer(linear.1,linear.1,se=list(<span class="literal">NULL</span>,robust.se),column.labels = c(<span class="string">"default"</span>,<span class="string">"robust"</span>))</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/9.png" alt="9"><br><br></div>
+
+<h2 id="与-rmarkdown-一起食用"><a href="#与-rmarkdown-一起食用" class="headerlink" title="与 rmarkdown 一起食用"></a>与 <code>rmarkdown</code> 一起食用</h2><p><code>rmarkdown</code>包可直接在<code>RStudio</code>中编辑符合 <code>markdown</code>语法的文档，并兼容<code>LATEX</code>格式。而且可以直接输出成<code>HTML</code>、<code>pdf</code>等格式的文档。</p>
+<p>因此，<code>stargazer</code>与<code>rmarkdown</code>一起食用，风味更佳~</p>
+<p>首先，你需要在<code>Rstudio</code>中安装<code>rmarkdown</code>。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">install.packages(<span class="string">"rmarkdown"</span>)</div></pre></td></tr></table></figure>
+<p>然后，就可以原先新建脚本的地方发现，可以新建一个<code>R Markdown</code>文件啦。</p>
+<p>在<code>rmarkdown</code>中，用如下所示的形式来表示代码块：</p>
+<div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/10.png" alt="10"><br><br></div>
+
+<p>注意以下几点：</p>
+<ul>
+<li>要加上<code>results=&#39;asis&#39;</code>保证输出的是表格，而不是<code>LATEX</code>格式；</li>
+<li>参数<code>align</code>失效，不能加上；</li>
+<li>加上参数<code>header=F</code>，以避免输出关于包作者的一些信息。</li>
+</ul>
+<p>其余用法与上述使用说明基本相同。这样就可以直接输出如上所示的表格了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>stargazer</code>用一行代码就可以解决模型结果输出成表格的问题，而且支持大量模型。具体可查看该包的<a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf" title="stargezer.pdf" target="_blank" rel="external">说明文档</a>。</p>
+<p>最后，如果在你的文章中有使用了<code>stargazer</code>包。记得附注以下作者的信息哦。</p>
+<blockquote>
+<p>Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.<br>R package version 5.2. <a href="http://CRAN.R-project.org/package=stargazer" target="_blank" rel="external">http://CRAN.R-project.org/package=stargazer</a></p>
+</blockquote>
 <hr>
+<p>点击链接到 <a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf" title="stargezer.pdf" target="_blank" rel="external"><code>stargazer</code>包的说明文档地址</a></p>
 <p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a></p>
 
             </div>
@@ -352,7 +390,7 @@
         <div class="card">
             <div class="card-content">
                 <!-- Duoshuo Comment BEGIN -->
-                <div class="ds-thread" data-thread-key="2016/12/11/20161210-机器学习与Dota2英雄属性/" data-title="机器学习与 Dota2 英雄属性" data-url="http://VectorF.github.io/2016/12/11/20161210-机器学习与Dota2英雄属性/"></div>
+                <div class="ds-thread" data-thread-key="2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/" data-title="要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）" data-url="http://VectorF.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/"></div>
 
                 <script type="text/javascript">
                     console.log(document.querySelector('.ds-thread'));
