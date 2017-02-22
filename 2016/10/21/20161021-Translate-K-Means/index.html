@@ -265,16 +265,21 @@
             </div>
             <time class="red-link-context" datetime="2016-10-21T13:27:17.000Z"><a href="/2016/10/21/20161021-Translate-K-Means/">2016-10-21</a></time>
 
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
             
     <div class="tags-row">
-        
-            <a href="/tags/K均值/" class="chip red">K均值</a>
-        
-            <a href="/tags/聚类/" class="chip red">聚类</a>
         
             <a href="/tags/机器学习/" class="chip red">机器学习</a>
         
             <a href="/tags/翻译/" class="chip red">翻译</a>
+        
+            <a href="/tags/K均值/" class="chip red">K均值</a>
+        
+            <a href="/tags/聚类/" class="chip red">聚类</a>
         
     </div>
 
@@ -326,7 +331,24 @@
 <hr>
 <p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a></p>
 
+                
+<p class="red-link-context">
+    <a href="/2016/11/06/20161106-Git 教程/" rel="next" title="Git 教程">
+    上一篇：Git 教程
+  </a>
+</p>
+
+
+
+<p class="red-link-context">
+    <a href="/2016/10/19/20161019-my-first-post/" rel="next" title="第一篇博文">
+    下一篇：第一篇博文
+  </a>
+</p>
+
+
             </div>
+			
         </div>
     </div>
 </article>
@@ -387,7 +409,7 @@
     <div class="container">
         <div class="row">
             
-            <div class="social-group col m3 s12">
+            <div class="social-group col m4 s12">
                 <h5 class="white-text">社交</h5>
                 
                     <a class="social-link" href="https://github.com/VectorF" target="_blank">
@@ -398,11 +420,22 @@
                         <i class="fa fa-2x fa-rss"></i>
                     </a>
                 
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
             </div>
             
 
             
-            <div class="col m9 s12">
+            <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
                     <a class="social-link" href="http://raytaylorlin.com/" target="_blank">该博客主题raytaylorism作者</a>
@@ -435,6 +468,8 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 <script>
 (function(){
@@ -492,6 +527,22 @@
 
             // 文章目录
             $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
             // 修正文章目录的left-border颜色
             var color = $('.table-of-contents-text').css('color');
             $('.table-of-contents-link').css('border-left-color', color);
