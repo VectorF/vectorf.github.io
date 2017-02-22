@@ -268,13 +268,13 @@
             
     <div class="tags-row">
         
-            <a href="/tags/机器学习/" class="chip red">机器学习</a>
-        
-            <a href="/tags/翻译/" class="chip red">翻译</a>
-        
             <a href="/tags/K均值/" class="chip red">K均值</a>
         
             <a href="/tags/聚类/" class="chip red">聚类</a>
+        
+            <a href="/tags/机器学习/" class="chip red">机器学习</a>
+        
+            <a href="/tags/翻译/" class="chip red">翻译</a>
         
     </div>
 
@@ -439,11 +439,18 @@
 <script>
 (function(){
     var bp = document.createElement('script');
-    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
+
 
 <script>
     (function($) {
