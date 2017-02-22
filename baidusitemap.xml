@@ -3,6 +3,7 @@
 
 
     
+    
   <url>
     <loc>http://VectorF.github.io/2017/02/20/20170221-%E6%8F%AD%E5%BC%80%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9D%A2%E7%BA%B1/</loc>
     <lastmod>2017-02-21T03:59:57.154Z</lastmod>
@@ -39,13 +40,13 @@
         
         <tag>机器学习</tag>
          
-        <tag>翻译</tag>
-         
         <tag>dota2</tag>
          
         <tag>自然语言处理</tag>
          
         <tag>词向量</tag>
+         
+        <tag>翻译</tag>
          
          
            
@@ -65,13 +66,13 @@
         <title>永不过时的 K 均值算法</title>
         <pubTime>2016-10-21T13:27:17.000Z</pubTime>
         
-        <tag>K均值</tag>
-         
-        <tag>聚类</tag>
-         
         <tag>机器学习</tag>
          
         <tag>翻译</tag>
+         
+        <tag>K均值</tag>
+         
+        <tag>聚类</tag>
          
          
            
@@ -91,9 +92,9 @@
         <title>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）</title>
         <pubTime>2017-02-21T08:30:30.000Z</pubTime>
         
-        <tag>教程</tag>
-         
         <tag>R 语言</tag>
+         
+        <tag>教程</tag>
          
          
            
@@ -138,9 +139,9 @@
         <title>Git 教程</title>
         <pubTime>2016-11-06T12:30:30.000Z</pubTime>
         
-        <tag>Git</tag>
-         
         <tag>教程</tag>
+         
+        <tag>Git</tag>
          
          
            
