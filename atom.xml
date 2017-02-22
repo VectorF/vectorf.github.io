@@ -361,13 +361,13 @@ myChart.setOption(option);
     
       <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="dota2" scheme="http://VectorF.github.io/tags/dota2/"/>
     
       <category term="自然语言处理" scheme="http://VectorF.github.io/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
       <category term="词向量" scheme="http://VectorF.github.io/tags/%E8%AF%8D%E5%90%91%E9%87%8F/"/>
+    
+      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -809,13 +809,13 @@ myChart.setOption(option);
       <category term="翻译" scheme="http://VectorF.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
-    
-      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
-    
       <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
+    
+      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
     
   </entry>
   
