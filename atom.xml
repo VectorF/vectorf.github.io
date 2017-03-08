@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://VectorF.github.io/"/>
-  <updated>2017-02-21T03:57:07.255Z</updated>
+  <updated>2017-03-08T15:33:08.161Z</updated>
   <id>http://VectorF.github.io/</id>
   
   <author>
@@ -16,11 +16,327 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>NumPy 学习日志之数组篇</title>
+    <link href="http://VectorF.github.io/2017/03/08/20170308-NumPy%20%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/"/>
+    <id>http://VectorF.github.io/2017/03/08/20170308-NumPy 学习日志/</id>
+    <published>2017-03-08T08:30:30.000Z</published>
+    <updated>2017-03-08T15:33:08.161Z</updated>
+    
+    <content type="html"><![CDATA[<div align="center"><br><br><img src="/img/numpy.jpg" width="800" height="350" alt="0"><br><br></div>
+
+<blockquote>
+<p>本学习日志主要来源于 <a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html" target="_blank" rel="external">Tentative_NumPy_Tutorial</a></p>
+<p>以及其译文 <a href="http://hialex.cn/2014/05/22/(%E8%AF%91)NumPy%E6%95%99%E7%A8%8B(%E4%B8%80)/" target="_blank" rel="external">“(译) NumPy 教程(一)”</a> （<em>注：</em>纠正了其中的几处错误）</p>
+</blockquote>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ul>
+<li>NumPy 中的主要操作对象是多维数组。</li>
+<li>所有的元素都是同类型 (通常数字)，每个元素通过一个正整数构成的元组来索引。</li>
+<li>在 NumPy 中，维等价于<em>轴</em>，轴的的数量被称为<em>阶</em>。</li>
+</ul>
+<p>举个例子，一个在三维空间中的点，它的坐标为表示为 [1，2，1]，则它是一个阶为 1 的数组，因为它只有一个轴，这个轴的长度为 3。<br>下面所示的数组是一个阶为 2 的数组 (2 维数组)。第一维的长度为 2，第二维的长度为 3.(<em>注</em>：第一维为最外层的数组)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[[<span class="number">1.</span>,<span class="number">0.</span>,<span class="number">0.</span>],</div><div class="line">[<span class="number">0.</span>,<span class="number">1.</span>,<span class="number">2.</span>]]</div></pre></td></tr></table></figure>
+<h2 id="ndarray-概念："><a href="#ndarray-概念：" class="headerlink" title="ndarray 概念："></a>ndarray 概念：</h2><p>Numpy 中的数组类命名为 <code>ndarray</code>，别名为 <code>array</code>。<br>需要知道的是 NumPy 中的数组类<code>numpy.array</code>与 python 标准库中的数组类<code>array.array</code>是不一样的，后者只能处理一维的数组而且提供的操作函数很少。下面列举在 ndarray 类中比较重要的属性：</p>
+<ul>
+<li><p>ndarray.ndim</p>
+<p>数组的轴数 (维数)，在 python 中，轴数也被称为 <em>rank</em>。</p>
+</li>
+</ul>
+<ul>
+<li><p>ndarray.shape</p>
+<p>数组的维 (轴)。shape 是一个由整数组成的元组，每一个整数代表了数组中每一维的长度。例如一个 n 行 m 列的矩阵 (<em>注：</em>以行为最外层的存储元素)，<code>shape</code> 为 <code>(n, m)</code>, 亦即第一维的长度为 n，第二维的长度为 m。所以 <code>shape</code> 的长度等于 <code>ndarray.ndim</code>。</p>
+</li>
+</ul>
+<ul>
+<li><p>ndarray.size</p>
+<p>数组的元素个数，等于 <code>shape</code> 元组中每个元素的乘积。</p>
+</li>
+</ul>
+<ul>
+<li><p>ndarray.dtype</p>
+<p>一个指示数组中元素类型的对象。你可以指定 dtype 为 python 中的任一标准类型，也可以使用 NumPy 中自定义的类型，例如 numpy.int32, numpy.int16 和 numpy.float64 等。</p>
+</li>
+</ul>
+<ul>
+<li><p>ndarray.itemsize</p>
+<p>数组中每个元素的字节大小。举个例子，一个数组中的元素类型为 <code>float64</code>，那么它的 <code>itemsize</code> 为 8(64/8)，如果元素类型为 <code>complex32</code>，则 <code>itemsize</code> 为 4(32/8)。<code>ndarray.itemsize</code> 等于 <code>ndarray.dtype.itemsize</code>。</p>
+</li>
+</ul>
+<ul>
+<li><p>ndarray.data</p>
+<p>一个缓冲区保存着数组的所有元素。我们一般不直接用这个属性来访问数组的元素，而是通过数组的索引。</p>
+</li>
+</ul>
+<h4 id="一个实例"><a href="#一个实例" class="headerlink" title="一个实例"></a>一个实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">10</span>).reshape(<span class="number">2</span>,<span class="number">5</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</div><div class="line">	   [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.shape</div><div class="line">(<span class="number">2L</span>, <span class="number">5L</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.ndim</div><div class="line"><span class="number">2</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.dtype.name</div><div class="line"><span class="string">'int32'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.itemsize</div><div class="line"><span class="number">4</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.size</div><div class="line"><span class="number">10</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>type(a)</div><div class="line">numpy.ndarray</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.array([<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b</div><div class="line">array([<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>type(b)</div><div class="line">numpy.ndarray</div></pre></td></tr></table></figure>
+<h3 id="一、创建数组"><a href="#一、创建数组" class="headerlink" title="一、创建数组"></a>一、创建数组</h3><p>有多种方法可以创建数组。</p>
+<h4 id="1-array"><a href="#1-array" class="headerlink" title="1. array()"></a>1. array()</h4><p>例如，你可以用 python 中的列表或元组作为 <code>array</code> 函数的输入来生成一个数组。数组中的元素类型为输入序列的元素类型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.dtype</div><div class="line">dtype(<span class="string">'int32'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.array([<span class="number">1.2</span>, <span class="number">3.5</span>, <span class="number">5.1</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.dtype</div><div class="line">dtype(<span class="string">'float64'</span>)</div></pre></td></tr></table></figure>
+<p><em>常见错误：</em>用这个方法创建数组时常犯的错误是直接输入多个数字参数，而不是提供一个列表作为参数。例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = np.array(1,2,3,4) # 错误</div><div class="line">--------------------------------------------------------------------------</div><div class="line"></div><div class="line">ValueError                               Traceback (most recent call last)</div><div class="line"></div><div class="line">&lt;ipython-input-26-2606e0c2ad94&gt; in &lt;module&gt;()</div><div class="line">----&gt; 1 a = array(1,2,3,4) # 错误</div><div class="line"></div><div class="line"></div><div class="line">ValueError: only 2 non-keyword arguments accepted</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) <span class="comment"># 正确</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.dtype</div><div class="line">dtype(<span class="string">'int32'</span>)</div></pre></td></tr></table></figure>
+<p>array 函数会将序列的序列转换为二维的数组，序列的序列的序列转换为三维的数组，以此类推。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.array([(<span class="number">1.5</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b</div><div class="line">array([[ <span class="number">1.5</span>,  <span class="number">2.</span> ,  <span class="number">3.</span> ],</div><div class="line">	   [ <span class="number">4.</span> ,  <span class="number">5.</span> ,  <span class="number">6.</span> ]])</div></pre></td></tr></table></figure>
+<p>也可以在数组创建的时候显式的指定数组元素的类型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]], dtype=complex)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c</div><div class="line">array([[ <span class="number">1.</span>+<span class="number">0.j</span>,  <span class="number">2.</span>+<span class="number">0.j</span>],</div><div class="line">	   [ <span class="number">3.</span>+<span class="number">0.j</span>,  <span class="number">4.</span>+<span class="number">0.j</span>]])</div></pre></td></tr></table></figure>
+<h4 id="2-zeros-、ones-、empty"><a href="#2-zeros-、ones-、empty" class="headerlink" title="2. zeros()、ones()、empty()"></a>2. zeros()、ones()、empty()</h4><p>在大多数情况下，数组元素的具体值是未知的，但是数组的大小是已知。因此，NumPy 提供了一些方法来初始化数组，并指定占位符。这样使得我们免于去对数组元素进行循环来初始化。</p>
+<ul>
+<li><code>zeros</code> 函数创建一个全是 0 的数组，</li>
+<li><code>ones</code> 函数创建一个全是 1 的数组，</li>
+<li><code>empty</code> 函数创建由随机值组成的数组，随机值的取值取决于内存的相关状态。默认情况下，数组元素的类型为 float64。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.zeros((<span class="number">3</span>, <span class="number">4</span>))</div><div class="line">array([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">	   [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">	   [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.ones((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), dtype=np.int16) <span class="comment"># 也可以设置 dtype</span></div><div class="line">array([[[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</div><div class="line">		[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</div><div class="line">		[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]],</div><div class="line"></div><div class="line">	   [[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</div><div class="line">		[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</div><div class="line">		[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]]], dtype=int16)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.empty((<span class="number">2</span>, <span class="number">3</span>)) <span class="comment"># 未初始化，输出值是随机的</span></div><div class="line">array([[  <span class="number">8.39544566e-316</span>,   <span class="number">8.41108383e-316</span>,   <span class="number">8.41108660e-316</span>],</div><div class="line">       [  <span class="number">8.41108936e-316</span>,   <span class="number">8.41109213e-316</span>,   <span class="number">8.34415493e-316</span>]])</div></pre></td></tr></table></figure>
+<h4 id="3-range"><a href="#3-range" class="headerlink" title="3. range()"></a>3. range()</h4><p>为了创建一个等差的序列，NumPy 提供了类似于 <code>range</code> 的方法，不同的在于，它返回的是一个数组而不是列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange(<span class="number">10</span>, <span class="number">30</span>, <span class="number">5</span>)</div><div class="line">array([<span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0.3</span>)   <span class="comment"># 接受浮点类型的参数</span></div><div class="line">array([ <span class="number">0.</span> ,  <span class="number">0.3</span>,  <span class="number">0.6</span>,  <span class="number">0.9</span>,  <span class="number">1.2</span>,  <span class="number">1.5</span>,  <span class="number">1.8</span>])</div></pre></td></tr></table></figure>
+<p>如果在 <code>arange</code> 中使用浮点类型的参数，通常不太可能判断出它到底返回了多少个值，这是由于浮点数精度有限。因此，所以更推荐使用 <code>linspace</code> 函数，这个函数接收一个参数代表我们想要元素的个数，而不是指定步长。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linspace(<span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span>)   <span class="comment"># 生成 9 个数，从 0 到 2</span></div><div class="line">array([ <span class="number">0.</span>  ,  <span class="number">0.25</span>,  <span class="number">0.5</span> ,  <span class="number">0.75</span>,  <span class="number">1.</span>  ,  <span class="number">1.25</span>,  <span class="number">1.5</span> ,  <span class="number">1.75</span>,  <span class="number">2.</span>  ])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.linspace(<span class="number">0</span>, <span class="number">2</span>*pi, <span class="number">100</span>)   <span class="comment"># 在分析函数的很多点值时很有用</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f = np.sin(x)</div></pre></td></tr></table></figure>
+<p><code>numpy</code>库中的部分函数：array, zeros, zeros_like, ones, ones_like, empty, empty_like, arange, linspace, rand,randn, fromfunction, fromfile。</p>
+<h3 id="二、打印数组"><a href="#二、打印数组" class="headerlink" title="二、打印数组"></a>二、打印数组</h3><p>当你打印一个数组时，NumPy 会显示成类似于一个嵌套的表，但是有着固定的布局。</p>
+<ul>
+<li>最后一个轴中的元素从左到右打印</li>
+<li>第二个轴至最后一个轴的元素从上到下打印</li>
+<li>其余的同样是从上到下打印，但其中的每一元素以空行间隔</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">6</span>)  <span class="comment"># 1 维数组</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> a</div><div class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.arange(<span class="number">12</span>).reshape(<span class="number">4</span>,<span class="number">3</span>) <span class="comment">#  2 维数组</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> b</div><div class="line">[[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>]</div><div class="line"> [ <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>]</div><div class="line"> [ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>]</div><div class="line"> [ <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = np.arange(<span class="number">24</span>).reshape(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> c</div><div class="line">[[[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</div><div class="line">  [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>]</div><div class="line">  [ <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</div><div class="line"></div><div class="line"> [[<span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span>]</div><div class="line">  [<span class="number">16</span> <span class="number">17</span> <span class="number">18</span> <span class="number">19</span>]</div><div class="line">  [<span class="number">20</span> <span class="number">21</span> <span class="number">22</span> <span class="number">23</span>]]]</div></pre></td></tr></table></figure>
+<p>如果一个数组太大导致不能打印出来，那么 NumPy 会自动跳过数组的中间部分，从而只打印边角的部分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> np.arange(<span class="number">10000</span>)</div><div class="line">[   <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span> ..., <span class="number">9997</span> <span class="number">9998</span> <span class="number">9999</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> np.arange(<span class="number">10000</span>).reshape(<span class="number">100</span>,<span class="number">100</span>)</div><div class="line">[[   <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span> ...,   <span class="number">97</span>   <span class="number">98</span>   <span class="number">99</span>]</div><div class="line"> [ <span class="number">100</span>  <span class="number">101</span>  <span class="number">102</span> ...,  <span class="number">197</span>  <span class="number">198</span>  <span class="number">199</span>]</div><div class="line"> [ <span class="number">200</span>  <span class="number">201</span>  <span class="number">202</span> ...,  <span class="number">297</span>  <span class="number">298</span>  <span class="number">299</span>]</div><div class="line"> ..., </div><div class="line"> [<span class="number">9700</span> <span class="number">9701</span> <span class="number">9702</span> ..., <span class="number">9797</span> <span class="number">9798</span> <span class="number">9799</span>]</div><div class="line"> [<span class="number">9800</span> <span class="number">9801</span> <span class="number">9802</span> ..., <span class="number">9897</span> <span class="number">9898</span> <span class="number">9899</span>]</div><div class="line"> [<span class="number">9900</span> <span class="number">9901</span> <span class="number">9902</span> ..., <span class="number">9997</span> <span class="number">9998</span> <span class="number">9999</span>]]</div></pre></td></tr></table></figure>
+<p>如果想强制 NumPy 打印整个数组，你可以通过 <code>set_printoptions</code> 来改变打印的设置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>set_printoptions(threshold=<span class="string">'nan'</span>)</div></pre></td></tr></table></figure>
+<h3 id="三、基本操作"><a href="#三、基本操作" class="headerlink" title="三、基本操作"></a>三、基本操作</h3><h4 id="1-算术运算"><a href="#1-算术运算" class="headerlink" title="1. 算术运算"></a>1. 算术运算</h4><p>array 的算术运算是元素级别的运算，将会创建一个新的数组并返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.arange(<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = a-b</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c</div><div class="line">array([<span class="number">20</span>, <span class="number">29</span>, <span class="number">38</span>, <span class="number">47</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b ** <span class="number">2</span></div><div class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span>*np.sin(a)</div><div class="line">array([ <span class="number">9.12945251</span>, <span class="number">-9.88031624</span>,  <span class="number">7.4511316</span> , <span class="number">-2.62374854</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a &lt; <span class="number">35</span></div><div class="line">array([ <span class="keyword">True</span>,  <span class="keyword">True</span>, <span class="keyword">False</span>, <span class="keyword">False</span>], dtype=bool)</div></pre></td></tr></table></figure>
+<h4 id="2-乘积运算：-和-dot"><a href="#2-乘积运算：-和-dot" class="headerlink" title="2. 乘积运算：* 和 dot()"></a>2. 乘积运算：<code>*</code> 和 <code>dot()</code></h4><p>跟其他很多的矩阵语言不一样，在 NumPy 中，乘积 <code>*</code> 是支持元素级别的的操作。而矩阵的乘积则是通过 <code>dot</code> 函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>A = np.array([</div><div class="line"><span class="meta">... </span>   [<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>]</div><div class="line">...])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>B = np.array([</div><div class="line"><span class="meta">... </span>   [<span class="number">2</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">4</span>]</div><div class="line">...])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>A * B   <span class="comment"># 元素级别的乘积</span></div><div class="line">array([[<span class="number">2</span>, <span class="number">0</span>],</div><div class="line">	   [<span class="number">0</span>, <span class="number">4</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>A.dot(B)   <span class="comment"># 矩阵乘积方法一</span></div><div class="line">array([[<span class="number">5</span>, <span class="number">4</span>],</div><div class="line">       [<span class="number">3</span>, <span class="number">4</span>]])</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.dot(A,B)   <span class="comment"># 矩阵乘积方法二</span></div><div class="line">array([[<span class="number">5</span>, <span class="number">4</span>],</div><div class="line">       [<span class="number">3</span>, <span class="number">4</span>]])</div></pre></td></tr></table></figure>
+<h4 id="3-和"><a href="#3-和" class="headerlink" title="3. += 和  *="></a>3. <code>+=</code> 和  <code>*=</code></h4><p>一些操作像 <code>+=</code> 和 <code>*=</code>，会改变原数组的值而不是创建一个新的数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = ones((<span class="number">2</span>,<span class="number">3</span>), dtype=int)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = random.random((<span class="number">2</span>,<span class="number">3</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a *= <span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([[<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>],</div><div class="line">	   [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b += a</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b</div><div class="line">array([[ <span class="number">3.87955932</span>,  <span class="number">3.08319278</span>,  <span class="number">3.69534205</span>],</div><div class="line">	   [ <span class="number">3.18845592</span>,  <span class="number">3.03853862</span>,  <span class="number">3.96338872</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a += b   # b 不会被自动转换成整数型</div><div class="line">&gt;&gt;&gt; a</div><div class="line">--------------------------------------------------------------------------</div><div class="line"></div><div class="line">TypeError                                Traceback (most recent call last)</div><div class="line"></div><div class="line">&lt;ipython-input-63-7e3386c71838&gt; in &lt;module&gt;()</div><div class="line">----&gt; 1 a += b   # b 不会被自动转换成整数型</div><div class="line">	  2 a</div><div class="line"></div><div class="line"></div><div class="line">TypeError: Cannot cast ufunc add output from dtype('float64') to dtype('int32') with casting rule 'same_kind'</div></pre></td></tr></table></figure>
+<p>当对不同类型的数组进行运算操作时，结果返回的数组类型由更精确的一方决定（被称为<em>向上对齐</em>）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.ones(<span class="number">3</span>,dtype=np.int32)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.linspace(<span class="number">0</span>,pi,<span class="number">3</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.dtype.name</div><div class="line"><span class="string">'float64'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = a+b</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c</div><div class="line">array([ <span class="number">1.</span>        ,  <span class="number">2.57079633</span>,  <span class="number">4.14159265</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c.dtype.name</div><div class="line"><span class="string">'float64'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = np.exp(c*<span class="number">1j</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">array([ <span class="number">0.54030231</span>+<span class="number">0.84147098j</span>, <span class="number">-0.84147098</span>+<span class="number">0.54030231j</span>,</div><div class="line">	   <span class="number">-0.54030231</span><span class="number">-0.84147098j</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.dtype.name</div><div class="line"><span class="string">'complex128'</span></div></pre></td></tr></table></figure>
+<h4 id="4-sum-、min-、max"><a href="#4-sum-、min-、max" class="headerlink" title="4. sum()、min()、max()"></a>4. <code>sum()</code>、<code>min()</code>、<code>max()</code></h4><p>许多的一元操作被实现成 <code>ndarray</code> 类中的一个方法，例如计算数组中所有元素的和。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.random.random((<span class="number">2</span>,<span class="number">3</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([[ <span class="number">0.31080239</span>,  <span class="number">0.86650424</span>,  <span class="number">0.63788462</span>],</div><div class="line">	   [ <span class="number">0.30848747</span>,  <span class="number">0.56321876</span>,  <span class="number">0.22655507</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.sum()</div><div class="line"><span class="number">2.9134525563393563</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.min()</div><div class="line"><span class="number">0.22655506980153794</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.max()</div><div class="line"><span class="number">0.86650424285907612</span></div></pre></td></tr></table></figure>
+<p>在默认情况下，这些操作会把数组当成是由数字组成的列表，忽略它们的轴。但是，我们可以通过指定 <code>axis</code> 参数来使操作应用到特定的维上。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b</div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">	   [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">	   [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.sum(axis=<span class="number">0</span>)  <span class="comment"># 每一列的和</span></div><div class="line">array([<span class="number">12</span>, <span class="number">15</span>, <span class="number">18</span>, <span class="number">21</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.min(axis=<span class="number">1</span>) <span class="comment"># 每一行的最小值</span></div><div class="line">array([<span class="number">0</span>, <span class="number">4</span>, <span class="number">8</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.cumsum(axis=<span class="number">1</span>) <span class="comment"># 每行元素累计相加的和</span></div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>],</div><div class="line">	   [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">15</span>, <span class="number">22</span>],</div><div class="line">	   [ <span class="number">8</span>, <span class="number">17</span>, <span class="number">27</span>, <span class="number">38</span>]])</div></pre></td></tr></table></figure>
+<h3 id="四、全局函数"><a href="#四、全局函数" class="headerlink" title="四、全局函数"></a>四、全局函数</h3><p>NumPy 提供了数学函数如 sin， cos 和 exp。在 NumPy 中，这些函数被称为全局函数 (<code>ufunc</code>)。在 NumPy 中，这些函数对数组进行元素级别的操作，生成一个数组作为输出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>B = np.arange(<span class="number">3</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>B</div><div class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.exp(B)</div><div class="line">array([ <span class="number">1.</span>        ,  <span class="number">2.71828183</span>,  <span class="number">7.3890561</span> ])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.sqrt(B)</div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>C = np.array([<span class="number">2.</span>, <span class="number">-1.</span>, <span class="number">4.</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.add(B, C)</div><div class="line">array([ <span class="number">2.</span>,  <span class="number">0.</span>,  <span class="number">6.</span>])</div></pre></td></tr></table></figure>
+<p>其他的一些全局函数：all, alltrue, any, apply along axis, argmax, argmin, argsort, average, bincount, ceil, clip, conj, conjugate, corrcoef, cov, cross, cumprod, cumsum, diff, dot, floor, inner, inv, lexsort, max, maximum, mean, median, min, minimum, nonzero, outer, prod, re, round, sometrue, sort, std, sum, trace, transpose, var, vdot, vectorize, where。</p>
+<h3 id="五、索引、切片和迭代"><a href="#五、索引、切片和迭代" class="headerlink" title="五、索引、切片和迭代"></a>五、索引、切片和迭代</h3><h4 id="1-一维数组"><a href="#1-一维数组" class="headerlink" title="1. 一维数组"></a>1. 一维数组</h4><p><strong>一维数组</strong> 可以像 python 中的列表和其他序列一样进行索引，切片和迭代。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">10</span>)**<span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([  <span class="number">0</span>,   <span class="number">1</span>,   <span class="number">8</span>,  <span class="number">27</span>,  <span class="number">64</span>, <span class="number">125</span>, <span class="number">216</span>, <span class="number">343</span>, <span class="number">512</span>, <span class="number">729</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>]</div><div class="line"><span class="number">8</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>:<span class="number">5</span>]</div><div class="line">array([ <span class="number">8</span>, <span class="number">27</span>, <span class="number">64</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">6</span>:<span class="number">2</span>] = <span class="number">-1000</span> <span class="comment"># 从开始位置0到位置6(不包括)，每两个元素设为-1000</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([<span class="number">-1000</span>,     <span class="number">1</span>, <span class="number">-1000</span>,    <span class="number">27</span>, <span class="number">-1000</span>,   <span class="number">125</span>,   <span class="number">216</span>,   <span class="number">343</span>,   <span class="number">512</span>,   <span class="number">729</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[::<span class="number">-1</span>]   <span class="comment"># 反转a</span></div><div class="line">array([  <span class="number">729</span>,   <span class="number">512</span>,   <span class="number">343</span>,   <span class="number">216</span>,   <span class="number">125</span>, <span class="number">-1000</span>,    <span class="number">27</span>, <span class="number">-1000</span>,     <span class="number">1</span>, <span class="number">-1000</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> a:</div><div class="line"><span class="meta">... </span>   <span class="keyword">print</span> i**(<span class="number">1</span>/<span class="number">3.</span>)</div><div class="line">nan</div><div class="line"><span class="number">1.0</span></div><div class="line">nan</div><div class="line"><span class="number">3.0</span></div><div class="line">nan</div><div class="line"><span class="number">5.0</span></div><div class="line"><span class="number">6.0</span></div><div class="line"><span class="number">7.0</span></div><div class="line"><span class="number">8.0</span></div><div class="line"><span class="number">9.0</span></div></pre></td></tr></table></figure>
+<h4 id="2-多维数组"><a href="#2-多维数组" class="headerlink" title="2. 多维数组"></a>2. 多维数组</h4><p><strong>多维数组</strong> 可以在每个轴通过一个索引来定位元素，每一轴的索引值以逗号间隔。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x,y)</span>:</span></div><div class="line"><span class="meta">... </span>  <span class="keyword">return</span> <span class="number">10</span>*x+y</div><div class="line"></div><div class="line"><span class="comment"># numpy 中的 fromfunction </span></div><div class="line"><span class="comment"># 按一个5*4的数组的每一个位置的横纵坐标作为函数f的输入参数</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.fromfunction(f,(<span class="number">5</span>,<span class="number">4</span>),dtype=int) </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b</div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">	   [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>],</div><div class="line">	   [<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>],</div><div class="line">	   [<span class="number">30</span>, <span class="number">31</span>, <span class="number">32</span>, <span class="number">33</span>],</div><div class="line">	   [<span class="number">40</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="number">23</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">0</span>:<span class="number">5</span>,<span class="number">1</span>] <span class="comment"># 第二列中每一行的值</span></div><div class="line">array([ <span class="number">1</span>, <span class="number">11</span>, <span class="number">21</span>, <span class="number">31</span>, <span class="number">41</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b[:,<span class="number">1</span>] <span class="comment"># 等价于上一个语句</span></div><div class="line">array([ <span class="number">1</span>, <span class="number">11</span>, <span class="number">21</span>, <span class="number">31</span>, <span class="number">41</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">1</span>:<span class="number">3</span>,:] <span class="comment"># 第二行和第三行中每一列的值</span></div><div class="line">array([[<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>],</div><div class="line">	   [<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>]])</div></pre></td></tr></table></figure>
+<p>当少于轴数的索引值给出时，其余未给出索引的轴被当作是全部保留。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">-1</span>]  <span class="comment"># 最后一行</span></div><div class="line">array([<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>])</div></pre></td></tr></table></figure>
+<p>在 <code>b[i]</code> 方括号中的表达式会当作是一个 <code>i</code> 后面跟着足够多个”<code>:</code>” 来表示剩余的轴。NumPy 也允许你使用点点点来表示，像这样 <code>b[i,…]</code>。<br>这个点点点 (<code>…</code>) 表示有足够多个”<code>:</code>”来表示剩余的索引值。</p>
+<p>如果 <code>x</code> 是一个 rank 为 5 的数组(即轴数为 5)，则：</p>
+<ul>
+<li><code>x[1,2,…]</code> 等价于 <code>x[1,2,:,:,:]</code></li>
+<li><code>x[…,3]</code> 等价于 <code>x[:,:,:,:,3]</code></li>
+<li><code>x[4,…,5,:]</code> 等价于 <code>x[4,:,:,5,:]</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = np.array([      <span class="comment"># 三维数组</span></div><div class="line"><span class="meta">... </span>   [[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>],[<span class="number">10</span>,<span class="number">12</span>,<span class="number">13</span>]],</div><div class="line"><span class="meta">... </span>   [[<span class="number">100</span>,<span class="number">101</span>,<span class="number">102</span>],[<span class="number">110</span>,<span class="number">112</span>,<span class="number">113</span>]]</div><div class="line">...])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c.shape</div><div class="line">(<span class="number">2L</span>, <span class="number">2L</span>, <span class="number">3L</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="number">1</span>,...]   <span class="comment"># 等价于 c[1,:,:]</span></div><div class="line">array([[<span class="number">100</span>, <span class="number">101</span>, <span class="number">102</span>],</div><div class="line">	   [<span class="number">110</span>, <span class="number">112</span>, <span class="number">113</span>]])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c[...,<span class="number">2</span>]   <span class="comment"># 等价于 c[:,:,2]</span></div><div class="line">array([[  <span class="number">2</span>,  <span class="number">13</span>],</div><div class="line">	   [<span class="number">102</span>, <span class="number">113</span>]])</div></pre></td></tr></table></figure>
+<h4 id="3-多维数组的迭代"><a href="#3-多维数组的迭代" class="headerlink" title="3. 多维数组的迭代"></a>3. 多维数组的迭代</h4><p>对多维数组进行 <strong>迭代</strong> 是相对于第一个轴进行遍历完成的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> row <span class="keyword">in</span> b:</div><div class="line"><span class="meta">... </span>   <span class="keyword">print</span> row</div><div class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</div><div class="line">[<span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span>]</div><div class="line">[<span class="number">20</span> <span class="number">21</span> <span class="number">22</span> <span class="number">23</span>]</div><div class="line">[<span class="number">30</span> <span class="number">31</span> <span class="number">32</span> <span class="number">33</span>]</div><div class="line">[<span class="number">40</span> <span class="number">41</span> <span class="number">42</span> <span class="number">43</span>]</div></pre></td></tr></table></figure>
+<p>然而，如果你想对每一个元素进行迭代，你可以使用 <code>flat</code> 属性，它是包含数组中每个元素的迭代器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> element <span class="keyword">in</span> b.flat:</div><div class="line"><span class="meta">... </span>   <span class="keyword">print</span> element,</div><div class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">20</span> <span class="number">21</span> <span class="number">22</span> <span class="number">23</span> <span class="number">30</span> <span class="number">31</span> <span class="number">32</span> <span class="number">33</span> <span class="number">40</span> <span class="number">41</span> <span class="number">42</span> <span class="number">43</span></div></pre></td></tr></table></figure>
+<p>同样，相关的函数有： newaxis, ndenumerate, indices, index exp。</p>
+<hr>
+<blockquote>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;/img/numpy.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;本学习日志主要来源于 &lt;a href=&quot;h
+    
+    </summary>
+    
+      <category term="Python" scheme="http://VectorF.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://VectorF.github.io/tags/Python/"/>
+    
+      <category term="Numpy" scheme="http://VectorF.github.io/tags/Numpy/"/>
+    
+      <category term="ndarray" scheme="http://VectorF.github.io/tags/ndarray/"/>
+    
+      <category term="数组" scheme="http://VectorF.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Prophet 之安装篇</title>
+    <link href="http://VectorF.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
+    <id>http://VectorF.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
+    <published>2017-03-08T08:30:30.000Z</published>
+    <updated>2017-03-08T15:42:56.113Z</updated>
+    
+    <content type="html"><![CDATA[<div align="center"><br><br><img src="/img/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
+
+<h2 id="在-R-上安装-Prophet"><a href="#在-R-上安装-Prophet" class="headerlink" title="在 R 上安装 Prophet"></a>在 R 上安装 Prophet</h2><h3 id="一、Windows-系统安装-Prophet-前的准备工作"><a href="#一、Windows-系统安装-Prophet-前的准备工作" class="headerlink" title="一、Windows 系统安装 Prophet 前的准备工作"></a>一、Windows 系统安装 Prophet 前的准备工作</h3><p>如果是 Windows 系统，需要按照 <a href="https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Windows" target="_blank" rel="external">rstan</a> 提供的教程给 R 安装一个编译器。其中，最为关键的一步就是先安装 <a href="http://cran.r-project.org/bin/windows/Rtools/" target="_blank" rel="external">Rtools</a> 。</p>
+<h4 id="1-安装-R-和-RStudio"><a href="#1-安装-R-和-RStudio" class="headerlink" title="1. 安装 R 和 RStudio"></a>1. 安装 R 和 RStudio</h4><h4 id="2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。"><a href="#2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。" class="headerlink" title="2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。"></a>2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。</h4><p>假如 Rtools 安装在 C 盘，则运行<code>Sys.getenv(&#39;PATH&#39;)</code>后，输出应包含如下所示的结果（<em>注：</em>原文教程中结果为”C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;”）；运行<code>system(&#39;g++ -v&#39;)</code>和<code>system(&#39;where make&#39;)</code>后输出结果正常，如下所示。</p>
+<p>否则，请确保 Rtools 安装目录已添加至系统环境变量中。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; Sys.getenv(<span class="string">'PATH'</span>)</div><div class="line">C:\\Rtools\\bin;C:\\Rtools\\mingw_64\\bin;</div><div class="line">&gt; system(<span class="string">'g++ -v'</span>)</div><div class="line">Using built-<span class="keyword">in</span> specs.</div><div class="line">COLLECT_GCC=C:\Rtools\mingw_64\bin\G__~<span class="number">1.</span>EXE</div><div class="line"><span class="comment"># 已省略部分输出结果</span></div><div class="line">gcc version <span class="number">4.9</span><span class="number">.3</span> (x86_64-posix-seh, Built by MinGW-W64 project) </div><div class="line">&gt; system(<span class="string">'where make'</span>)</div><div class="line">C:\Rtools\bin\make.exe</div></pre></td></tr></table></figure>
+<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h4><p><del>非必须操作</del>，不会影响 RStan 正常工作，但强烈推荐。</p>
+<ul>
+<li>创建一个 Makevars 文件，代码如下：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dotR &lt;- file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".R"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(dotR)) </div><div class="line">  dir.create(dotR)</div><div class="line">M &lt;- file.path(dotR, <span class="string">"Makevars"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(M)) </div><div class="line">  file.create(M)</div><div class="line">cat(<span class="string">"\nCXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用的是 Rtools33 （或更高版本），则需要运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">'Sys.setenv(BINPREF = "C:/Rtools/mingw_$(WIN)/bin/")'</span>,</div><div class="line">    file = file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".Rprofile"</span>), </div><div class="line">    sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用的 g++ 版本号在 6 或以上，且希望关掉和 Stan 不相关的一些警告信息，可以运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">"\nCXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>确认配置成功，可运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看配置的信息</span></div><div class="line">cat(readLines(M), sep = <span class="string">"\n"</span>)</div><div class="line"><span class="comment"># 或是找到该配置文件的路径，自行打开查看</span></div><div class="line">cat(M)</div></pre></td></tr></table></figure>
+<h4 id="4-安装-RStan"><a href="#4-安装-RStan" class="headerlink" title="4. 安装 RStan"></a>4. 安装 RStan</h4><ul>
+<li>安装最新版本的 RStan 及其依赖包，代码如下：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 如果 https 下载不成功，可改为 http</span></div><div class="line"><span class="comment"># 确保 dependencies=TRUE ，安装依赖包</span></div><div class="line">install.packages(<span class="string">"rstan"</span>, repos = <span class="string">"https://cloud.r-project.org/"</span>, dependencies=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果上述过程均失败，可通过下列代码按源码安装：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 可根据你想使用的内核数来更改数字“4”</span></div><div class="line">Sys.setenv(MAKEFLAGS = <span class="string">"-j4"</span>) </div><div class="line">install.packages(<span class="string">"rstan"</span>, type = <span class="string">"source"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>安装完成后，<strong>重启 R</strong> 。并在载入 RStan 前，确认没有旧版本 RStan 所创建（可能是自动创建）的产物已被载入 R 中。</li>
+<li>通过运行如下代码，确认工具链已生效，代码应当返回值<code>10</code>:</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fx &lt;- inline::cxxfunction( signature(x = <span class="string">"integer"</span>, y = <span class="string">"numeric"</span> ) , <span class="string">'</span></div><div class="line">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</div><div class="line">' )</div><div class="line">fx( <span class="number">2L</span>, <span class="number">5</span> ) <span class="comment"># 应当返回值 10</span></div></pre></td></tr></table></figure>
+<p><em>注：</em>以下命令都是在 R 中输入运行的。</p>
+<h3 id="二、安装-Prophet-包"><a href="#二、安装-Prophet-包" class="headerlink" title="二、安装 Prophet 包"></a>二、安装 Prophet 包</h3><p>在 R 中运行如下代码：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R </span></div><div class="line">install.packages(<span class="string">'prophet'</span>)</div></pre></td></tr></table></figure>
+<h2 id="在-Python-上安装-Prophet"><a href="#在-Python-上安装-Prophet" class="headerlink" title="在 Python 上安装 Prophet"></a>在 Python 上安装 Prophet</h2><h3 id="一、安装-Prophet-前的准备工作"><a href="#一、安装-Prophet-前的准备工作" class="headerlink" title="一、安装 Prophet 前的准备工作"></a>一、安装 Prophet 前的准备工作</h3><p>Python 中的 Prophet 最主要的依赖库是 <code>pystan</code>。不管什么系统，都需按照 <a href="http://pystan.readthedocs.io/en/latest/installation_beginner.html" target="_blank" rel="external">安装教程</a> 先安装<code>pystan</code>。</p>
+<h4 id="1-安装-Python"><a href="#1-安装-Python" class="headerlink" title="1. 安装 Python"></a>1. 安装 Python</h4><p>推荐使用 Anaconda 。Anaconda 是一个开源的 Python 发行版本，内置<code>conda</code>来实现<code>pip</code>库管理的功能。</p>
+<h4 id="2-安装-Pthon-的依赖库"><a href="#2-安装-Pthon-的依赖库" class="headerlink" title="2. 安装 Pthon 的依赖库"></a>2. 安装 Pthon 的依赖库</h4><p>如果你使用的是 Anaconda , numpy 和 cython 库已经内置在其中。但是以防万一，你也可以使用<code>conda</code>去安装它们：</p>
+<ul>
+<li><p>打开一个命令行程序</p>
+</li>
+<li><p>使用<code>conda install numpy</code>命令去安装 numpy ; 使用<code>conda install cython</code>命令去安装 cython</p>
+</li>
+</ul>
+<h4 id="3-安装-PyStan-库"><a href="#3-安装-PyStan-库" class="headerlink" title="3. 安装 PyStan 库"></a>3. 安装 PyStan 库</h4><p>  Mac/Linux 用户按照下述步骤安装 PyStan 即可。</p>
+<ul>
+<li>打开一个命令行程序</li>
+<li><p>使用<code>pip install pystan</code>去安装 PyStan</p>
+<p>Windows 用户请按照“Windows 系统安装 PyStan”中的步骤进行安装。</p>
+</li>
+</ul>
+<h4 id="Windows-系统安装-PyStan"><a href="#Windows-系统安装-PyStan" class="headerlink" title="** Windows 系统安装 PyStan"></a>** Windows 系统安装 PyStan</h4><p>如果是 Windows 系统，在安装 PyStan 前需要按照 <a href="http://pystan.readthedocs.io/en/latest/windows.html" target="_blank" rel="external">安装教程</a> 给 PyStan 安装一个编译器。其中，最为关键的一步就是先安装  <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">C++ 编译器</a> 。</p>
+<p>Windows 系统下使用 PyStan 有下列<em>注意事项</em>：</p>
+<ol>
+<li><p>需要使用 Python 3.5 或更高版本</p>
+</li>
+<li><p>抽取样本时，必须使用<code>n_jobs=1</code>（Windows 系统下的 PyStan 不能使用并行多线程运算）</p>
+</li>
+<li><p>安装 C++ 编译器</p>
+<p>进入 <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">Visual C++ Build Tools</a> 网页，点击“Download Visual C++ Build Tools 2015”。</p>
+<p>如果你遇到了安装的问题，可以去 Python维基下的 <a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">Windows Compilers</a> 寻求解决办法。</p>
+<p>如果你使用的 Windows 7 系统，可能需要在安装 Visual C++ Build Tools 下先更新 Microsoft .NET Framework 。</p>
+</li>
+<li><p>安装 PyStan</p>
+<p>打开命令行程序，输入下列命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pystan</div></pre></td></tr></table></figure>
+<p>可通过在 python 中输入下列抽样的代码，验证安装成功：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pystan</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model_code = <span class="string">'parameters &#123;real y;&#125; model &#123;y ~ normal(0,1);&#125;'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model = pystan.StanModel(model_code=model_code)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = model.sampling(n_jobs=<span class="number">1</span>).extract()[<span class="string">'y'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y.mean()  <span class="comment"># 结果应当在 0 附近</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="二、安装-Prophet"><a href="#二、安装-Prophet" class="headerlink" title="二、安装 Prophet"></a>二、安装 Prophet</h3><p>使用命令行程序运行下列<code>pip</code>命令安装即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bash</div><div class="line">$ pip install fbprophet</div></pre></td></tr></table></figure>
+<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><ol>
+<li><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
+<p>错误信息：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
+<p>错误信息：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">ImportError: /<span class="title">tmp</span>/<span class="title">tmpsryQ0C</span>/<span class="title">stanfit4anon_model_5944b079788fa0db3a98ca2bf_7655200819486.so</span>: <span class="title">undefined</span> <span class="title">symbol</span>: <span class="title">_ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</span></span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     ​</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;/img/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;在-R-上安装-Prophet&quot;&gt;&lt;a href=&quot;#
+    
+    </summary>
+    
+      <category term="Prophet" scheme="http://VectorF.github.io/categories/Prophet/"/>
+    
+    
+      <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="http://VectorF.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="Python" scheme="http://VectorF.github.io/tags/Python/"/>
+    
+      <category term="Prophet" scheme="http://VectorF.github.io/tags/Prophet/"/>
+    
+      <category term="安装" scheme="http://VectorF.github.io/tags/%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
     <title>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）</title>
     <link href="http://VectorF.github.io/2017/02/21/20170221-%E8%A6%81%E4%BC%98%E9%9B%85%EF%BC%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%20R%20%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%EF%BC%81%EF%BC%88%E4%BD%BF%E7%94%A8%20stargazer%20%E5%8C%85%EF%BC%89/"/>
     <id>http://VectorF.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/</id>
     <published>2017-02-21T08:30:30.000Z</published>
-    <updated>2017-02-21T03:57:07.255Z</updated>
+    <updated>2017-03-08T14:17:52.858Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>本文于 2017/02/08 发表在 <a href="http://datartisan.com/article/detail/202.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
@@ -124,14 +440,14 @@
     
     </summary>
     
-      <category term="教程" scheme="http://VectorF.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R" scheme="http://VectorF.github.io/categories/%E6%95%99%E7%A8%8B/R/"/>
+      <category term="R 语言" scheme="http://VectorF.github.io/categories/R-%E8%AF%AD%E8%A8%80/"/>
     
     
       <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="R 语言" scheme="http://VectorF.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="stargazer" scheme="http://VectorF.github.io/tags/stargazer/"/>
     
   </entry>
   
@@ -245,7 +561,7 @@
     <link href="http://VectorF.github.io/2016/12/29/20161229-ECharts%E6%B5%8B%E8%AF%95/"/>
     <id>http://VectorF.github.io/2016/12/29/20161229-ECharts测试/</id>
     <published>2016-12-29T12:30:30.000Z</published>
-    <updated>2016-12-29T13:45:48.483Z</updated>
+    <updated>2017-03-08T15:50:13.869Z</updated>
     
     <content type="html"><![CDATA[<script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
 <div id="main" style="width: 600px;height:400px;" align="center"></div>
@@ -361,13 +677,13 @@ myChart.setOption(option);
     
       <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="dota2" scheme="http://VectorF.github.io/tags/dota2/"/>
     
       <category term="自然语言处理" scheme="http://VectorF.github.io/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
       <category term="词向量" scheme="http://VectorF.github.io/tags/%E8%AF%8D%E5%90%91%E9%87%8F/"/>
+    
+      <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -376,7 +692,7 @@ myChart.setOption(option);
     <link href="http://VectorF.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/"/>
     <id>http://VectorF.github.io/2016/11/06/20161106-Git 教程/</id>
     <published>2016-11-06T12:30:30.000Z</published>
-    <updated>2016-11-06T13:18:39.198Z</updated>
+    <updated>2017-03-02T08:37:01.717Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/git.jpg" alt="git"><br><br></div>
 
@@ -387,7 +703,7 @@ myChart.setOption(option);
 <h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a><strong>创建版本库</strong></h2><p>1.创建新的目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir gittest</div><div class="line">$ cd ngittest</div><div class="line">$ pwd</div></pre></td></tr></table></figure>
 <p><code>mkdir</code>创建新目录，<code>cd</code>定位到该目录，<code>pwd</code>显示当前目录。</p>
-<p>2.<code>git init</code>将该目录编程git可以管理的仓库</p>
+<p>2.<code>git init</code>将该目录变成git可以管理的仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ ls -ah</div></pre></td></tr></table></figure>
 <p>3.把文件添加到版本库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add readme.txt</div><div class="line">$ git commit -m &quot;wrote a readme flie&quot;</div></pre></td></tr></table></figure>
@@ -809,13 +1125,13 @@ myChart.setOption(option);
       <category term="翻译" scheme="http://VectorF.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
-    
-      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
-    
       <category term="机器学习" scheme="http://VectorF.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="翻译" scheme="http://VectorF.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="K均值" scheme="http://VectorF.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
+    
+      <category term="聚类" scheme="http://VectorF.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
     
   </entry>
   
