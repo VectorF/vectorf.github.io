@@ -172,6 +172,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/翻译/">
+                    翻译 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/日常/">
                     日常 <span class="right">1 篇</span></a>
                 </a>
@@ -180,8 +188,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/翻译/">
-                    翻译 <span class="right">3 篇</span></a>
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Prophet/">
+                    Prophet <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -198,22 +214,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/R-语言/">
                     R-语言 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Prophet/">
-                    Prophet <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Python/">
-                    Python <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -289,15 +289,15 @@
             
     <div class="tags-row">
         
-            <a href="/tags/R-语言/" class="chip red">R 语言</a>
-        
-            <a href="/tags/教程/" class="chip red">教程</a>
+            <a href="/tags/Python/" class="chip red">Python</a>
         
             <a href="/tags/Prophet/" class="chip red">Prophet</a>
         
             <a href="/tags/安装/" class="chip red">安装</a>
         
-            <a href="/tags/Python/" class="chip red">Python</a>
+            <a href="/tags/R-语言/" class="chip red">R 语言</a>
+        
+            <a href="/tags/教程/" class="chip red">教程</a>
         
     </div>
 
@@ -347,7 +347,7 @@
 <li>通过运行如下代码，确认工具链已生效，代码应当返回值<code>10</code>:</li>
 </ul>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fx &lt;- inline::cxxfunction( signature(x = <span class="string">"integer"</span>, y = <span class="string">"numeric"</span> ) , <span class="string">'</span></div><div class="line">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</div><div class="line">' )</div><div class="line">fx( <span class="number">2L</span>, <span class="number">5</span> ) <span class="comment"># 应当返回值 10</span></div></pre></td></tr></table></figure>
-<p><em>注：</em>以下命令都是在 R 中输入运行的。</p>
+<p><em>注：</em>以上命令都是在 R 中输入运行的。</p>
 <h3 id="二、安装-Prophet-包"><a href="#二、安装-Prophet-包" class="headerlink" title="二、安装 Prophet 包"></a>二、安装 Prophet 包</h3><p>在 R 中运行如下代码：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R </span></div><div class="line">install.packages(<span class="string">'prophet'</span>)</div></pre></td></tr></table></figure>
 <h2 id="在-Python-上安装-Prophet"><a href="#在-Python-上安装-Prophet" class="headerlink" title="在 Python 上安装 Prophet"></a>在 Python 上安装 Prophet</h2><h3 id="一、安装-Prophet-前的准备工作"><a href="#一、安装-Prophet-前的准备工作" class="headerlink" title="一、安装 Prophet 前的准备工作"></a>一、安装 Prophet 前的准备工作</h3><p>Python 中的 Prophet 最主要的依赖库是 <code>pystan</code>。不管什么系统，都需按照 <a href="http://pystan.readthedocs.io/en/latest/installation_beginner.html" target="_blank" rel="external">安装教程</a> 先安装<code>pystan</code>。</p>
@@ -411,11 +411,17 @@
 </blockquote>
 
                 
+<p class="red-link-context">
+    <a href="/2017/03/08/20170308-NumPy 学习日志/" rel="next" title="NumPy 学习日志之数组篇">
+    上一篇：NumPy 学习日志之数组篇
+  </a>
+</p>
+
 
 
 <p class="red-link-context">
-    <a href="/2017/03/08/20170308-NumPy 学习日志/" rel="next" title="NumPy 学习日志之数组篇">
-    下一篇：NumPy 学习日志之数组篇
+    <a href="/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/" rel="next" title="要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）">
+    下一篇：要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）
   </a>
 </p>
 
