@@ -1,1 +1,9 @@
 http://VectorF.github.io/2017/03/08/20170308-NumPy 学习日志/
+http://VectorF.github.io/2017/03/08/20170308-Prophet 之安装篇/
+http://VectorF.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/
+http://VectorF.github.io/2017/02/20/20170221-揭开机器学习的面纱/
+http://VectorF.github.io/2016/12/29/20161229-ECharts测试/
+http://VectorF.github.io/2016/12/11/20161210-机器学习与Dota2英雄属性/
+http://VectorF.github.io/2016/11/06/20161106-Git 教程/
+http://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/
+http://VectorF.github.io/2016/10/19/20161019-my-first-post/
