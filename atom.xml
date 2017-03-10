@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://VectorF.github.io/"/>
-  <updated>2017-03-09T14:28:01.995Z</updated>
+  <updated>2017-03-10T12:26:35.287Z</updated>
   <id>http://VectorF.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://VectorF.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
     <id>http://VectorF.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
     <published>2017-03-08T08:30:30.000Z</published>
-    <updated>2017-03-09T14:28:01.995Z</updated>
+    <updated>2017-03-10T12:26:35.287Z</updated>
     
-    <content type="html"><![CDATA[<div align="center"><br><br><img src="/img/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
+    <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
 <p>本安装文档主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/installation.html" target="_blank" rel="external">Prophet Installation</a> 官方安装文档。</p>
@@ -101,45 +101,50 @@
 </ol>
 <h3 id="二、安装-Prophet"><a href="#二、安装-Prophet" class="headerlink" title="二、安装 Prophet"></a>二、安装 Prophet</h3><p>使用命令行程序运行下列<code>pip</code>命令安装即可：</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bash</div><div class="line">$ pip install fbprophet</div></pre></td></tr></table></figure>
-<h4 id="Ubuntu-系统安装注意事项"><a href="#Ubuntu-系统安装注意事项" class="headerlink" title="Ubuntu 系统安装注意事项"></a>Ubuntu 系统安装注意事项</h4><p>在 Ubuntu 16.04 系统下，使用系统内置的 python 2.7 安装上 fbprophet 后，导入 <code>import fbprophet</code> 时提示需要安装 <code>matplotlib</code> 库和 <code>python-tk</code>。打开一个终端，输入下列命令即可：</p>
+<h4 id="Ubuntu-系统安装注意事项"><a href="#Ubuntu-系统安装注意事项" class="headerlink" title="Ubuntu 系统安装注意事项"></a>Ubuntu 系统安装注意事项</h4><ol>
+<li><p>在 Ubuntu 16.04 系统下，使用系统内置的 python 2.7 安装上 fbprophet 后，导入 <code>import fbprophet</code> 时提示需要安装 <code>matplotlib</code> 库和 <code>python-tk</code>。打开一个终端，输入下列命令即可：</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~ sudo pip install matplotlib</div><div class="line">~ sudo apt-get install tk-dev</div><div class="line">~ sudo apt-get install python-tk</div></pre></td></tr></table></figure>
-<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><ol>
-<li><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
-<p>错误信息：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
+<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装 fbprophet ，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
 <p>运行检验代码后的错误信息：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent <span class="keyword">call</span> last):</div><div class="line"></div><div class="line">  File "&lt;ipython-input-<span class="number">28</span>-<span class="number">15</span>d1abb9774a&gt;", line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    model = pystan.StanModel(model_code=model_code)</div><div class="line"></div><div class="line">  File "/home/username/anaconda2/lib/python2.<span class="number">7</span>/site-packages/pystan/model.py", line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line"></div><div class="line">  File "/home/username/anaconda2/lib/python2.<span class="number">7</span>/site-packages/pystan/model.py", line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    return imp.load_module(module_name, *module_info)</div><div class="line"><span class="function"></span></div><div class="line">ImportError: /<span class="title">tmp</span>/<span class="title">tmpgc2vTO</span>/<span class="title">stanfit4anon_model_5944bb5b3a93728ca2bf_765485408593311.so</span>: <span class="title">undefined</span> <span class="title">symbol</span>: <span class="title">_ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-28-15d1abb9774a&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    model = pystan.StanModel(model_code=model_code)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /tmp/tmpgc2vTO/stanfit4anon_model_5944bb5b3a93728ca2bf_765485408593311.so: undefined symbol: _ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</div></pre></td></tr></table></figure>
+<p>后尝试在 Anaconda 的 Spyder 中将 console 的 python 路径更改为 <code>/usr/bin/python</code> ，运行检验代码仍然报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line">    </div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line"></div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line">    </div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /home/username/anaconda2/lib/python2<span class="number">.7</span>/site-packages/numexpr/../../../libstdc++.so<span class="number">.6</span>: version `GLIBCXX_3<span class="number">.4</span><span class="number">.20</span><span class="string">' not found (required by /tmp/tmptEazgR/stanfit4anon_model_5944b02c79788fa8ca2bf_7654287730157512986.so)</span></div></pre></td></tr></table></figure>
+<p>在网上查询后，发现是由于 Anaconda 中未安装 <code>libgcc</code> 库。打开一个命令行，运行下列代码安装即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install libgcc</div></pre></td></tr></table></figure>
+<p>安装 <code>libgcc</code> 库后，就可以成功运行检验代码了。</p>
+<p>机缘巧合下，发现安装 <code>libgcc</code> 库后，使用Anaconda 自带的 python ，也可以成功安装 <code>PyStan</code> 和 <code>fbprophet</code> 了。遂将 Spyder 中 console 的 python 路径更改为原来默认的。</p>
 </li>
 </ol>
+<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
+<p>错误信息：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
-<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     ​</p>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     </p>
 </blockquote>
 ]]></content>
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;/img/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;本安装文档主要翻译整理自 &lt;a hre
+&lt;blockq
     
     </summary>
     
       <category term="Prophet" scheme="http://VectorF.github.io/categories/Prophet/"/>
     
     
+      <category term="R 语言" scheme="http://VectorF.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
       <category term="Prophet" scheme="http://VectorF.github.io/tags/Prophet/"/>
     
       <category term="安装" scheme="http://VectorF.github.io/tags/%E5%AE%89%E8%A3%85/"/>
     
-      <category term="R 语言" scheme="http://VectorF.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="Python" scheme="http://VectorF.github.io/tags/Python/"/>
-    
-      <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
@@ -148,9 +153,9 @@
     <link href="http://VectorF.github.io/2017/03/08/20170308-NumPy%20%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/"/>
     <id>http://VectorF.github.io/2017/03/08/20170308-NumPy 学习日志/</id>
     <published>2017-03-08T08:30:30.000Z</published>
-    <updated>2017-03-08T15:33:08.161Z</updated>
+    <updated>2017-03-10T12:27:19.047Z</updated>
     
-    <content type="html"><![CDATA[<div align="center"><br><br><img src="/img/numpy.jpg" width="800" height="350" alt="0"><br><br></div>
+    <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/numpy.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
 <p>本学习日志主要来源于 <a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html" target="_blank" rel="external">Tentative_NumPy_Tutorial</a></p>
@@ -317,10 +322,9 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;/img/numpy.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/numpy.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;本学习日志主要来源于 &lt;a href=&quot;h
+&lt;blockquo
     
     </summary>
     
@@ -451,9 +455,9 @@
     
       <category term="R 语言" scheme="http://VectorF.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="stargazer" scheme="http://VectorF.github.io/tags/stargazer/"/>
+    
+      <category term="教程" scheme="http://VectorF.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
