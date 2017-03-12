@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Prophet 之使用篇（一）——简易入门]]></title>
-      <url>http://VectorF.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      <url>https://VectorF.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/</url>
       <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
@@ -71,7 +71,7 @@
     
     <entry>
       <title><![CDATA[NumPy 学习日志之数组篇]]></title>
-      <url>http://VectorF.github.io/2017/03/08/20170308-NumPy%20%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/</url>
+      <url>https://VectorF.github.io/2017/03/08/20170308-NumPy%20%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/</url>
       <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/numpy.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
@@ -240,7 +240,7 @@
     
     <entry>
       <title><![CDATA[Prophet 之安装篇]]></title>
-      <url>http://VectorF.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/</url>
+      <url>https://VectorF.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/</url>
       <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
@@ -347,7 +347,7 @@
     
     <entry>
       <title><![CDATA[要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）]]></title>
-      <url>http://VectorF.github.io/2017/02/21/20170221-%E8%A6%81%E4%BC%98%E9%9B%85%EF%BC%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%20R%20%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%EF%BC%81%EF%BC%88%E4%BD%BF%E7%94%A8%20stargazer%20%E5%8C%85%EF%BC%89/</url>
+      <url>https://VectorF.github.io/2017/02/21/20170221-%E8%A6%81%E4%BC%98%E9%9B%85%EF%BC%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%20R%20%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%EF%BC%81%EF%BC%88%E4%BD%BF%E7%94%A8%20stargazer%20%E5%8C%85%EF%BC%89/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>本文于 2017/02/08 发表在 <a href="http://datartisan.com/article/detail/202.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
 </blockquote>
@@ -445,7 +445,7 @@
     
     <entry>
       <title><![CDATA[揭开机器学习的面纱]]></title>
-      <url>http://VectorF.github.io/2017/02/20/20170221-%E6%8F%AD%E5%BC%80%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9D%A2%E7%BA%B1/</url>
+      <url>https://VectorF.github.io/2017/02/20/20170221-%E6%8F%AD%E5%BC%80%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9D%A2%E7%BA%B1/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/03/machine-learning-a-brief-breakdown/" target="_blank" rel="external">Machine Learning: A Brief Breakdown</a>   原文作者：libesa</p>
 <p>译文于 2017/01/19 发表在 <a href="http://datartisan.com/article/detail/197.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
@@ -527,7 +527,7 @@
     
     <entry>
       <title><![CDATA[ECharts 测试]]></title>
-      <url>http://VectorF.github.io/2016/12/29/20161229-ECharts%E6%B5%8B%E8%AF%95/</url>
+      <url>https://VectorF.github.io/2016/12/29/20161229-ECharts%E6%B5%8B%E8%AF%95/</url>
       <content type="html"><![CDATA[<script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
 <div id="main" style="width: 600px;height:400px;" align="center"></div>
 <script type="text/javascript">
@@ -559,7 +559,7 @@ myChart.setOption(option);
     
     <entry>
       <title><![CDATA[机器学习与 Dota2 英雄属性]]></title>
-      <url>http://VectorF.github.io/2016/12/11/20161210-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8EDota2%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7/</url>
+      <url>https://VectorF.github.io/2016/12/11/20161210-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8EDota2%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">《 Gavagai 》</a>   原文作者：Federico Vaggi</p>
 <p>译文于 2016/12/10 发表在 <a href="http://datartisan.com/article/detail/181.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
@@ -613,7 +613,7 @@ myChart.setOption(option);
     
     <entry>
       <title><![CDATA[Git 教程]]></title>
-      <url>http://VectorF.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/</url>
+      <url>https://VectorF.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/git.jpg" alt="git"><br><br></div>
 
 <blockquote>
@@ -971,7 +971,7 @@ myChart.setOption(option);
     
     <entry>
       <title><![CDATA[永不过时的 K 均值算法]]></title>
-      <url>http://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/</url>
+      <url>https://VectorF.github.io/2016/10/21/20161021-Translate-K-Means/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/04/k-means-vs-k-medoids/" target="_blank" rel="external">《”K-Means never fails”, they said…》</a> &ensp; 原文作者：Fjrodriguez2</p>
 <p>译文于 2016/09/14 发表在 <a href="http://datartisan.com/article/detail/168.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
@@ -1017,7 +1017,7 @@ myChart.setOption(option);
     
     <entry>
       <title><![CDATA[第一篇博文]]></title>
-      <url>http://VectorF.github.io/2016/10/19/20161019-my-first-post/</url>
+      <url>https://VectorF.github.io/2016/10/19/20161019-my-first-post/</url>
       <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello,world!"></a>Hello,world!</h2><p><a id="more"></a>你好呀！</p>
 ]]></content>
     </entry>
@@ -1027,7 +1027,7 @@ myChart.setOption(option);
     
     <entry>
       <title><![CDATA[关于]]></title>
-      <url>http://VectorF.github.io/about/index.html</url>
+      <url>https://VectorF.github.io/about/index.html</url>
       <content type="html"><![CDATA[<ul>
 <li>统计专业本科在读</li>
 <li>R 语言学习 ing</li>
@@ -1038,7 +1038,7 @@ myChart.setOption(option);
     
     <entry>
       <title><![CDATA[读书]]></title>
-      <url>http://VectorF.github.io/reading/index.html</url>
+      <url>https://VectorF.github.io/reading/index.html</url>
       <content type="html"></content>
     </entry>
     
