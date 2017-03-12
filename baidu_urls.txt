@@ -1,6 +1,6 @@
 http://VectorF.github.io/2017/03/12/20170312-Prophet之使用篇（一）/
-http://VectorF.github.io/2017/03/08/20170308-Prophet 之安装篇/
 http://VectorF.github.io/2017/03/08/20170308-NumPy 学习日志/
+http://VectorF.github.io/2017/03/08/20170308-Prophet 之安装篇/
 http://VectorF.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/
 http://VectorF.github.io/2017/02/20/20170221-揭开机器学习的面纱/
 http://VectorF.github.io/2016/12/29/20161229-ECharts测试/
