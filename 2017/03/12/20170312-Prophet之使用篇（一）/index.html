@@ -204,16 +204,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Python/">
-                    Python <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/Prophet/">
+                    Prophet <span class="right">8 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Prophet/">
-                    Prophet <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -293,9 +293,9 @@
         
             <a href="/tags/教程/" class="chip red">教程</a>
         
-            <a href="/tags/Python/" class="chip red">Python</a>
-        
             <a href="/tags/Prophet/" class="chip red">Prophet</a>
+        
+            <a href="/tags/Python/" class="chip red">Python</a>
         
     </div>
 
@@ -309,11 +309,11 @@
                 <div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
-<p>本使用说明教程主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/quick_start.html" target="_blank" rel="external">Prophet 的官方说明文档之“简易入门”</a></p>
+<p>本使用说明教程主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/quick_start.html" target="_blank" rel="external">Prophet 的官方说明文档之 “简易入门”</a></p>
 <p>教程中使用的数据集可在 <a href="https://github.com/facebookincubator/prophet" target="_blank" rel="external">Prophet 的 github 主页</a> 中的 <a href="https://github.com/facebookincubator/prophet/tree/master/examples" target="_blank" rel="external">examples 文件夹</a> 内下载得到。</p>
 </blockquote>
 <h2 id="Python-中的应用程序接口"><a href="#Python-中的应用程序接口" class="headerlink" title="Python 中的应用程序接口"></a>Python 中的应用程序接口</h2><p>Prophet 遵循 <code>sklearn</code> 库建模的应用程序接口。我们创建了一个 Prophet 类的实例，其中使用了“拟合模型” <code>fit</code> 和“预测” <code>predict</code> 方法。</p>
-<p>Prophet 的输入量往往是一个包含两列的数据框：<code>ds</code> 和 <code>y</code> 。<code>ds</code> 列（即日期邮戳）必须包含日期或者是具体的时间点。 <code>y</code> 列必须是数值变量，表示我们希望去预测的量。</p>
+<p>Prophet 的输入量往往是一个包含两列的数据框：<code>ds</code> 和 <code>y</code> 。<code>ds</code> 列（即日期戳）必须包含日期或者是具体的时间点。 <code>y</code> 列必须是数值变量，表示我们希望去预测的量。</p>
 <p>下面实例中使用的是 <a href="https://en.wikipedia.org/wiki/Peyton_Manning" target="_blank" rel="external">佩顿 · 曼宁的维基百科主页</a> 每日访问量的时间序列数据（2007/12/10 - 2016/01/20）。我们使用 R 中的 <a href="https://cran.r-project.org/web/packages/wikipediatrend/vignettes/using-wikipediatrend.html" target="_blank" rel="external">Wikipediatrend</a> 包获取该数据集。这个数据集具有多季节周期性、不断变化的增长率和可以拟合特定日期（例如佩顿 · 曼宁的决赛和超级碗）的情况等 Prophet 适用的性质，因此可以作为一个不错的例子。（<em>注：</em>佩顿 · 曼宁为前美式橄榄球四分卫）</p>
 <p>首先，我们导入数据，并且对 y 变量取对数变换。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在 Python 中载入所需库</span></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> fbprophet <span class="keyword">import</span> Prophet</div></pre></td></tr></table></figure>
@@ -362,17 +362,27 @@
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 预测的成分分析绘图，展示预测中的趋势、周效应和年度效应</span></div><div class="line">prophet_plot_components(m, forecast)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="Prophet1_10.png" alt="2-5"><br><br></div>
 
+
+
+<p><em>注：</em> Windows 系统语言设置为中文的话，会导致 R 输出成分分析图时，周效应无法正常显示，可在 R 中使用下列代码将环境改为英文：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Sys.setlocale(<span class="string">"LC_ALL"</span>,<span class="string">"English"</span>)</div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
 <p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>    </p>
 </blockquote>
 
                 
+<p class="red-link-context">
+    <a href="/2017/03/14/20170314-Prophet之使用篇（二）/" rel="next" title="Prophet 之使用篇（二）——预测增长">
+    上一篇：Prophet 之使用篇（二）——预测增长
+  </a>
+</p>
+
 
 
 <p class="red-link-context">
-    <a href="/2017/03/08/20170308-NumPy 学习日志/" rel="next" title="NumPy 学习日志之数组篇">
-    下一篇：NumPy 学习日志之数组篇
+    <a href="/2017/03/08/20170308-Prophet 之安装篇/" rel="next" title="Prophet 之安装篇">
+    下一篇：Prophet 之安装篇
   </a>
 </p>
 

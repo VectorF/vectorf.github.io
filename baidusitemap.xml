@@ -4,8 +4,164 @@
 
     
   <url>
+    <loc>https://VectorF.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/</loc>
+    <lastmod>2017-03-14T13:30:31.057Z</lastmod>
+    <data>
+        <display>
+        <title>Prophet 之使用篇（七）——非日数据</title>
+        <pubTime>2017-03-14T13:21:11.000Z</pubTime>
+        
+        <tag>R 语言</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Prophet</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Prophet" url="https://VectorF.github.io/categories/Prophet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://VectorF.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/</loc>
+    <lastmod>2017-03-14T13:29:31.458Z</lastmod>
+    <data>
+        <display>
+        <title>Prophet 之使用篇（六）——异常值</title>
+        <pubTime>2017-03-14T13:21:04.000Z</pubTime>
+        
+        <tag>R 语言</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Prophet</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Prophet" url="https://VectorF.github.io/categories/Prophet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://VectorF.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/</loc>
+    <lastmod>2017-03-14T13:28:33.163Z</lastmod>
+    <data>
+        <display>
+        <title>Prophet 之使用篇（五）——置信区间</title>
+        <pubTime>2017-03-14T13:20:58.000Z</pubTime>
+        
+        <tag>R 语言</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Prophet</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Prophet" url="https://VectorF.github.io/categories/Prophet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://VectorF.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
+    <lastmod>2017-03-14T13:28:01.458Z</lastmod>
+    <data>
+        <display>
+        <title>Prophet 之使用篇（二）——预测增长</title>
+        <pubTime>2017-03-14T13:18:12.000Z</pubTime>
+        
+        <tag>R 语言</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Prophet</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Prophet" url="https://VectorF.github.io/categories/Prophet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://VectorF.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
+    <lastmod>2017-03-14T13:27:21.273Z</lastmod>
+    <data>
+        <display>
+        <title>Prophet 之使用篇（三）——趋势突变点</title>
+        <pubTime>2017-03-14T13:20:43.000Z</pubTime>
+        
+        <tag>R 语言</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Prophet</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Prophet" url="https://VectorF.github.io/categories/Prophet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://VectorF.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/</loc>
+    <lastmod>2017-03-14T13:27:03.842Z</lastmod>
+    <data>
+        <display>
+        <title>Prophet 之使用篇（四）——节假日效应</title>
+        <pubTime>2017-03-14T13:20:51.000Z</pubTime>
+        
+        <tag>R 语言</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Prophet</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Prophet" url="https://VectorF.github.io/categories/Prophet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://VectorF.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2017-03-12T10:16:12.420Z</lastmod>
+    <lastmod>2017-03-14T13:18:32.208Z</lastmod>
     <data>
         <display>
         <title>Prophet 之使用篇（一）——简易入门</title>
@@ -15,9 +171,9 @@
          
         <tag>教程</tag>
          
-        <tag>Python</tag>
-         
         <tag>Prophet</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -41,9 +197,9 @@
          
         <tag>教程</tag>
          
-        <tag>Python</tag>
-         
         <tag>Prophet</tag>
+         
+        <tag>Python</tag>
          
         <tag>安装</tag>
          
@@ -187,13 +343,13 @@
         
         <tag>机器学习</tag>
          
-        <tag>翻译</tag>
-         
         <tag>dota2</tag>
          
         <tag>自然语言处理</tag>
          
         <tag>词向量</tag>
+         
+        <tag>翻译</tag>
          
          
            
@@ -213,13 +369,13 @@
         <title>永不过时的 K 均值算法</title>
         <pubTime>2016-10-21T13:27:17.000Z</pubTime>
         
-        <tag>K均值</tag>
-         
-        <tag>聚类</tag>
-         
         <tag>机器学习</tag>
          
         <tag>翻译</tag>
+         
+        <tag>K均值</tag>
+         
+        <tag>聚类</tag>
          
          
            

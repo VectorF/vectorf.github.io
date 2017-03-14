@@ -1,6 +1,12 @@
+https://VectorF.github.io/2017/03/14/20170314-Prophet之使用篇（七）/
+https://VectorF.github.io/2017/03/14/20170314-Prophet之使用篇（六）/
+https://VectorF.github.io/2017/03/14/20170314-Prophet之使用篇（五）/
+https://VectorF.github.io/2017/03/14/20170314-Prophet之使用篇（四）/
+https://VectorF.github.io/2017/03/14/20170314-Prophet之使用篇（三）/
+https://VectorF.github.io/2017/03/14/20170314-Prophet之使用篇（二）/
 https://VectorF.github.io/2017/03/12/20170312-Prophet之使用篇（一）/
-https://VectorF.github.io/2017/03/08/20170308-NumPy 学习日志/
 https://VectorF.github.io/2017/03/08/20170308-Prophet 之安装篇/
+https://VectorF.github.io/2017/03/08/20170308-NumPy 学习日志/
 https://VectorF.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/
 https://VectorF.github.io/2017/02/20/20170221-揭开机器学习的面纱/
 https://VectorF.github.io/2016/12/29/20161229-ECharts测试/
