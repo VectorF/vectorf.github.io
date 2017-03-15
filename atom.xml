@@ -56,13 +56,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
@@ -71,7 +71,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（六）/</id>
     <published>2017-03-14T13:21:04.000Z</published>
-    <updated>2017-03-14T13:29:31.458Z</updated>
+    <updated>2017-03-15T06:46:30.791Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -84,7 +84,7 @@
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">df &lt;- read.csv(<span class="string">'./examples/example_wp_R_outliers1.csv'</span>)</div><div class="line">df$y &lt;- log(df$y)</div><div class="line">m &lt;- prophet(df)</div><div class="line">future &lt;- make_future_dataframe(m, periods = <span class="number">1096</span>)</div><div class="line">forecast &lt;- predict(m, future)</div><div class="line">plot(m, forecast);</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="Prophet6_1.png" alt="1"><br><br></div>
 
-<p>如上 R 输出图所示，趋势预测看似合理，置信区间的估计却过于广泛。 Prophet 虽能够处理历史数据中的异常值，但仅仅是将它们与趋势的变化拟合在一起，认为未来也会有类似的趋势变化。</p>
+<p>如上 R 输出图所示，趋势预测看似合理，预测区间的估计却过于广泛。 Prophet 虽能够处理历史数据中的异常值，但仅仅是将它们与趋势的变化拟合在一起，认为未来也会有类似的趋势变化。</p>
 <p>处理异常值最好的方法是移除它们，而 Prophet 使能够处理缺失数据的。如果在历史数据中某行的值为空（ <code>NA</code> ），但是在待预测日期数据框 <code>future</code> 中仍保留这个日期，那么 Prophet 依旧可以给出该行的预测值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python</span></div><div class="line">df.loc[(df[<span class="string">'ds'</span>] &gt; <span class="string">'2010-01-01'</span>) &amp; (df[<span class="string">'ds'</span>] &lt; <span class="string">'2011-01-01'</span>), <span class="string">'y'</span>] = <span class="keyword">None</span></div><div class="line">model = Prophet().fit(df)</div><div class="line">model.plot(model.predict(future));</div></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">outliers &lt;- (as.Date(df$ds) &gt; as.Date(<span class="string">'2010-01-01'</span>)</div><div class="line">             &amp; as.Date(df$ds) &lt; as.Date(<span class="string">'2011-01-01'</span>))</div><div class="line">df$y[outliers] = <span class="literal">NA</span></div><div class="line">m &lt;- prophet(df)</div><div class="line">forecast &lt;- predict(m, future)</div><div class="line">plot(m, forecast);</div></pre></td></tr></table></figure>
@@ -118,37 +118,37 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
-    <title>Prophet 之使用篇（五）——置信区间</title>
+    <title>Prophet 之使用篇（五）——预测区间</title>
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/</id>
     <published>2017-03-14T13:20:58.000Z</published>
-    <updated>2017-03-14T13:28:33.163Z</updated>
+    <updated>2017-03-15T06:43:42.217Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
-<p>本使用说明教程主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/uncertainty_intervals.html" target="_blank" rel="external">Prophet 的官方说明文档之 “置信区间”</a></p>
+<p>本使用说明教程主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/uncertainty_intervals.html" target="_blank" rel="external">Prophet 的官方说明文档之 “预测区间”</a></p>
 <p>教程中使用的数据集可在 <a href="https://github.com/facebookincubator/prophet" target="_blank" rel="external">Prophet 的 github 主页</a> 中的 <a href="https://github.com/facebookincubator/prophet/tree/master/examples" target="_blank" rel="external">examples 文件夹</a> 内下载得到。</p>
 </blockquote>
-<p>默认情况下， Prophet 的返回结果中会包括预测值 <code>yhat</code> 的置信区间。当然，置信区间的估计需建立在一些重要的假设前提下。</p>
+<p>默认情况下， Prophet 的返回结果中会包括预测值 <code>yhat</code> 的预测区间。当然，预测区间的估计需建立在一些重要的假设前提下。</p>
 <p>在预测时，不确定性主要来源于三个部分：趋势中的不确定性、季节效应估计中的不确定性和观测值的噪声影响。</p>
-<h2 id="趋势中的不确定性"><a href="#趋势中的不确定性" class="headerlink" title="趋势中的不确定性"></a>趋势中的不确定性</h2><p>预测中，不确定性最大的来源就在于未来趋势改变的不确定性。在之前教程中的时间序列实例中，我们可以发现历史数据具有明显的趋势性。 Prophet 能够监测并去拟合它，但是我们期望得到的趋势改变究竟会如何走向呢？或许这是无解的，因此我们尽可能地做出最合理的推断，假定 “未来将会和历史具有相似的趋势” 。尤其重要的是，我们假定未来趋势的平均变动频率和幅度和我们观测到的历史值是一样的，从而预测趋势的变化并通过计算，最终得到置信区间。</p>
-<p>这种衡量不确定性的方法具有以下性质：变化速率灵活性更大时（通过增大参数 <code>changepoint_prior_scale</code> 的值），预测的不确定性也会随之增大。原因在于如果将历史数据中更多的变化速率加入了模型，也就代表我们认为未来也会变化得更多，就会使得置信区间成为反映过拟合的标志。</p>
-<p>置信区间的宽度（默认下，是 80% ）可以通过设置 <code>interval_width</code> 参数来控制：</p>
+<h2 id="趋势中的不确定性"><a href="#趋势中的不确定性" class="headerlink" title="趋势中的不确定性"></a>趋势中的不确定性</h2><p>预测中，不确定性最大的来源就在于未来趋势改变的不确定性。在之前教程中的时间序列实例中，我们可以发现历史数据具有明显的趋势性。 Prophet 能够监测并去拟合它，但是我们期望得到的趋势改变究竟会如何走向呢？或许这是无解的，因此我们尽可能地做出最合理的推断，假定 “未来将会和历史具有相似的趋势” 。尤其重要的是，我们假定未来趋势的平均变动频率和幅度和我们观测到的历史值是一样的，从而预测趋势的变化并通过计算，最终得到预测区间。</p>
+<p>这种衡量不确定性的方法具有以下性质：变化速率灵活性更大时（通过增大参数 <code>changepoint_prior_scale</code> 的值），预测的不确定性也会随之增大。原因在于如果将历史数据中更多的变化速率加入了模型，也就代表我们认为未来也会变化得更多，就会使得预测区间成为反映过拟合的标志。</p>
+<p>预测区间的宽度（默认下，是 80% ）可以通过设置 <code>interval_width</code> 参数来控制：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python</span></div><div class="line">m = Prophet(interval_width=<span class="number">0.95</span>).fit(df)</div><div class="line">future = m.make_future_dataframe(periods=<span class="number">365</span>)</div><div class="line">forecast = m.predict(future)</div></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">m &lt;- prophet(df, interval.width = <span class="number">0.95</span>)</div><div class="line">future &lt;- make_future_dataframe(m, periods = <span class="number">365</span>)</div><div class="line">forecast &lt;- predict(m, future)</div></pre></td></tr></table></figure>
-<p>由于置信区间估计时假定未来将会和过去保持一样的变化频率和幅度，而这个假定可能并不正确，所以置信区间的估计不可能完全准确。</p>
+<p>由于预测区间估计时假定未来将会和过去保持一样的变化频率和幅度，而这个假定可能并不正确，所以预测区间的估计不可能完全准确。</p>
 <h2 id="季节效应中的不确定性"><a href="#季节效应中的不确定性" class="headerlink" title="季节效应中的不确定性"></a>季节效应中的不确定性</h2><p>默认情况下， Prophet 只会返回趋势中的不确定性和观测值噪声的影响。你必须使用贝叶斯取样的方法来得到季节效应的不确定性，可通过设置 <code>mcmc.samples</code> 参数（默认下取 0 ）来实现。下面使用 <a href="https://vectorf.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">Prophet 之使用篇（一）</a> 中佩顿 · 曼宁的数据为例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python</span></div><div class="line">m = Prophet(mcmc_samples=<span class="number">500</span>).fit(df)</div><div class="line">future = m.make_future_dataframe(periods=<span class="number">365</span>)</div><div class="line">forecast = m.predict(future)</div></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">m &lt;- prophet(df, mcmc.samples = <span class="number">500</span>)</div><div class="line">future &lt;- make_future_dataframe(m, periods = <span class="number">365</span>)</div><div class="line">forecast &lt;- predict(m, future)</div></pre></td></tr></table></figure>
@@ -175,13 +175,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
@@ -243,13 +243,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
@@ -311,13 +311,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
@@ -372,13 +372,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
@@ -467,13 +467,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
   </entry>
   
@@ -791,13 +791,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="安装" scheme="https://vectorf.github.io/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -915,11 +915,11 @@
       <category term="R 语言" scheme="https://vectorf.github.io/categories/R-%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="stargazer" scheme="https://vectorf.github.io/tags/stargazer/"/>
+    
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
@@ -1532,9 +1532,9 @@ myChart.setOption(option);
       <category term="教程" scheme="https://vectorf.github.io/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="Git" scheme="https://vectorf.github.io/tags/Git/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="Git" scheme="https://vectorf.github.io/tags/Git/"/>
     
   </entry>
   

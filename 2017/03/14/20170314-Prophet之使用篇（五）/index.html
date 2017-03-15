@@ -8,7 +8,7 @@
 	<meta name="baidu-site-verification" content="9NcVUM8ayz" />
     
 
-    <title>Prophet 之使用篇（五）——置信区间 | Vector Blog</title>
+    <title>Prophet 之使用篇（五）——预测区间 | Vector Blog</title>
     <meta name="author" content="VectorF">
     
     <meta name="description" content="Here is Vector&#39;s blog, thanks for your reading!">
@@ -16,7 +16,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Prophet 之使用篇（五）——置信区间"/>
+    <meta property="og:title" content="Prophet 之使用篇（五）——预测区间"/>
     <meta property="og:site_name" content="Vector Blog"/>
 
     
@@ -188,14 +188,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/教程/">
-                    教程 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/ECharts/">
                     ECharts <span class="right">1 篇</span></a>
                 </a>
@@ -212,6 +204,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Prophet/">
+                    Prophet <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Python/">
                     Python <span class="right">1 篇</span></a>
                 </a>
@@ -220,8 +220,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Prophet/">
-                    Prophet <span class="right">8 篇</span></a>
+                <a class="no-padding" href="/categories/教程/">
+                    教程 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -274,7 +274,7 @@
             <div class="article-title">
                 
     
-        <h1>Prophet 之使用篇（五）——置信区间</h1>
+        <h1>Prophet 之使用篇（五）——预测区间</h1>
     
 
 
@@ -289,13 +289,13 @@
             
     <div class="tags-row">
         
-            <a href="/tags/教程/" class="chip red">教程</a>
-        
             <a href="/tags/R-语言/" class="chip red">R 语言</a>
         
-            <a href="/tags/Python/" class="chip red">Python</a>
+            <a href="/tags/教程/" class="chip red">教程</a>
         
             <a href="/tags/Prophet/" class="chip red">Prophet</a>
+        
+            <a href="/tags/Python/" class="chip red">Python</a>
         
     </div>
 
@@ -309,17 +309,17 @@
                 <div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
 <blockquote>
-<p>本使用说明教程主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/uncertainty_intervals.html" target="_blank" rel="external">Prophet 的官方说明文档之 “置信区间”</a></p>
+<p>本使用说明教程主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/uncertainty_intervals.html" target="_blank" rel="external">Prophet 的官方说明文档之 “预测区间”</a></p>
 <p>教程中使用的数据集可在 <a href="https://github.com/facebookincubator/prophet" target="_blank" rel="external">Prophet 的 github 主页</a> 中的 <a href="https://github.com/facebookincubator/prophet/tree/master/examples" target="_blank" rel="external">examples 文件夹</a> 内下载得到。</p>
 </blockquote>
-<p>默认情况下， Prophet 的返回结果中会包括预测值 <code>yhat</code> 的置信区间。当然，置信区间的估计需建立在一些重要的假设前提下。</p>
+<p>默认情况下， Prophet 的返回结果中会包括预测值 <code>yhat</code> 的预测区间。当然，预测区间的估计需建立在一些重要的假设前提下。</p>
 <p>在预测时，不确定性主要来源于三个部分：趋势中的不确定性、季节效应估计中的不确定性和观测值的噪声影响。</p>
-<h2 id="趋势中的不确定性"><a href="#趋势中的不确定性" class="headerlink" title="趋势中的不确定性"></a>趋势中的不确定性</h2><p>预测中，不确定性最大的来源就在于未来趋势改变的不确定性。在之前教程中的时间序列实例中，我们可以发现历史数据具有明显的趋势性。 Prophet 能够监测并去拟合它，但是我们期望得到的趋势改变究竟会如何走向呢？或许这是无解的，因此我们尽可能地做出最合理的推断，假定 “未来将会和历史具有相似的趋势” 。尤其重要的是，我们假定未来趋势的平均变动频率和幅度和我们观测到的历史值是一样的，从而预测趋势的变化并通过计算，最终得到置信区间。</p>
-<p>这种衡量不确定性的方法具有以下性质：变化速率灵活性更大时（通过增大参数 <code>changepoint_prior_scale</code> 的值），预测的不确定性也会随之增大。原因在于如果将历史数据中更多的变化速率加入了模型，也就代表我们认为未来也会变化得更多，就会使得置信区间成为反映过拟合的标志。</p>
-<p>置信区间的宽度（默认下，是 80% ）可以通过设置 <code>interval_width</code> 参数来控制：</p>
+<h2 id="趋势中的不确定性"><a href="#趋势中的不确定性" class="headerlink" title="趋势中的不确定性"></a>趋势中的不确定性</h2><p>预测中，不确定性最大的来源就在于未来趋势改变的不确定性。在之前教程中的时间序列实例中，我们可以发现历史数据具有明显的趋势性。 Prophet 能够监测并去拟合它，但是我们期望得到的趋势改变究竟会如何走向呢？或许这是无解的，因此我们尽可能地做出最合理的推断，假定 “未来将会和历史具有相似的趋势” 。尤其重要的是，我们假定未来趋势的平均变动频率和幅度和我们观测到的历史值是一样的，从而预测趋势的变化并通过计算，最终得到预测区间。</p>
+<p>这种衡量不确定性的方法具有以下性质：变化速率灵活性更大时（通过增大参数 <code>changepoint_prior_scale</code> 的值），预测的不确定性也会随之增大。原因在于如果将历史数据中更多的变化速率加入了模型，也就代表我们认为未来也会变化得更多，就会使得预测区间成为反映过拟合的标志。</p>
+<p>预测区间的宽度（默认下，是 80% ）可以通过设置 <code>interval_width</code> 参数来控制：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python</span></div><div class="line">m = Prophet(interval_width=<span class="number">0.95</span>).fit(df)</div><div class="line">future = m.make_future_dataframe(periods=<span class="number">365</span>)</div><div class="line">forecast = m.predict(future)</div></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">m &lt;- prophet(df, interval.width = <span class="number">0.95</span>)</div><div class="line">future &lt;- make_future_dataframe(m, periods = <span class="number">365</span>)</div><div class="line">forecast &lt;- predict(m, future)</div></pre></td></tr></table></figure>
-<p>由于置信区间估计时假定未来将会和过去保持一样的变化频率和幅度，而这个假定可能并不正确，所以置信区间的估计不可能完全准确。</p>
+<p>由于预测区间估计时假定未来将会和过去保持一样的变化频率和幅度，而这个假定可能并不正确，所以预测区间的估计不可能完全准确。</p>
 <h2 id="季节效应中的不确定性"><a href="#季节效应中的不确定性" class="headerlink" title="季节效应中的不确定性"></a>季节效应中的不确定性</h2><p>默认情况下， Prophet 只会返回趋势中的不确定性和观测值噪声的影响。你必须使用贝叶斯取样的方法来得到季节效应的不确定性，可通过设置 <code>mcmc.samples</code> 参数（默认下取 0 ）来实现。下面使用 <a href="https://vectorf.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">Prophet 之使用篇（一）</a> 中佩顿 · 曼宁的数据为例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python</span></div><div class="line">m = Prophet(mcmc_samples=<span class="number">500</span>).fit(df)</div><div class="line">future = m.make_future_dataframe(periods=<span class="number">365</span>)</div><div class="line">forecast = m.predict(future)</div></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">m &lt;- prophet(df, mcmc.samples = <span class="number">500</span>)</div><div class="line">future &lt;- make_future_dataframe(m, periods = <span class="number">365</span>)</div><div class="line">forecast &lt;- predict(m, future)</div></pre></td></tr></table></figure>
@@ -367,7 +367,7 @@
         <div class="card">
             <div class="card-content">
                 <!-- Duoshuo Comment BEGIN -->
-                <div class="ds-thread" data-thread-key="2017/03/14/20170314-Prophet之使用篇（五）/" data-title="Prophet 之使用篇（五）——置信区间" data-url="https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/"></div>
+                <div class="ds-thread" data-thread-key="2017/03/14/20170314-Prophet之使用篇（五）/" data-title="Prophet 之使用篇（五）——预测区间" data-url="https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/"></div>
 
                 <script type="text/javascript">
                     console.log(document.querySelector('.ds-thread'));

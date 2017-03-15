@@ -1,16 +1,1 @@
 https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（七）/
-https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（六）/
-https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/
-https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（四）/
-https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（三）/
-https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（二）/
-https://vectorf.github.io/2017/03/12/20170312-Prophet之使用篇（一）/
-https://vectorf.github.io/2017/03/08/20170308-NumPy 学习日志/
-https://vectorf.github.io/2017/03/08/20170308-Prophet 之安装篇/
-https://vectorf.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/
-https://vectorf.github.io/2017/02/20/20170221-揭开机器学习的面纱/
-https://vectorf.github.io/2016/12/29/20161229-ECharts测试/
-https://vectorf.github.io/2016/12/11/20161210-机器学习与Dota2英雄属性/
-https://vectorf.github.io/2016/11/06/20161106-Git 教程/
-https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/
-https://vectorf.github.io/2016/10/19/20161019-my-first-post/

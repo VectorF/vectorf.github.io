@@ -188,14 +188,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/教程/">
-                    教程 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/ECharts/">
                     ECharts <span class="right">1 篇</span></a>
                 </a>
@@ -212,6 +204,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Prophet/">
+                    Prophet <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Python/">
                     Python <span class="right">1 篇</span></a>
                 </a>
@@ -220,8 +220,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Prophet/">
-                    Prophet <span class="right">8 篇</span></a>
+                <a class="no-padding" href="/categories/教程/">
+                    教程 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -289,13 +289,13 @@
             
     <div class="tags-row">
         
-            <a href="/tags/教程/" class="chip red">教程</a>
-        
             <a href="/tags/R-语言/" class="chip red">R 语言</a>
         
-            <a href="/tags/Python/" class="chip red">Python</a>
+            <a href="/tags/教程/" class="chip red">教程</a>
         
             <a href="/tags/Prophet/" class="chip red">Prophet</a>
+        
+            <a href="/tags/Python/" class="chip red">Python</a>
         
     </div>
 
@@ -317,7 +317,7 @@
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">df &lt;- read.csv(<span class="string">'./examples/example_wp_R_outliers1.csv'</span>)</div><div class="line">df$y &lt;- log(df$y)</div><div class="line">m &lt;- prophet(df)</div><div class="line">future &lt;- make_future_dataframe(m, periods = <span class="number">1096</span>)</div><div class="line">forecast &lt;- predict(m, future)</div><div class="line">plot(m, forecast);</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="Prophet6_1.png" alt="1"><br><br></div>
 
-<p>如上 R 输出图所示，趋势预测看似合理，置信区间的估计却过于广泛。 Prophet 虽能够处理历史数据中的异常值，但仅仅是将它们与趋势的变化拟合在一起，认为未来也会有类似的趋势变化。</p>
+<p>如上 R 输出图所示，趋势预测看似合理，预测区间的估计却过于广泛。 Prophet 虽能够处理历史数据中的异常值，但仅仅是将它们与趋势的变化拟合在一起，认为未来也会有类似的趋势变化。</p>
 <p>处理异常值最好的方法是移除它们，而 Prophet 使能够处理缺失数据的。如果在历史数据中某行的值为空（ <code>NA</code> ），但是在待预测日期数据框 <code>future</code> 中仍保留这个日期，那么 Prophet 依旧可以给出该行的预测值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python</span></div><div class="line">df.loc[(df[<span class="string">'ds'</span>] &gt; <span class="string">'2010-01-01'</span>) &amp; (df[<span class="string">'ds'</span>] &lt; <span class="string">'2011-01-01'</span>), <span class="string">'y'</span>] = <span class="keyword">None</span></div><div class="line">model = Prophet().fit(df)</div><div class="line">model.plot(model.predict(future));</div></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R</span></div><div class="line">outliers &lt;- (as.Date(df$ds) &gt; as.Date(<span class="string">'2010-01-01'</span>)</div><div class="line">             &amp; as.Date(df$ds) &lt; as.Date(<span class="string">'2011-01-01'</span>))</div><div class="line">df$y[outliers] = <span class="literal">NA</span></div><div class="line">m &lt;- prophet(df)</div><div class="line">forecast &lt;- predict(m, future)</div><div class="line">plot(m, forecast);</div></pre></td></tr></table></figure>
@@ -348,8 +348,8 @@
 
 
 <p class="red-link-context">
-    <a href="/2017/03/14/20170314-Prophet之使用篇（五）/" rel="next" title="Prophet 之使用篇（五）——置信区间">
-    下一篇：Prophet 之使用篇（五）——置信区间
+    <a href="/2017/03/14/20170314-Prophet之使用篇（五）/" rel="next" title="Prophet 之使用篇（五）——预测区间">
+    下一篇：Prophet 之使用篇（五）——预测区间
   </a>
 </p>
 
