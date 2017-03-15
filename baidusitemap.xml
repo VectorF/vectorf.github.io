@@ -11,13 +11,13 @@
         <title>Prophet 之使用篇（六）——异常值</title>
         <pubTime>2017-03-14T13:21:04.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -37,13 +37,13 @@
         <title>Prophet 之使用篇（五）——预测区间</title>
         <pubTime>2017-03-14T13:20:58.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -63,13 +63,13 @@
         <title>Prophet 之使用篇（七）——非日数据</title>
         <pubTime>2017-03-14T13:21:11.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -89,13 +89,13 @@
         <title>Prophet 之使用篇（二）——预测增长</title>
         <pubTime>2017-03-14T13:18:12.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -115,13 +115,13 @@
         <title>Prophet 之使用篇（三）——趋势突变点</title>
         <pubTime>2017-03-14T13:20:43.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -141,13 +141,13 @@
         <title>Prophet 之使用篇（四）——节假日效应</title>
         <pubTime>2017-03-14T13:20:51.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -167,13 +167,13 @@
         <title>Prophet 之使用篇（一）——简易入门</title>
         <pubTime>2017-03-12T06:02:12.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
          
            
@@ -193,13 +193,13 @@
         <title>Prophet 之安装篇</title>
         <pubTime>2017-03-08T08:30:30.000Z</pubTime>
         
-        <tag>R 语言</tag>
-         
         <tag>教程</tag>
          
-        <tag>Prophet</tag>
+        <tag>R 语言</tag>
          
         <tag>Python</tag>
+         
+        <tag>Prophet</tag>
          
         <tag>安装</tag>
          
@@ -269,11 +269,11 @@
         <title>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）</title>
         <pubTime>2017-02-21T08:30:30.000Z</pubTime>
         
+        <tag>教程</tag>
+         
         <tag>R 语言</tag>
          
         <tag>stargazer</tag>
-         
-        <tag>教程</tag>
          
          
            
@@ -293,9 +293,9 @@
         <title>Git 教程</title>
         <pubTime>2016-11-06T12:30:30.000Z</pubTime>
         
-        <tag>教程</tag>
-         
         <tag>Git</tag>
+         
+        <tag>教程</tag>
          
          
            

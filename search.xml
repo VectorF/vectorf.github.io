@@ -1246,12 +1246,6 @@ myChart.setOption(option);
   
     
     <entry>
-      <title><![CDATA[读书]]></title>
-      <url>https://vectorf.github.io/reading/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[关于]]></title>
       <url>https://vectorf.github.io/about/index.html</url>
       <content type="html"><![CDATA[<ul>
@@ -1260,6 +1254,12 @@ myChart.setOption(option);
 <li>说不定哪天就真的变成码农了呢~</li>
 </ul>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[读书]]></title>
+      <url>https://vectorf.github.io/reading/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
