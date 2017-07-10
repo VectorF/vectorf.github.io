@@ -4,6 +4,109 @@
   
     
     <entry>
+      <title><![CDATA[初探 RSelenium —— 基于豆瓣电影的爬虫实例]]></title>
+      <url>https://vectorf.github.io/2017/07/10/20170710-%E5%88%9D%E6%8E%A2RSelenium/</url>
+      <content type="html"><![CDATA[<p>使用 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包可通过 R 实现对浏览器的自动控制，完成诸如“点击”，“输入”等操作，从而爬取动态页面，解放你的双手！ </p>
+<p>本文基于 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> 网站的爬虫实例， 对 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包的使用做了初步的介绍。</p>
+<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li>JAVA：安装 JAVA</li>
+<li>Selenium Server：下载 selenium-server-standalone-版本号.jar （本文使用的是 3.4.0 版本）</li>
+<li>Chrome：安装 Chrome</li>
+<li><p>ChromeDriver：下载 chromedrive.exe</p>
+<p><em>注：</em>下载的 chromedriver.exe 需放置在 Chrome 浏览器的安装目录下，即和 chrome.exe 放在同一个文件目录下。并将该目录添加入 <strong>环境变量</strong> 中。</p>
+</li>
+</ul>
+<p>一般 Chrome 的默认安装路径为：C:\Program Files (x86)\Google\Chrome\Application 。</p>
+<div align="center"><br><br><img src="1.png" alt="1"><br><br></div>
+
+<ul>
+<li>SelectorGadget ：[ <del>非必需</del> ] Chrome 扩展，可用于定位网页元素的 xpath 。不过，也可以用 Chrome 浏览器在网页右键选项卡中的“检查” 功能（快捷键：F12）。 </li>
+<li>所需 R 包：<br><code>RSelenium</code> 包：实现对浏览器行为的自动控制<br><code>rvest</code> 包：读取网页，定位网页元素并提取文本<br><code>stringr</code> 包：利用正则表达式进行字符串处理</li>
+</ul>
+<h2 id="Let’s-do-it"><a href="#Let’s-do-it" class="headerlink" title="Let’s do it !"></a>Let’s do it !</h2><p>本文以“鹿晗”作为关键词（ <del>真爱粉们不要太较真</del> ），搜索其出演过的电影，最终整理出电影名、评分信息和评价人数表。</p>
+<p>1.启动 Selenium Server</p>
+<p>在所下载的 selenium-server-standalone-3.4.0.jar 文件目录下打开命令行，输入以下命令以启动Selenium Server ：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-3.4.0.jar</div></pre></td></tr></table></figure>
+<p>你也可以把这个命令存成后缀为 <code>.cmd</code> 的文件放在该文件目录下，这样下次只需双击运行即可。</p>
+<p>2.在 R 中连接 Server ，打开浏览器和目标网页</p>
+  <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 载入包</span></div><div class="line"><span class="keyword">library</span>(RSelenium)</div><div class="line"><span class="keyword">library</span>(rvest)</div><div class="line"><span class="keyword">library</span>(stringr)</div><div class="line"><span class="comment"># 连接 Server</span></div><div class="line">remDr &lt;- remoteDriver(remoteServerAddr = <span class="string">"127.0.0.1"</span> ,</div><div class="line">	port = <span class="number">4444</span>,</div><div class="line">	browserName = <span class="string">"chrome"</span></div><div class="line">)</div><div class="line"><span class="comment"># 打开浏览器</span></div><div class="line">remDr$open()</div><div class="line"><span class="comment"># 打开目标网页</span></div><div class="line">remDr$navigate(<span class="string">"https://movie.douban.com/"</span>)</div></pre></td></tr></table></figure>
+<p>是不是发现，运行代码后自动启动了 Chrome ，并打开了 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> ？！有没有一点紧张和小刺激？！😎</p>
+<p>3.定位网页元素，并向其传入参数</p>
+<p> <code>RSelenium</code> 包可通过 <code>name</code> 、 <code>id</code> 、 <code>class</code> 、 <code>css-selectors</code> 、 <code>xpath</code> 对网页元素进行定位。本文尽可能多地采取不同的方法来展示如何使用它们。</p>
+<div align="center"><br><br><img src="2.png" alt="2"><br><br></div>
+
+<p>可以看到，我们需要定位到搜索框。使用 SelectorGadget 或者浏览器的“检查”功能，得到该搜索框的 <code>name</code> 为 <code>search_text</code> 。</p>
+<p>在定位到搜索框后，需要传入 <code>keyword</code> 并”回车“，从而实现搜索。</p>
+<ul>
+<li><p><code>findElement</code> ：定位符合条件的网页元素 </p>
+</li>
+<li><p><code>sendKeysToElement</code> ：传入参数</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置搜索词</span></div><div class="line">keyword&lt;- <span class="string">"鹿晗"</span></div><div class="line"><span class="comment"># 定位网页元素</span></div><div class="line">SearchBox &lt;- remDr$findElement(using=<span class="string">'name'</span>, value=<span class="string">'search_text'</span>)</div><div class="line"><span class="comment"># 传入关键词和回车</span></div><div class="line">SearchBox$sendKeysToElement(list(keyword, key = <span class="string">'enter'</span>))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>现在网页应该变成了”鹿晗“所出演的电影列表了。</p>
+<div align="center"><br><br><img src="3.png" alt="3"><br><br></div>
+
+<p>4.读取网页，得到所需元素的文本</p>
+<p>首先，我们定位到每一部电影。通过浏览器的“检查”功能，可以看出每部电影的 <code>class=”pl2“</code> 。定位到每部电影之后，提取其中的信息即可。</p>
+<ul>
+<li><p><code>getElementAttribute</code> ：得到网页信息</p>
+<p>接下来就是静态网页的爬虫套路了，使用 <code>rvest</code> 包和 <code>stringr</code> 包里的函数即可。</p>
+</li>
+<li><p><code>read_html</code> ：读取网页</p>
+</li>
+<li><p><code>html_nodes</code> ：定位元素</p>
+</li>
+<li><p><code>html_text</code> ：得到元素文本</p>
+</li>
+<li><p><code>str_replace_all</code> 、 <code>str_extract</code> ：字符串处理</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 传入网页中所有的电影元素，将提取文本过程写成 MovieDataFunc 函数</span></div><div class="line">MovieDataFunc&lt;-<span class="keyword">function</span>(MovieList)lapply(MovieList,<span class="keyword">function</span>(i)&#123;</div><div class="line">  		<span class="comment"># 读取每部电影的元素</span></div><div class="line"> 		 doc&lt;-i$getElementAttribute(<span class="string">"outerHTML"</span>)[[<span class="number">1</span>]]%&gt;%</div><div class="line">        	read_html()</div><div class="line">        <span class="comment"># 得到电影名 name</span></div><div class="line">        name&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"a"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_replace_all(pattern=<span class="string">"\s"</span>,replacement=<span class="string">""</span>)</div><div class="line">        <span class="comment"># 得到评分 rate</span></div><div class="line">        rate&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.rating_nums"</span>)%&gt;%</div><div class="line">        	html_text()</div><div class="line">        <span class="comment"># 得到评分人数 pl</span></div><div class="line">        pl&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.pl"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_extract(pattern=<span class="string">"[:digit:]+"</span>)</div><div class="line">        <span class="comment"># 如果缺少评分或评分人数，则设置其为 NA</span></div><div class="line">        rate&lt;-ifelse(identical(rate,character(<span class="number">0</span>)),<span class="literal">NA</span>,rate)</div><div class="line">        pl&lt;-ifelse(identical(pl,character(<span class="number">0</span>)),<span class="literal">NA</span>,pl)</div><div class="line">        <span class="comment"># 返回电影名、评分和评分人数</span></div><div class="line">        <span class="keyword">return</span>(c(name,rate,pl))</div><div class="line">      &#125;</div><div class="line">)</div><div class="line"><span class="comment"># 定位到第一页的所有电影元素</span></div><div class="line">MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line"><span class="comment"># 得到第一页的电影信息</span></div><div class="line">MovieData&lt;-MovieDataFunc(MovieList)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>5.跳转到”下一页“，爬取所有页信息</p>
+<p>将第一页的结果爬取完后，我们需要跳转到下一页，实现对所有搜索结果的爬取。</p>
+<p>因此，需要判断还有多少页待爬取，遍历剩下的网页即可。</p>
+<div align="center"><br><br><img src="4.png" alt="4"><br><br></div>
+
+<p>图中，”第二页”所对应的 <code>xpath</code> 为 <code>//*[@id=&quot;content&quot;]/div/div[1]/div[3]/a</code> ；”后页“所对应的 <code>class=&quot;next&quot;</code> ，我们使用 <code>css-selectors</code> 定位到它。</p>
+<ul>
+<li><p><code>findElements</code> ：定位所有符合条件的网页元素</p>
+</li>
+<li><p><code>clickElement</code> ：点击</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 得到剩余网页信息</span></div><div class="line">RemainPage &lt;- remDr$findElements(<span class="string">'xpath'</span>,<span class="string">'//*[@id="content"]/div/div[1]/div[3]/a'</span>)</div><div class="line"><span class="comment"># 爬取剩余网页的电影信息</span></div><div class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:length(RemainPage))&#123;</div><div class="line">    <span class="comment"># 定位到”后页“</span></div><div class="line">    NextPage &lt;- remDr$findElement(<span class="string">'css'</span>, <span class="string">'[class="next"]'</span>)</div><div class="line">    <span class="comment"># 模拟“点击”行为</span></div><div class="line">    NextPage$clickElement()</div><div class="line">    <span class="comment"># 定位到当前网页的所有电影元素</span></div><div class="line">    MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line">    <span class="comment"># 爬取当前网页的所有电影信息</span></div><div class="line">    MovieData&lt;-c(MovieData,MovieDataFunc(MovieList))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>6.后续工作</p>
+<p>当爬取了所有网页的信息之后，我们应当对结果进行整理，并储存。同时，关闭进程，退出浏览器。</p>
+<ul>
+<li><p><code>quit</code> ：关闭进程，退出浏览器</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将 MovieData 的格式改为数据框，并更改列名</span></div><div class="line">MovieData&lt;-data.frame(t(sapply(MovieData,c)),stringsAsFactors = <span class="literal">F</span>)</div><div class="line">colnames(MovieData)&lt;-c(<span class="string">"MovieName"</span>,<span class="string">"Rate"</span>,<span class="string">"RatePeopleNum"</span>)</div><div class="line"><span class="comment"># 创建 output 文件夹储存爬取结果，并将结果储存至相应的 .csv 文件中</span></div><div class="line"><span class="keyword">if</span>(!file.exists(<span class="string">"output"</span>))dir.create(<span class="string">"output"</span>)</div><div class="line">write.csv(MovieData,paste0(<span class="string">"output/"</span>,keyword,<span class="string">"_moviedata.csv"</span>),row.names = <span class="literal">F</span>)</div><div class="line"><span class="comment"># 关闭进程，退出浏览器</span></div><div class="line">remDr$quit()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>部分爬取结果如下图所示：</p>
+<div align="center"><br><br><img src="5.png" alt="5"><br><br></div>
+
+<p>7.题外话</p>
+<p>我们再做点有意思的工作~ 😜</p>
+<p>在 <code>cmd</code> 中运行 <code>Rscipt</code> 命令可以运行 R 的脚本，并传入参数。我们只需要把 <code>keyword&lt;- &quot;鹿晗&quot;</code> 改成 <code>keyword&lt;- commandArgs(T)</code> 。</p>
+<ul>
+<li><code>commandArgs</code> ：在 <code>Rscript</code> 命令中传入参数</li>
+</ul>
+<p>[ <del>非必需</del> ] 考虑到本人在 RStudio 中包安装路径并非与 R 默认的包安装路径相同，为了在运行 <code>Rscipt</code> 命令时，顺利载入所需的包，还需要在脚本开头添加所需加载包的位置。</p>
+<p>此外，由于在运行 <code>Rscipt</code> 命令时，出现了缺失函数的错误，还需要额外载入 <code>methods</code> 包。</p>
+<p>添加下列代码即可：</p>
+  <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加所需 R 包位置</span></div><div class="line">.libPaths( unique(c( .libPaths(), <span class="string">"Your own R packages file folder"</span>) ))</div><div class="line"><span class="comment"># 载入额外的 methods 包</span></div><div class="line"><span class="keyword">library</span>(methods)</div><div class="line"><span class="comment"># 设定运行 Rscript 命令时传入参数</span></div><div class="line">keyword&lt;- commandArgs(<span class="literal">T</span>)</div></pre></td></tr></table></figure>
+<p>将该 R 脚本文件储存为 <code>Crawler_DoubanMovie.R</code> 。这样一来，你只需在 R 脚本文件所在文件目录下打开命令行工具，输入如下命令，就可以完成整个爬取工作，并得到输出的 <code>.csv</code> 文件了：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rscript Crawler_DoubanMovie.R 鹿晗</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>你可以在本人的 <a href="https://github.com/VectorF" target="_blank" rel="external">github</a> 上看到这个实例的完整代码。</p>
+<p>转载请注明来自 <a href="https://vectorf.github.io">Vector Blog</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python vs R —— 在机器学习和数据分析领域中的对比]]></title>
       <url>https://vectorf.github.io/2017/05/04/20170504-PythonvsR%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%AF%94/</url>
       <content type="html"><![CDATA[<div align="center"><br><br><img src="封面图.png" width="800" height="400" alt="0"><br><br></div>
@@ -1282,6 +1385,12 @@ myChart.setOption(option);
   
     
     <entry>
+      <title><![CDATA[读书]]></title>
+      <url>https://vectorf.github.io/reading/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[关于]]></title>
       <url>https://vectorf.github.io/about/index.html</url>
       <content type="html"><![CDATA[<ul>
@@ -1290,12 +1399,6 @@ myChart.setOption(option);
 <li>说不定哪天就真的变成码农了呢~</li>
 </ul>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[读书]]></title>
-      <url>https://vectorf.github.io/reading/index.html</url>
-      <content type="html"></content>
     </entry>
     
   

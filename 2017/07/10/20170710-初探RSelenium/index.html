@@ -1,0 +1,793 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="u22-6QbrrTexEK-LhL3KVFGlEL_TqtKkteNtervFo5E" />
+	<meta name="baidu-site-verification" content="9NcVUM8ayz" />
+    
+
+    <title>初探 RSelenium —— 基于豆瓣电影的爬虫实例 | Vector Blog</title>
+    <meta name="author" content="VectorF">
+    
+    <meta name="description" content="Here is Vector&#39;s blog, thanks for your reading!">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="初探 RSelenium —— 基于豆瓣电影的爬虫实例"/>
+    <meta property="og:site_name" content="Vector Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Vector Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="red darken-2">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Vector Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav red darken-2" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ofa07l4yq.bkt.clouddn.com/about_me.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Vector</p>
+                        <p class="desc">统计/R语言/Python/数据分析</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav red darken-2" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/翻译/">
+                    翻译 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/R-语言/">
+                    R-语言 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/ECharts/">
+                    ECharts <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Prophet/">
+                    Prophet <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/教程/">
+                    教程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper red darken-2">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/R-语言/">R 语言</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>初探 RSelenium —— 基于豆瓣电影的爬虫实例</h1>
+    
+
+
+            </div>
+            <time class="red-link-context" datetime="2017-07-10T15:32:08.000Z"><a href="/2017/07/10/20170710-初探RSelenium/">2017-07-10</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/教程/" class="chip red">教程</a>
+        
+            <a href="/tags/R/" class="chip red">R</a>
+        
+            <a href="/tags/RSelenium/" class="chip red">RSelenium</a>
+        
+            <a href="/tags/爬虫/" class="chip red">爬虫</a>
+        
+            <a href="/tags/动态页面/" class="chip red">动态页面</a>
+        
+            <a href="/tags/豆瓣电影/" class="chip red">豆瓣电影</a>
+        
+    </div>
+
+
+            <div class="toc red-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#工具准备"><span class="section table-of-contents-text">工具准备</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Let’s-do-it"><span class="section table-of-contents-text">Let’s do it !</span></a></li></ol>
+</div>
+
+
+            <div class="entry red-link-context">
+                <p>使用 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包可通过 R 实现对浏览器的自动控制，完成诸如“点击”，“输入”等操作，从而爬取动态页面，解放你的双手！ </p>
+<p>本文基于 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> 网站的爬虫实例， 对 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包的使用做了初步的介绍。</p>
+<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li>JAVA：安装 JAVA</li>
+<li>Selenium Server：下载 selenium-server-standalone-版本号.jar （本文使用的是 3.4.0 版本）</li>
+<li>Chrome：安装 Chrome</li>
+<li><p>ChromeDriver：下载 chromedrive.exe</p>
+<p><em>注：</em>下载的 chromedriver.exe 需放置在 Chrome 浏览器的安装目录下，即和 chrome.exe 放在同一个文件目录下。并将该目录添加入 <strong>环境变量</strong> 中。</p>
+</li>
+</ul>
+<p>一般 Chrome 的默认安装路径为：C:\Program Files (x86)\Google\Chrome\Application 。</p>
+<div align="center"><br><br><img src="1.png" alt="1"><br><br></div>
+
+<ul>
+<li>SelectorGadget ：[ <del>非必需</del> ] Chrome 扩展，可用于定位网页元素的 xpath 。不过，也可以用 Chrome 浏览器在网页右键选项卡中的“检查” 功能（快捷键：F12）。 </li>
+<li>所需 R 包：<br><code>RSelenium</code> 包：实现对浏览器行为的自动控制<br><code>rvest</code> 包：读取网页，定位网页元素并提取文本<br><code>stringr</code> 包：利用正则表达式进行字符串处理</li>
+</ul>
+<h2 id="Let’s-do-it"><a href="#Let’s-do-it" class="headerlink" title="Let’s do it !"></a>Let’s do it !</h2><p>本文以“鹿晗”作为关键词（ <del>真爱粉们不要太较真</del> ），搜索其出演过的电影，最终整理出电影名、评分信息和评价人数表。</p>
+<p>1.启动 Selenium Server</p>
+<p>在所下载的 selenium-server-standalone-3.4.0.jar 文件目录下打开命令行，输入以下命令以启动Selenium Server ：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-3.4.0.jar</div></pre></td></tr></table></figure>
+<p>你也可以把这个命令存成后缀为 <code>.cmd</code> 的文件放在该文件目录下，这样下次只需双击运行即可。</p>
+<p>2.在 R 中连接 Server ，打开浏览器和目标网页</p>
+  <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 载入包</span></div><div class="line"><span class="keyword">library</span>(RSelenium)</div><div class="line"><span class="keyword">library</span>(rvest)</div><div class="line"><span class="keyword">library</span>(stringr)</div><div class="line"><span class="comment"># 连接 Server</span></div><div class="line">remDr &lt;- remoteDriver(remoteServerAddr = <span class="string">"127.0.0.1"</span> ,</div><div class="line">	port = <span class="number">4444</span>,</div><div class="line">	browserName = <span class="string">"chrome"</span></div><div class="line">)</div><div class="line"><span class="comment"># 打开浏览器</span></div><div class="line">remDr$open()</div><div class="line"><span class="comment"># 打开目标网页</span></div><div class="line">remDr$navigate(<span class="string">"https://movie.douban.com/"</span>)</div></pre></td></tr></table></figure>
+<p>是不是发现，运行代码后自动启动了 Chrome ，并打开了 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> ？！有没有一点紧张和小刺激？！😎</p>
+<p>3.定位网页元素，并向其传入参数</p>
+<p> <code>RSelenium</code> 包可通过 <code>name</code> 、 <code>id</code> 、 <code>class</code> 、 <code>css-selectors</code> 、 <code>xpath</code> 对网页元素进行定位。本文尽可能多地采取不同的方法来展示如何使用它们。</p>
+<div align="center"><br><br><img src="2.png" alt="2"><br><br></div>
+
+<p>可以看到，我们需要定位到搜索框。使用 SelectorGadget 或者浏览器的“检查”功能，得到该搜索框的 <code>name</code> 为 <code>search_text</code> 。</p>
+<p>在定位到搜索框后，需要传入 <code>keyword</code> 并”回车“，从而实现搜索。</p>
+<ul>
+<li><p><code>findElement</code> ：定位符合条件的网页元素 </p>
+</li>
+<li><p><code>sendKeysToElement</code> ：传入参数</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置搜索词</span></div><div class="line">keyword&lt;- <span class="string">"鹿晗"</span></div><div class="line"><span class="comment"># 定位网页元素</span></div><div class="line">SearchBox &lt;- remDr$findElement(using=<span class="string">'name'</span>, value=<span class="string">'search_text'</span>)</div><div class="line"><span class="comment"># 传入关键词和回车</span></div><div class="line">SearchBox$sendKeysToElement(list(keyword, key = <span class="string">'enter'</span>))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>现在网页应该变成了”鹿晗“所出演的电影列表了。</p>
+<div align="center"><br><br><img src="3.png" alt="3"><br><br></div>
+
+<p>4.读取网页，得到所需元素的文本</p>
+<p>首先，我们定位到每一部电影。通过浏览器的“检查”功能，可以看出每部电影的 <code>class=”pl2“</code> 。定位到每部电影之后，提取其中的信息即可。</p>
+<ul>
+<li><p><code>getElementAttribute</code> ：得到网页信息</p>
+<p>接下来就是静态网页的爬虫套路了，使用 <code>rvest</code> 包和 <code>stringr</code> 包里的函数即可。</p>
+</li>
+<li><p><code>read_html</code> ：读取网页</p>
+</li>
+<li><p><code>html_nodes</code> ：定位元素</p>
+</li>
+<li><p><code>html_text</code> ：得到元素文本</p>
+</li>
+<li><p><code>str_replace_all</code> 、 <code>str_extract</code> ：字符串处理</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 传入网页中所有的电影元素，将提取文本过程写成 MovieDataFunc 函数</span></div><div class="line">MovieDataFunc&lt;-<span class="keyword">function</span>(MovieList)lapply(MovieList,<span class="keyword">function</span>(i)&#123;</div><div class="line">  		<span class="comment"># 读取每部电影的元素</span></div><div class="line"> 		 doc&lt;-i$getElementAttribute(<span class="string">"outerHTML"</span>)[[<span class="number">1</span>]]%&gt;%</div><div class="line">        	read_html()</div><div class="line">        <span class="comment"># 得到电影名 name</span></div><div class="line">        name&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"a"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_replace_all(pattern=<span class="string">"\s"</span>,replacement=<span class="string">""</span>)</div><div class="line">        <span class="comment"># 得到评分 rate</span></div><div class="line">        rate&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.rating_nums"</span>)%&gt;%</div><div class="line">        	html_text()</div><div class="line">        <span class="comment"># 得到评分人数 pl</span></div><div class="line">        pl&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.pl"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_extract(pattern=<span class="string">"[:digit:]+"</span>)</div><div class="line">        <span class="comment"># 如果缺少评分或评分人数，则设置其为 NA</span></div><div class="line">        rate&lt;-ifelse(identical(rate,character(<span class="number">0</span>)),<span class="literal">NA</span>,rate)</div><div class="line">        pl&lt;-ifelse(identical(pl,character(<span class="number">0</span>)),<span class="literal">NA</span>,pl)</div><div class="line">        <span class="comment"># 返回电影名、评分和评分人数</span></div><div class="line">        <span class="keyword">return</span>(c(name,rate,pl))</div><div class="line">      &#125;</div><div class="line">)</div><div class="line"><span class="comment"># 定位到第一页的所有电影元素</span></div><div class="line">MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line"><span class="comment"># 得到第一页的电影信息</span></div><div class="line">MovieData&lt;-MovieDataFunc(MovieList)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>5.跳转到”下一页“，爬取所有页信息</p>
+<p>将第一页的结果爬取完后，我们需要跳转到下一页，实现对所有搜索结果的爬取。</p>
+<p>因此，需要判断还有多少页待爬取，遍历剩下的网页即可。</p>
+<div align="center"><br><br><img src="4.png" alt="4"><br><br></div>
+
+<p>图中，”第二页”所对应的 <code>xpath</code> 为 <code>//*[@id=&quot;content&quot;]/div/div[1]/div[3]/a</code> ；”后页“所对应的 <code>class=&quot;next&quot;</code> ，我们使用 <code>css-selectors</code> 定位到它。</p>
+<ul>
+<li><p><code>findElements</code> ：定位所有符合条件的网页元素</p>
+</li>
+<li><p><code>clickElement</code> ：点击</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 得到剩余网页信息</span></div><div class="line">RemainPage &lt;- remDr$findElements(<span class="string">'xpath'</span>,<span class="string">'//*[@id="content"]/div/div[1]/div[3]/a'</span>)</div><div class="line"><span class="comment"># 爬取剩余网页的电影信息</span></div><div class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:length(RemainPage))&#123;</div><div class="line">    <span class="comment"># 定位到”后页“</span></div><div class="line">    NextPage &lt;- remDr$findElement(<span class="string">'css'</span>, <span class="string">'[class="next"]'</span>)</div><div class="line">    <span class="comment"># 模拟“点击”行为</span></div><div class="line">    NextPage$clickElement()</div><div class="line">    <span class="comment"># 定位到当前网页的所有电影元素</span></div><div class="line">    MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line">    <span class="comment"># 爬取当前网页的所有电影信息</span></div><div class="line">    MovieData&lt;-c(MovieData,MovieDataFunc(MovieList))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>6.后续工作</p>
+<p>当爬取了所有网页的信息之后，我们应当对结果进行整理，并储存。同时，关闭进程，退出浏览器。</p>
+<ul>
+<li><p><code>quit</code> ：关闭进程，退出浏览器</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将 MovieData 的格式改为数据框，并更改列名</span></div><div class="line">MovieData&lt;-data.frame(t(sapply(MovieData,c)),stringsAsFactors = <span class="literal">F</span>)</div><div class="line">colnames(MovieData)&lt;-c(<span class="string">"MovieName"</span>,<span class="string">"Rate"</span>,<span class="string">"RatePeopleNum"</span>)</div><div class="line"><span class="comment"># 创建 output 文件夹储存爬取结果，并将结果储存至相应的 .csv 文件中</span></div><div class="line"><span class="keyword">if</span>(!file.exists(<span class="string">"output"</span>))dir.create(<span class="string">"output"</span>)</div><div class="line">write.csv(MovieData,paste0(<span class="string">"output/"</span>,keyword,<span class="string">"_moviedata.csv"</span>),row.names = <span class="literal">F</span>)</div><div class="line"><span class="comment"># 关闭进程，退出浏览器</span></div><div class="line">remDr$quit()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>部分爬取结果如下图所示：</p>
+<div align="center"><br><br><img src="5.png" alt="5"><br><br></div>
+
+<p>7.题外话</p>
+<p>我们再做点有意思的工作~ 😜</p>
+<p>在 <code>cmd</code> 中运行 <code>Rscipt</code> 命令可以运行 R 的脚本，并传入参数。我们只需要把 <code>keyword&lt;- &quot;鹿晗&quot;</code> 改成 <code>keyword&lt;- commandArgs(T)</code> 。</p>
+<ul>
+<li><code>commandArgs</code> ：在 <code>Rscript</code> 命令中传入参数</li>
+</ul>
+<p>[ <del>非必需</del> ] 考虑到本人在 RStudio 中包安装路径并非与 R 默认的包安装路径相同，为了在运行 <code>Rscipt</code> 命令时，顺利载入所需的包，还需要在脚本开头添加所需加载包的位置。</p>
+<p>此外，由于在运行 <code>Rscipt</code> 命令时，出现了缺失函数的错误，还需要额外载入 <code>methods</code> 包。</p>
+<p>添加下列代码即可：</p>
+  <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加所需 R 包位置</span></div><div class="line">.libPaths( unique(c( .libPaths(), <span class="string">"Your own R packages file folder"</span>) ))</div><div class="line"><span class="comment"># 载入额外的 methods 包</span></div><div class="line"><span class="keyword">library</span>(methods)</div><div class="line"><span class="comment"># 设定运行 Rscript 命令时传入参数</span></div><div class="line">keyword&lt;- commandArgs(<span class="literal">T</span>)</div></pre></td></tr></table></figure>
+<p>将该 R 脚本文件储存为 <code>Crawler_DoubanMovie.R</code> 。这样一来，你只需在 R 脚本文件所在文件目录下打开命令行工具，输入如下命令，就可以完成整个爬取工作，并得到输出的 <code>.csv</code> 文件了：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rscript Crawler_DoubanMovie.R 鹿晗</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>你可以在本人的 <a href="https://github.com/VectorF" target="_blank" rel="external">github</a> 上看到这个实例的完整代码。</p>
+<p>转载请注明来自 <a href="https://vectorf.github.io">Vector Blog</a></p>
+</blockquote>
+
+                
+
+
+<p class="red-link-context">
+    <a href="/2017/05/04/20170504-PythonvsR在机器学习和数据分析领域中的对比/" rel="next" title="Python vs R —— 在机器学习和数据分析领域中的对比">
+    下一篇：Python vs R —— 在机器学习和数据分析领域中的对比
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+<br>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记">印象笔记</a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16},"image":{"viewList":["tsina","qzone","weixin","evernotecn"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","evernotecn"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<br>
+ 
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2017/07/10/20170710-初探RSelenium/" data-title="初探 RSelenium —— 基于豆瓣电影的爬虫实例" data-url="https://vectorf.github.io/2017/07/10/20170710-初探RSelenium/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'vectorblogcomment'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large grey darken-4">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect grey darken-3" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse grey darken-3"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer red darken-2 darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://github.com/VectorF" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">该博客主题raytaylorism作者</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright red-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+	
+	<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+	</script>
+
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('red lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge grey darken-3"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword red lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword red lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85974320-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=59046748" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+</body>
+</html>
