@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vectorf.github.io/"/>
-  <updated>2017-07-10T15:56:43.153Z</updated>
+  <updated>2017-07-10T16:15:00.332Z</updated>
   <id>https://vectorf.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://vectorf.github.io/2017/07/10/20170710-%E5%88%9D%E6%8E%A2RSelenium/"/>
     <id>https://vectorf.github.io/2017/07/10/20170710-初探RSelenium/</id>
     <published>2017-07-10T15:32:08.000Z</published>
-    <updated>2017-07-10T15:56:43.153Z</updated>
+    <updated>2017-07-10T16:15:00.332Z</updated>
     
     <content type="html"><![CDATA[<p>使用 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包可通过 R 实现对浏览器的自动控制，完成诸如“点击”，“输入”等操作，从而爬取动态页面，解放你的双手！ </p>
 <p>本文基于 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> 网站的爬虫实例， 对 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包的使用做了初步的介绍。</p>
@@ -76,7 +76,7 @@
 <li><p><code>html_text</code> ：得到元素文本</p>
 </li>
 <li><p><code>str_replace_all</code> 、 <code>str_extract</code> ：字符串处理</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 传入网页中所有的电影元素，将提取文本过程写成 MovieDataFunc 函数</span></div><div class="line">MovieDataFunc&lt;-<span class="keyword">function</span>(MovieList)lapply(MovieList,<span class="keyword">function</span>(i)&#123;</div><div class="line">  		<span class="comment"># 读取每部电影的元素</span></div><div class="line"> 		 doc&lt;-i$getElementAttribute(<span class="string">"outerHTML"</span>)[[<span class="number">1</span>]]%&gt;%</div><div class="line">        	read_html()</div><div class="line">        <span class="comment"># 得到电影名 name</span></div><div class="line">        name&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"a"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_replace_all(pattern=<span class="string">"\s"</span>,replacement=<span class="string">""</span>)</div><div class="line">        <span class="comment"># 得到评分 rate</span></div><div class="line">        rate&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.rating_nums"</span>)%&gt;%</div><div class="line">        	html_text()</div><div class="line">        <span class="comment"># 得到评分人数 pl</span></div><div class="line">        pl&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.pl"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_extract(pattern=<span class="string">"[:digit:]+"</span>)</div><div class="line">        <span class="comment"># 如果缺少评分或评分人数，则设置其为 NA</span></div><div class="line">        rate&lt;-ifelse(identical(rate,character(<span class="number">0</span>)),<span class="literal">NA</span>,rate)</div><div class="line">        pl&lt;-ifelse(identical(pl,character(<span class="number">0</span>)),<span class="literal">NA</span>,pl)</div><div class="line">        <span class="comment"># 返回电影名、评分和评分人数</span></div><div class="line">        <span class="keyword">return</span>(c(name,rate,pl))</div><div class="line">      &#125;</div><div class="line">)</div><div class="line"><span class="comment"># 定位到第一页的所有电影元素</span></div><div class="line">MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line"><span class="comment"># 得到第一页的电影信息</span></div><div class="line">MovieData&lt;-MovieDataFunc(MovieList)</div></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 传入网页中所有的电影元素，将提取文本过程写成 MovieDataFunc 函数</span></div><div class="line">MovieDataFunc&lt;-<span class="keyword">function</span>(MovieList)lapply(MovieList,<span class="keyword">function</span>(i)&#123;</div><div class="line">  		<span class="comment"># 读取每部电影的元素</span></div><div class="line"> 		 doc&lt;-i$getElementAttribute(<span class="string">"outerHTML"</span>)[[<span class="number">1</span>]]%&gt;%</div><div class="line">        	read_html()</div><div class="line">        <span class="comment"># 得到电影名 name</span></div><div class="line">        name&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"a"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_replace_all(pattern=<span class="string">"\\s"</span>,replacement=<span class="string">""</span>)</div><div class="line">        <span class="comment"># 得到评分 rate</span></div><div class="line">        rate&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.rating_nums"</span>)%&gt;%</div><div class="line">        	html_text()</div><div class="line">        <span class="comment"># 得到评分人数 pl</span></div><div class="line">        pl&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.pl"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_extract(pattern=<span class="string">"[:digit:]+"</span>)</div><div class="line">        <span class="comment"># 如果缺少评分或评分人数，则设置其为 NA</span></div><div class="line">        rate&lt;-ifelse(identical(rate,character(<span class="number">0</span>)),<span class="literal">NA</span>,rate)</div><div class="line">        pl&lt;-ifelse(identical(pl,character(<span class="number">0</span>)),<span class="literal">NA</span>,pl)</div><div class="line">        <span class="comment"># 返回电影名、评分和评分人数</span></div><div class="line">        <span class="keyword">return</span>(c(name,rate,pl))</div><div class="line">      &#125;</div><div class="line">)</div><div class="line"><span class="comment"># 定位到第一页的所有电影元素</span></div><div class="line">MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line"><span class="comment"># 得到第一页的电影信息</span></div><div class="line">MovieData&lt;-MovieDataFunc(MovieList)</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>5.跳转到”下一页“，爬取所有页信息</p>
@@ -242,9 +242,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -304,9 +304,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -361,9 +361,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -429,9 +429,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -497,9 +497,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -558,9 +558,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -653,9 +653,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -784,9 +784,9 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
       <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
@@ -1101,11 +1101,11 @@
       <category term="R 语言" scheme="https://vectorf.github.io/categories/R-%E8%AF%AD%E8%A8%80/"/>
     
     
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
       <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="stargazer" scheme="https://vectorf.github.io/tags/stargazer/"/>
-    
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
@@ -1718,9 +1718,9 @@ myChart.setOption(option);
       <category term="教程" scheme="https://vectorf.github.io/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="Git" scheme="https://vectorf.github.io/tags/Git/"/>
+    
+      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
