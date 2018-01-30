@@ -1385,20 +1385,20 @@ myChart.setOption(option);
   
     
     <entry>
-      <title><![CDATA[读书]]></title>
-      <url>https://vectorf.github.io/reading/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[关于]]></title>
       <url>https://vectorf.github.io/about/index.html</url>
       <content type="html"><![CDATA[<ul>
-<li>统计专业本科在读</li>
-<li>Python、R 语言学习 ing</li>
-<li>说不定哪天就真的变成码农了呢~</li>
+<li>复旦大学，大数据学院，应用统计专业，研究生在读</li>
+<li>计算机视觉，数据分析，Python，R</li>
+<li>从入门到出家</li>
 </ul>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[读书]]></title>
+      <url>https://vectorf.github.io/reading/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
