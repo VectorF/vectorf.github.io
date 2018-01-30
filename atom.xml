@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vectorf.github.io/"/>
-  <updated>2017-07-10T16:15:00.332Z</updated>
+  <updated>2017-07-10T16:15:00.000Z</updated>
   <id>https://vectorf.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://vectorf.github.io/2017/07/10/20170710-%E5%88%9D%E6%8E%A2RSelenium/"/>
     <id>https://vectorf.github.io/2017/07/10/20170710-初探RSelenium/</id>
     <published>2017-07-10T15:32:08.000Z</published>
-    <updated>2017-07-10T16:15:00.332Z</updated>
+    <updated>2017-07-10T16:15:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包可通过 R 实现对浏览器的自动控制，完成诸如“点击”，“输入”等操作，从而爬取动态页面，解放你的双手！ </p>
 <p>本文基于 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> 网站的爬虫实例， 对 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包的使用做了初步的介绍。</p>
@@ -149,7 +149,7 @@
     <link href="https://vectorf.github.io/2017/05/04/20170504-PythonvsR%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
     <id>https://vectorf.github.io/2017/05/04/20170504-PythonvsR在机器学习和数据分析领域中的对比/</id>
     <published>2017-05-04T14:00:30.000Z</published>
-    <updated>2017-05-04T14:41:26.361Z</updated>
+    <updated>2017-05-04T14:41:26.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="封面图.png" width="800" height="400" alt="0"><br><br></div>
 
@@ -206,7 +206,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（七）/</id>
     <published>2017-03-14T13:21:11.000Z</published>
-    <updated>2017-03-14T13:30:31.057Z</updated>
+    <updated>2017-03-14T13:30:31.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -257,7 +257,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（六）/</id>
     <published>2017-03-14T13:21:04.000Z</published>
-    <updated>2017-03-15T06:46:30.791Z</updated>
+    <updated>2017-03-15T06:46:30.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -319,7 +319,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/</id>
     <published>2017-03-14T13:20:58.000Z</published>
-    <updated>2017-03-15T06:43:42.217Z</updated>
+    <updated>2017-03-15T06:43:42.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -376,7 +376,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（四）/</id>
     <published>2017-03-14T13:20:51.000Z</published>
-    <updated>2017-03-20T14:56:32.248Z</updated>
+    <updated>2017-03-20T14:56:32.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -444,7 +444,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（三）/</id>
     <published>2017-03-14T13:20:43.000Z</published>
-    <updated>2017-03-14T13:27:21.273Z</updated>
+    <updated>2017-03-14T13:27:21.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -512,7 +512,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（二）/</id>
     <published>2017-03-14T13:18:12.000Z</published>
-    <updated>2017-03-14T13:28:01.458Z</updated>
+    <updated>2017-03-14T13:28:01.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -573,7 +573,7 @@
     <link href="https://vectorf.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/12/20170312-Prophet之使用篇（一）/</id>
     <published>2017-03-12T06:02:12.000Z</published>
-    <updated>2017-03-14T13:18:32.208Z</updated>
+    <updated>2017-03-14T13:18:32.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -668,7 +668,7 @@
     <link href="https://vectorf.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
     <id>https://vectorf.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
     <published>2017-03-08T08:30:30.000Z</published>
-    <updated>2017-03-12T06:00:10.829Z</updated>
+    <updated>2017-03-12T06:00:10.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -801,7 +801,7 @@
     <link href="https://vectorf.github.io/2017/03/08/20170308-NumPy%20%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/"/>
     <id>https://vectorf.github.io/2017/03/08/20170308-NumPy 学习日志/</id>
     <published>2017-03-08T08:30:30.000Z</published>
-    <updated>2017-03-12T05:59:43.822Z</updated>
+    <updated>2017-03-12T05:59:43.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/numpy.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -994,7 +994,7 @@
     <link href="https://vectorf.github.io/2017/02/21/20170221-%E8%A6%81%E4%BC%98%E9%9B%85%EF%BC%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%20R%20%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%EF%BC%81%EF%BC%88%E4%BD%BF%E7%94%A8%20stargazer%20%E5%8C%85%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/</id>
     <published>2017-02-21T08:30:30.000Z</published>
-    <updated>2017-03-08T14:17:52.858Z</updated>
+    <updated>2017-03-08T14:17:52.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>本文于 2017/02/08 发表在 <a href="http://datartisan.com/article/detail/202.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
@@ -1114,7 +1114,7 @@
     <link href="https://vectorf.github.io/2017/02/20/20170221-%E6%8F%AD%E5%BC%80%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9D%A2%E7%BA%B1/"/>
     <id>https://vectorf.github.io/2017/02/20/20170221-揭开机器学习的面纱/</id>
     <published>2017-02-20T08:30:30.000Z</published>
-    <updated>2017-02-21T03:59:57.154Z</updated>
+    <updated>2017-02-21T03:59:57.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/03/machine-learning-a-brief-breakdown/" target="_blank" rel="external">Machine Learning: A Brief Breakdown</a>   原文作者：libesa</p>
@@ -1219,7 +1219,7 @@
     <link href="https://vectorf.github.io/2016/12/29/20161229-ECharts%E6%B5%8B%E8%AF%95/"/>
     <id>https://vectorf.github.io/2016/12/29/20161229-ECharts测试/</id>
     <published>2016-12-29T12:30:30.000Z</published>
-    <updated>2017-03-08T15:50:13.869Z</updated>
+    <updated>2017-03-08T15:50:13.000Z</updated>
     
     <content type="html"><![CDATA[<script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
 <div id="main" style="width: 600px;height:400px;" align="center"></div>
@@ -1271,7 +1271,7 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/12/11/20161210-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8EDota2%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7/"/>
     <id>https://vectorf.github.io/2016/12/11/20161210-机器学习与Dota2英雄属性/</id>
     <published>2016-12-11T08:30:30.000Z</published>
-    <updated>2017-02-21T03:57:45.053Z</updated>
+    <updated>2017-02-21T03:57:45.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">《 Gavagai 》</a>   原文作者：Federico Vaggi</p>
@@ -1350,7 +1350,7 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/"/>
     <id>https://vectorf.github.io/2016/11/06/20161106-Git 教程/</id>
     <published>2016-11-06T12:30:30.000Z</published>
-    <updated>2017-03-02T08:37:01.717Z</updated>
+    <updated>2017-03-02T08:37:01.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/git.jpg" alt="git"><br><br></div>
 
@@ -1729,7 +1729,7 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/"/>
     <id>https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/</id>
     <published>2016-10-21T13:27:17.000Z</published>
-    <updated>2017-02-21T03:57:32.125Z</updated>
+    <updated>2017-02-21T03:57:32.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/04/k-means-vs-k-medoids/" target="_blank" rel="external">《”K-Means never fails”, they said…》</a> &ensp; 原文作者：Fjrodriguez2</p>
@@ -1798,7 +1798,7 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/10/19/20161019-my-first-post/"/>
     <id>https://vectorf.github.io/2016/10/19/20161019-my-first-post/</id>
     <published>2016-10-19T05:31:17.000Z</published>
-    <updated>2016-10-19T13:18:13.631Z</updated>
+    <updated>2016-10-19T13:18:13.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello,world!"></a>Hello,world!</h2><p><a id="more"></a>你好呀！</p>
 ]]></content>
