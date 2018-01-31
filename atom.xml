@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vectorf.github.io/"/>
-  <updated>2017-07-10T16:15:00.000Z</updated>
+  <updated>2018-01-31T13:28:59.739Z</updated>
   <id>https://vectorf.github.io/</id>
   
   <author>
@@ -16,14 +16,101 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在树莓派上编译安装 OpenCV</title>
+    <link href="https://vectorf.github.io/2018/01/31/20180131-%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85-OpenCV/"/>
+    <id>https://vectorf.github.io/2018/01/31/20180131-在树莓派上编译安装-OpenCV/</id>
+    <published>2018-01-31T13:18:56.000Z</published>
+    <updated>2018-01-31T13:28:59.739Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>本次使用的树莓派版本为 <strong>Raspberry Pi 3 Model B</strong>，搭载 <strong>Raspbian</strong> 系统</li>
+<li><strong>OpenCV</strong> 版本为 3.1.0</li>
+<li><strong>Python</strong> 版本为 3.5</li>
+</ul>
+<p>参考博客为：<a href="https://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/" title="Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3" target="_blank" rel="external">Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3</a></p>
+<hr>
+<p>开始之前，请先确保你可以连接上树莓派，下面两种方式可以二选一：</p>
+<ul>
+<li>将树莓派连接上一个显示器，直接在命令行中操作</li>
+<li>通过 ssh 方式登陆连接上树莓派</li>
+</ul>
+<hr>
+<h2 id="1-扩展可用空间（可选）"><a href="#1-扩展可用空间（可选）" class="headerlink" title="1. 扩展可用空间（可选）"></a>1. 扩展可用空间（可选）</h2><p>如果使用的是一个崭新的树莓派，可以通过扩展可用空间的方式确保储存空间够用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo raspi-config</div></pre></td></tr></table></figure>
+<p>选择第一个选项 <strong>1. Expand Filesystem</strong>，回车确认后，跳转至 <strong>Finish</strong> 结束即可。</p>
+<p>由于系统版本问题，笔者的该选项卡是在 <strong>Advanced Options</strong> 下的。</p>
+<p>之后重启树莓派：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo reboot</div></pre></td></tr></table></figure>
+<p>还可以通过卸载 Wolfram engine 获得更多的可用空间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get purge wolfram-engine</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-安装依赖项"><a href="#2-安装依赖项" class="headerlink" title="2. 安装依赖项"></a>2. 安装依赖项</h2><h3 id="2-1-升级现有包"><a href="#2-1-升级现有包" class="headerlink" title="2.1 升级现有包"></a>2.1 升级现有包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get upgrade</div></pre></td></tr></table></figure>
+<h3 id="2-2-安装编译工具"><a href="#2-2-安装编译工具" class="headerlink" title="2.2 安装编译工具"></a>2.2 安装编译工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install build-essential cmake pkg-config</div></pre></td></tr></table></figure>
+<h3 id="2-3-安装图像和视频相关接口包"><a href="#2-3-安装图像和视频相关接口包" class="headerlink" title="2.3 安装图像和视频相关接口包"></a>2.3 安装图像和视频相关接口包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev</div><div class="line">$ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev</div><div class="line">$ sudo apt-get install libxvidcore-dev libx264-dev</div></pre></td></tr></table></figure>
+<h3 id="2-4-安装-GTK-库，用以编译-OpenCV-中的-highgui-模块"><a href="#2-4-安装-GTK-库，用以编译-OpenCV-中的-highgui-模块" class="headerlink" title="2.4 安装 GTK 库，用以编译 OpenCV 中的 highgui 模块"></a>2.4 安装 GTK 库，用以编译 OpenCV 中的 highgui 模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
+<h3 id="2-5-安装加速-OpenCV-运算的额外包"><a href="#2-5-安装加速-OpenCV-运算的额外包" class="headerlink" title="2.5 安装加速 OpenCV 运算的额外包"></a>2.5 安装加速 OpenCV 运算的额外包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libatlas-base-dev gfortran</div></pre></td></tr></table></figure>
+<h3 id="2-6-安装-python-头文件"><a href="#2-6-安装-python-头文件" class="headerlink" title="2.6 安装 python 头文件"></a>2.6 安装 python 头文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python2.7-dev python3.5-dev</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-下载-OpenCV-源代码"><a href="#3-下载-OpenCV-源代码" class="headerlink" title="3. 下载 OpenCV 源代码"></a>3. 下载 OpenCV 源代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip</div><div class="line">$ unzip opencv.zip</div><div class="line"></div><div class="line">$ wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip</div><div class="line">$ unzip opencv_contrib.zip</div></pre></td></tr></table></figure>
+<p><em>注：</em>请务必保证 OpenCV 和 OpenCV_Contrib 的版本一致</p>
+<hr>
+<h2 id="4-选择-python-版本，并创建新环境-（可选）"><a href="#4-选择-python-版本，并创建新环境-（可选）" class="headerlink" title="4. 选择 python 版本，并创建新环境 （可选）"></a>4. 选择 python 版本，并创建新环境 （可选）</h2><p>参考博客的教程中使用 <strong>virtualenv  &amp; virtualenvwrapper</strong> 工具在系统的 python 下创建了新的环境，用以编译安装 OpenCV，感兴趣的话可以跳转至 <a href="https://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/" title="Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3" target="_blank" rel="external">该教程</a> 进行查看。</p>
+<p>本次，笔者直接在系统 python ( python = 3.5 )的环境下直接编译安装 OpenCV，因此这一步可以省略，不过需要保证该 python 环境下已有 <strong>numpy</strong> 库和 <strong>pip</strong> 库。</p>
+<hr>
+<h2 id="5-编译安装-OpenCV"><a href="#5-编译安装-OpenCV" class="headerlink" title="5. 编译安装 OpenCV"></a>5. 编译安装 OpenCV</h2><h3 id="5-1-定位到-OpenCV-源代码文件下，并使用-CMake-进行编译："><a href="#5-1-定位到-OpenCV-源代码文件下，并使用-CMake-进行编译：" class="headerlink" title="5.1 定位到 OpenCV 源代码文件下，并使用 CMake 进行编译："></a>5.1 定位到 OpenCV 源代码文件下，并使用 CMake 进行编译：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ cd ~/opencv-3.1.0/</div><div class="line">$ mkdir build</div><div class="line">$ cd build</div><div class="line">$ cmake -D CMAKE_BUILD_TYPE=RELEASE \</div><div class="line">    -D INSTALL_PYTHON_EXAMPLES=ON \</div><div class="line">    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.1.0/modules \</div><div class="line">    -D BUILD_EXAMPLES=ON \</div><div class="line">	-D WITH_CUDA=OFF \</div><div class="line">	-D BUILD_TESTS=OFF \</div><div class="line">	-D CMAKE_INSTALL_PREFIX=/usr/local \</div><div class="line">	-D BUILD_DOCS=OFF \</div><div class="line">	-D ENABLE_PRECOMPILED_HEADERS=OFF \</div><div class="line">	-D WITH_OPENMP=ON </div><div class="line">	-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 ..</div></pre></td></tr></table></figure>
+<p>顺利的话，在 CMake 的输出里可以看到 python3 的 <strong>Interpreter</strong> 、<strong>Libraries</strong> 、<strong>numpy</strong> 、<strong>packages path</strong> 路径均正常。</p>
+<h3 id="5-2-编译-OpenCV"><a href="#5-2-编译-OpenCV" class="headerlink" title="5.2 编译 OpenCV"></a>5.2 编译 OpenCV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make -j4</div></pre></td></tr></table></figure>
+<p><code>-j4</code> 指的是使用 4 核。</p>
+<p>这个过程会持续较长的时间。</p>
+<h3 id="5-3-如有意外"><a href="#5-3-如有意外" class="headerlink" title="5.3 如有意外"></a>5.3 如有意外</h3><p>如果脸不黑的话，<code>make</code> 将会顺利结束。但如果有错误发生的话，需要清除当前编译的结果，重新编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make clean</div></pre></td></tr></table></figure>
+<p>特别是，多核编译时，可能会出错。可尝试单核编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make</div></pre></td></tr></table></figure>
+<p>当然，也有可能是其他错误导致的，这就需要你耐心检查谷歌去解决。</p>
+<h3 id="5-4-安装-OpenCV"><a href="#5-4-安装-OpenCV" class="headerlink" title="5.4 安装 OpenCV"></a>5.4 安装 OpenCV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo make install</div><div class="line">$ sudo ldconfig</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-安装-OpenCV-的收尾工作（可选）"><a href="#6-安装-OpenCV-的收尾工作（可选）" class="headerlink" title="6. 安装 OpenCV 的收尾工作（可选）"></a>6. 安装 OpenCV 的收尾工作（可选）</h2><p>对于 python3：</p>
+<p>在成功运行 <code>make install</code> 之后，OpenCV 与 python3 的链接应当安装在了 <code>/usr/local/lib/python3.5/dist-packages</code> ，你可以使用 <code>ls</code> 命令确认：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -l /usr/local/lib/python3.5/dist-packages/</div></pre></td></tr></table></figure>
+<p>但是输出的 <code>.so</code> 文件名并非是 <code>cv2.so</code> ，而是 <code>cv2.cpython-35m-arm-linux-gnueabinf.so</code> ，还需要做一点小调整（ <del>非必须</del> ）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local/lib/python3.5/dist-packages/</div><div class="line">$ sudo mv cv2.cpython-35m-arm-linux-gnueabinf.so cv2.so</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-确认-OpenCV-成功安装"><a href="#7-确认-OpenCV-成功安装" class="headerlink" title="7. 确认 OpenCV 成功安装"></a>7. 确认 OpenCV 成功安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python3</div><div class="line">&gt;&gt;&gt; import cv2</div><div class="line">&gt;&gt;&gt; cv2.__version__</div><div class="line">&apos;3.1.0&apos;</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>参考博客：<a href="https://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/" title="Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3" target="_blank" rel="external">Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3</a><br>转载请注明来自 <a href="https://vectorf.github.io">Vector Blog</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;本次使用的树莓派版本为 &lt;strong&gt;Raspberry Pi 3 Model B&lt;/strong&gt;，搭载 &lt;strong&gt;Raspbian&lt;/strong&gt; 系统&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OpenCV&lt;/strong&gt; 版本为 3.1.0&lt;/li&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://vectorf.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+    
+      <category term="树莓派" scheme="https://vectorf.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+      <category term="OpenCV" scheme="https://vectorf.github.io/tags/OpenCV/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初探 RSelenium —— 基于豆瓣电影的爬虫实例</title>
     <link href="https://vectorf.github.io/2017/07/10/20170710-%E5%88%9D%E6%8E%A2RSelenium/"/>
     <id>https://vectorf.github.io/2017/07/10/20170710-初探RSelenium/</id>
     <published>2017-07-10T15:32:08.000Z</published>
-    <updated>2017-07-10T16:15:00.000Z</updated>
+    <updated>2018-01-31T14:57:49.899Z</updated>
     
     <content type="html"><![CDATA[<p>使用 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包可通过 R 实现对浏览器的自动控制，完成诸如“点击”，“输入”等操作，从而爬取动态页面，解放你的双手！ </p>
 <p>本文基于 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> 网站的爬虫实例， 对 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包的使用做了初步的介绍。</p>
+<hr>
 <h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
 <li>JAVA：安装 JAVA</li>
 <li>Selenium Server：下载 selenium-server-standalone-版本号.jar （本文使用的是 3.4.0 版本）</li>
@@ -39,16 +126,16 @@
 <li>SelectorGadget ：[ <del>非必需</del> ] Chrome 扩展，可用于定位网页元素的 xpath 。不过，也可以用 Chrome 浏览器在网页右键选项卡中的“检查” 功能（快捷键：F12）。 </li>
 <li>所需 R 包：<br><code>RSelenium</code> 包：实现对浏览器行为的自动控制<br><code>rvest</code> 包：读取网页，定位网页元素并提取文本<br><code>stringr</code> 包：利用正则表达式进行字符串处理</li>
 </ul>
+<hr>
 <h2 id="Let’s-do-it"><a href="#Let’s-do-it" class="headerlink" title="Let’s do it !"></a>Let’s do it !</h2><p>本文以“鹿晗”作为关键词（ <del>真爱粉们不要太较真</del> ），搜索其出演过的电影，最终整理出电影名、评分信息和评价人数表。</p>
-<p>1.启动 Selenium Server</p>
-<p>在所下载的 selenium-server-standalone-3.4.0.jar 文件目录下打开命令行，输入以下命令以启动Selenium Server ：</p>
+<h3 id="1-启动-Selenium-Server"><a href="#1-启动-Selenium-Server" class="headerlink" title="1. 启动 Selenium Server"></a>1. 启动 Selenium Server</h3><p>在所下载的 selenium-server-standalone-3.4.0.jar 文件目录下打开命令行，输入以下命令以启动Selenium Server ：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-3.4.0.jar</div></pre></td></tr></table></figure>
 <p>你也可以把这个命令存成后缀为 <code>.cmd</code> 的文件放在该文件目录下，这样下次只需双击运行即可。</p>
-<p>2.在 R 中连接 Server ，打开浏览器和目标网页</p>
-  <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 载入包</span></div><div class="line"><span class="keyword">library</span>(RSelenium)</div><div class="line"><span class="keyword">library</span>(rvest)</div><div class="line"><span class="keyword">library</span>(stringr)</div><div class="line"><span class="comment"># 连接 Server</span></div><div class="line">remDr &lt;- remoteDriver(remoteServerAddr = <span class="string">"127.0.0.1"</span> ,</div><div class="line">	port = <span class="number">4444</span>,</div><div class="line">	browserName = <span class="string">"chrome"</span></div><div class="line">)</div><div class="line"><span class="comment"># 打开浏览器</span></div><div class="line">remDr$open()</div><div class="line"><span class="comment"># 打开目标网页</span></div><div class="line">remDr$navigate(<span class="string">"https://movie.douban.com/"</span>)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="2-在-R-中连接-Server-，打开浏览器和目标网页"><a href="#2-在-R-中连接-Server-，打开浏览器和目标网页" class="headerlink" title="2. 在 R 中连接 Server ，打开浏览器和目标网页"></a>2. 在 R 中连接 Server ，打开浏览器和目标网页</h3>  <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 载入包</span></div><div class="line"><span class="keyword">library</span>(RSelenium)</div><div class="line"><span class="keyword">library</span>(rvest)</div><div class="line"><span class="keyword">library</span>(stringr)</div><div class="line"><span class="comment"># 连接 Server</span></div><div class="line">remDr &lt;- remoteDriver(remoteServerAddr = <span class="string">"127.0.0.1"</span> ,</div><div class="line">	port = <span class="number">4444</span>,</div><div class="line">	browserName = <span class="string">"chrome"</span></div><div class="line">)</div><div class="line"><span class="comment"># 打开浏览器</span></div><div class="line">remDr$open()</div><div class="line"><span class="comment"># 打开目标网页</span></div><div class="line">remDr$navigate(<span class="string">"https://movie.douban.com/"</span>)</div></pre></td></tr></table></figure>
 <p>是不是发现，运行代码后自动启动了 Chrome ，并打开了 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> ？！有没有一点紧张和小刺激？！😎</p>
-<p>3.定位网页元素，并向其传入参数</p>
-<p> <code>RSelenium</code> 包可通过 <code>name</code> 、 <code>id</code> 、 <code>class</code> 、 <code>css-selectors</code> 、 <code>xpath</code> 对网页元素进行定位。本文尽可能多地采取不同的方法来展示如何使用它们。</p>
+<hr>
+<h3 id="3-定位网页元素，并向其传入参数"><a href="#3-定位网页元素，并向其传入参数" class="headerlink" title="3. 定位网页元素，并向其传入参数"></a>3. 定位网页元素，并向其传入参数</h3><p> <code>RSelenium</code> 包可通过 <code>name</code> 、 <code>id</code> 、 <code>class</code> 、 <code>css-selectors</code> 、 <code>xpath</code> 对网页元素进行定位。本文尽可能多地采取不同的方法来展示如何使用它们。</p>
 <div align="center"><br><br><img src="2.png" alt="2"><br><br></div>
 
 <p>可以看到，我们需要定位到搜索框。使用 SelectorGadget 或者浏览器的“检查”功能，得到该搜索框的 <code>name</code> 为 <code>search_text</code> 。</p>
@@ -63,8 +150,8 @@
 <p>现在网页应该变成了”鹿晗“所出演的电影列表了。</p>
 <div align="center"><br><br><img src="3.png" alt="3"><br><br></div>
 
-<p>4.读取网页，得到所需元素的文本</p>
-<p>首先，我们定位到每一部电影。通过浏览器的“检查”功能，可以看出每部电影的 <code>class=”pl2“</code> 。定位到每部电影之后，提取其中的信息即可。</p>
+<hr>
+<h3 id="4-读取网页，得到所需元素的文本"><a href="#4-读取网页，得到所需元素的文本" class="headerlink" title="4. 读取网页，得到所需元素的文本"></a>4. 读取网页，得到所需元素的文本</h3><p>首先，我们定位到每一部电影。通过浏览器的“检查”功能，可以看出每部电影的 <code>class=”pl2“</code> 。定位到每部电影之后，提取其中的信息即可。</p>
 <ul>
 <li><p><code>getElementAttribute</code> ：得到网页信息</p>
 <p>接下来就是静态网页的爬虫套路了，使用 <code>rvest</code> 包和 <code>stringr</code> 包里的函数即可。</p>
@@ -79,12 +166,16 @@
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 传入网页中所有的电影元素，将提取文本过程写成 MovieDataFunc 函数</span></div><div class="line">MovieDataFunc&lt;-<span class="keyword">function</span>(MovieList)lapply(MovieList,<span class="keyword">function</span>(i)&#123;</div><div class="line">  		<span class="comment"># 读取每部电影的元素</span></div><div class="line"> 		 doc&lt;-i$getElementAttribute(<span class="string">"outerHTML"</span>)[[<span class="number">1</span>]]%&gt;%</div><div class="line">        	read_html()</div><div class="line">        <span class="comment"># 得到电影名 name</span></div><div class="line">        name&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"a"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_replace_all(pattern=<span class="string">"\\s"</span>,replacement=<span class="string">""</span>)</div><div class="line">        <span class="comment"># 得到评分 rate</span></div><div class="line">        rate&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.rating_nums"</span>)%&gt;%</div><div class="line">        	html_text()</div><div class="line">        <span class="comment"># 得到评分人数 pl</span></div><div class="line">        pl&lt;-doc%&gt;%</div><div class="line">        	html_nodes(<span class="string">"span.pl"</span>)%&gt;%</div><div class="line">        	html_text()%&gt;%</div><div class="line">        	str_extract(pattern=<span class="string">"[:digit:]+"</span>)</div><div class="line">        <span class="comment"># 如果缺少评分或评分人数，则设置其为 NA</span></div><div class="line">        rate&lt;-ifelse(identical(rate,character(<span class="number">0</span>)),<span class="literal">NA</span>,rate)</div><div class="line">        pl&lt;-ifelse(identical(pl,character(<span class="number">0</span>)),<span class="literal">NA</span>,pl)</div><div class="line">        <span class="comment"># 返回电影名、评分和评分人数</span></div><div class="line">        <span class="keyword">return</span>(c(name,rate,pl))</div><div class="line">      &#125;</div><div class="line">)</div><div class="line"><span class="comment"># 定位到第一页的所有电影元素</span></div><div class="line">MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line"><span class="comment"># 得到第一页的电影信息</span></div><div class="line">MovieData&lt;-MovieDataFunc(MovieList)</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>5.跳转到”下一页“，爬取所有页信息</p>
-<p>将第一页的结果爬取完后，我们需要跳转到下一页，实现对所有搜索结果的爬取。</p>
+<hr>
+<h3 id="5-跳转到”下一页“，爬取所有页信息"><a href="#5-跳转到”下一页“，爬取所有页信息" class="headerlink" title="5. 跳转到”下一页“，爬取所有页信息"></a>5. 跳转到”下一页“，爬取所有页信息</h3><p>将第一页的结果爬取完后，我们需要跳转到下一页，实现对所有搜索结果的爬取。</p>
 <p>因此，需要判断还有多少页待爬取，遍历剩下的网页即可。</p>
 <div align="center"><br><br><img src="4.png" alt="4"><br><br></div>
 
-<p>图中，”第二页”所对应的 <code>xpath</code> 为 <code>//*[@id=&quot;content&quot;]/div/div[1]/div[3]/a</code> ；”后页“所对应的 <code>class=&quot;next&quot;</code> ，我们使用 <code>css-selectors</code> 定位到它。</p>
+<p>图中：</p>
+<ul>
+<li>“第二页”所对应的 <code>xpath</code> 为 <code>//*[@id=&quot;content&quot;]/div/div[1]/div[3]/a</code> ；</li>
+<li>”后页“所对应的 <code>class=&quot;next&quot;</code> ，我们使用 <code>css-selectors</code> 定位到它。</li>
+</ul>
 <ul>
 <li><p><code>findElements</code> ：定位所有符合条件的网页元素</p>
 </li>
@@ -92,8 +183,8 @@
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 得到剩余网页信息</span></div><div class="line">RemainPage &lt;- remDr$findElements(<span class="string">'xpath'</span>,<span class="string">'//*[@id="content"]/div/div[1]/div[3]/a'</span>)</div><div class="line"><span class="comment"># 爬取剩余网页的电影信息</span></div><div class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:length(RemainPage))&#123;</div><div class="line">    <span class="comment"># 定位到”后页“</span></div><div class="line">    NextPage &lt;- remDr$findElement(<span class="string">'css'</span>, <span class="string">'[class="next"]'</span>)</div><div class="line">    <span class="comment"># 模拟“点击”行为</span></div><div class="line">    NextPage$clickElement()</div><div class="line">    <span class="comment"># 定位到当前网页的所有电影元素</span></div><div class="line">    MovieList &lt;- remDr$findElements(<span class="string">'class'</span>,<span class="string">'pl2'</span>)</div><div class="line">    <span class="comment"># 爬取当前网页的所有电影信息</span></div><div class="line">    MovieData&lt;-c(MovieData,MovieDataFunc(MovieList))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>6.后续工作</p>
-<p>当爬取了所有网页的信息之后，我们应当对结果进行整理，并储存。同时，关闭进程，退出浏览器。</p>
+<hr>
+<h3 id="6-后续工作"><a href="#6-后续工作" class="headerlink" title="6. 后续工作"></a>6. 后续工作</h3><p>当爬取了所有网页的信息之后，我们应当对结果进行整理，并储存。同时，关闭进程，退出浏览器。</p>
 <ul>
 <li><p><code>quit</code> ：关闭进程，退出浏览器</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将 MovieData 的格式改为数据框，并更改列名</span></div><div class="line">MovieData&lt;-data.frame(t(sapply(MovieData,c)),stringsAsFactors = <span class="literal">F</span>)</div><div class="line">colnames(MovieData)&lt;-c(<span class="string">"MovieName"</span>,<span class="string">"Rate"</span>,<span class="string">"RatePeopleNum"</span>)</div><div class="line"><span class="comment"># 创建 output 文件夹储存爬取结果，并将结果储存至相应的 .csv 文件中</span></div><div class="line"><span class="keyword">if</span>(!file.exists(<span class="string">"output"</span>))dir.create(<span class="string">"output"</span>)</div><div class="line">write.csv(MovieData,paste0(<span class="string">"output/"</span>,keyword,<span class="string">"_moviedata.csv"</span>),row.names = <span class="literal">F</span>)</div><div class="line"><span class="comment"># 关闭进程，退出浏览器</span></div><div class="line">remDr$quit()</div></pre></td></tr></table></figure>
@@ -102,8 +193,8 @@
 <p>部分爬取结果如下图所示：</p>
 <div align="center"><br><br><img src="5.png" alt="5"><br><br></div>
 
-<p>7.题外话</p>
-<p>我们再做点有意思的工作~ 😜</p>
+<hr>
+<h3 id="7-题外话"><a href="#7-题外话" class="headerlink" title="7. 题外话"></a>7. 题外话</h3><p>我们再做点有意思的工作~ 😜</p>
 <p>在 <code>cmd</code> 中运行 <code>Rscipt</code> 命令可以运行 R 的脚本，并传入参数。我们只需要把 <code>keyword&lt;- &quot;鹿晗&quot;</code> 改成 <code>keyword&lt;- commandArgs(T)</code> 。</p>
 <ul>
 <li><code>commandArgs</code> ：在 <code>Rscript</code> 命令中传入参数</li>
@@ -127,10 +218,8 @@
     
     </summary>
     
-      <category term="R 语言" scheme="https://vectorf.github.io/categories/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="R" scheme="https://vectorf.github.io/categories/R/"/>
     
-    
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
@@ -149,13 +238,13 @@
     <link href="https://vectorf.github.io/2017/05/04/20170504-PythonvsR%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
     <id>https://vectorf.github.io/2017/05/04/20170504-PythonvsR在机器学习和数据分析领域中的对比/</id>
     <published>2017-05-04T14:00:30.000Z</published>
-    <updated>2017-05-04T14:41:26.000Z</updated>
+    <updated>2018-01-31T14:59:40.111Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="封面图.png" width="800" height="400" alt="0"><br><br></div>
 
 <p><em>Image by: Opensource.com</em></p>
 <blockquote>
-<p>原文链接：<a href="https://opensource.com/article/16/11/python-vs-r-machine-learning-data-analysis" target="_blank" rel="external">Python versus R for machine learning and data analysis</a><br>原文作者： <a href="https://opensource.com/users/tom-radcliffe" target="_blank" rel="external">Tom Radcliffe</a><br>译文于 2017/03/30 发表在 <a href="http://datartisan.com/article/detail/220.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
+<p>原文链接：<a href="https://opensource.com/article/16/11/python-vs-r-machine-learning-data-analysis" target="_blank" rel="external">Python versus R for machine learning and data analysis</a><br>原文作者： <a href="https://opensource.com/users/tom-radcliffe" target="_blank" rel="external">Tom Radcliffe</a></p>
 </blockquote>
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>为了鼓励新工具的出现，机器学习和数据分析领域似乎已经成了“开源”的天下。Python 和 R 语言都具有健全的生态系统，其中包括了很多开源工具和资源库，从而能够帮助任何水平层级的数据科学家展示其分析工作。</p>
 <p>机器学习和数据分析之间的差异有些难以言明，但二者最主要的不同就在于，比起模型的可解释性，机器学习更加强调预测的准确性；而数据分析则更加看重模型的可解释性以及统计推断。Python ，由于更看重预测结果的准确性，使其成为机器学习的一把利器。 R ，作为一种以统计推断为导向的编程语言，在数据分析界也得到广泛应用。</p>
@@ -192,7 +281,7 @@
     
     </summary>
     
-      <category term="翻译" scheme="https://vectorf.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="数据科学" scheme="https://vectorf.github.io/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
@@ -206,7 +295,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（七）/</id>
     <published>2017-03-14T13:21:11.000Z</published>
-    <updated>2017-03-14T13:30:31.000Z</updated>
+    <updated>2018-01-31T14:54:05.543Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -242,13 +331,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -257,7 +346,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（六）/</id>
     <published>2017-03-14T13:21:04.000Z</published>
-    <updated>2017-03-15T06:46:30.000Z</updated>
+    <updated>2018-01-31T14:54:08.030Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -304,13 +393,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -319,7 +408,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/</id>
     <published>2017-03-14T13:20:58.000Z</published>
-    <updated>2017-03-15T06:43:42.000Z</updated>
+    <updated>2018-01-31T14:53:54.272Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -361,13 +450,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -376,7 +465,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（四）/</id>
     <published>2017-03-14T13:20:51.000Z</published>
-    <updated>2017-03-20T14:56:32.000Z</updated>
+    <updated>2018-01-31T14:54:01.371Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -429,13 +518,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -444,7 +533,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（三）/</id>
     <published>2017-03-14T13:20:43.000Z</published>
-    <updated>2017-03-14T13:27:21.000Z</updated>
+    <updated>2018-01-31T14:53:57.400Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -497,13 +586,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -512,7 +601,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（二）/</id>
     <published>2017-03-14T13:18:12.000Z</published>
-    <updated>2017-03-14T13:28:01.000Z</updated>
+    <updated>2018-01-31T14:53:38.080Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -558,13 +647,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -573,7 +662,7 @@
     <link href="https://vectorf.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/12/20170312-Prophet之使用篇（一）/</id>
     <published>2017-03-12T06:02:12.000Z</published>
-    <updated>2017-03-14T13:18:32.000Z</updated>
+    <updated>2018-01-31T14:53:44.568Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -653,146 +742,13 @@
       <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
     
     
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Prophet 之安装篇</title>
-    <link href="https://vectorf.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
-    <id>https://vectorf.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
-    <published>2017-03-08T08:30:30.000Z</published>
-    <updated>2017-03-12T06:00:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
-
-<blockquote>
-<p>本安装文档主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/installation.html" target="_blank" rel="external">Prophet Installation</a> 官方安装文档。</p>
-</blockquote>
-<h2 id="在-R-上安装-Prophet"><a href="#在-R-上安装-Prophet" class="headerlink" title="在 R 上安装 Prophet"></a>在 R 上安装 Prophet</h2><h3 id="一、Windows-系统安装-Prophet-前的准备工作"><a href="#一、Windows-系统安装-Prophet-前的准备工作" class="headerlink" title="一、Windows 系统安装 Prophet 前的准备工作"></a>一、Windows 系统安装 Prophet 前的准备工作</h3><p>如果是 Windows 系统，需要按照 <a href="https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Windows" target="_blank" rel="external">rstan</a> 提供的教程给 R 安装一个编译器。其中，最为关键的一步就是先安装 <a href="http://cran.r-project.org/bin/windows/Rtools/" target="_blank" rel="external">Rtools</a> 。</p>
-<h4 id="1-安装-R-和-RStudio"><a href="#1-安装-R-和-RStudio" class="headerlink" title="1. 安装 R 和 RStudio"></a>1. 安装 R 和 RStudio</h4><h4 id="2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。"><a href="#2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。" class="headerlink" title="2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。"></a>2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。</h4><p>假如 Rtools 安装在 C 盘，则运行<code>Sys.getenv(&#39;PATH&#39;)</code>后，输出应包含如下所示的结果（<em>注：</em>原文教程中结果为”C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;”）；运行<code>system(&#39;g++ -v&#39;)</code>和<code>system(&#39;where make&#39;)</code>后输出结果正常，如下所示。</p>
-<p>否则，请确保 Rtools 安装目录已添加至系统环境变量中。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; Sys.getenv(<span class="string">'PATH'</span>)</div><div class="line">C:\\Rtools\\bin;C:\\Rtools\\mingw_64\\bin;</div><div class="line">&gt; system(<span class="string">'g++ -v'</span>)</div><div class="line">Using built-<span class="keyword">in</span> specs.</div><div class="line">COLLECT_GCC=C:\Rtools\mingw_64\bin\G__~<span class="number">1.</span>EXE</div><div class="line"><span class="comment"># 已省略部分输出结果</span></div><div class="line">gcc version <span class="number">4.9</span><span class="number">.3</span> (x86_64-posix-seh, Built by MinGW-W64 project) </div><div class="line">&gt; system(<span class="string">'where make'</span>)</div><div class="line">C:\Rtools\bin\make.exe</div></pre></td></tr></table></figure>
-<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h4><p><del>非必须操作</del>，不会影响 RStan 正常工作，但强烈推荐。</p>
-<ul>
-<li>创建一个 Makevars 文件，代码如下：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dotR &lt;- file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".R"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(dotR)) </div><div class="line">  dir.create(dotR)</div><div class="line">M &lt;- file.path(dotR, <span class="string">"Makevars"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(M)) </div><div class="line">  file.create(M)</div><div class="line">cat(<span class="string">"\nCXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>如果你使用的是 Rtools33 （或更高版本），则需要运行下列代码：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">'Sys.setenv(BINPREF = "C:/Rtools/mingw_$(WIN)/bin/")'</span>,</div><div class="line">    file = file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".Rprofile"</span>), </div><div class="line">    sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>如果你使用的 g++ 版本号在 6 或以上，且希望关掉和 Stan 不相关的一些警告信息，可以运行下列代码：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">"\nCXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>确认配置成功，可运行下列代码：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看配置的信息</span></div><div class="line">cat(readLines(M), sep = <span class="string">"\n"</span>)</div><div class="line"><span class="comment"># 或是找到该配置文件的路径，自行打开查看</span></div><div class="line">cat(M)</div></pre></td></tr></table></figure>
-<h4 id="4-安装-RStan"><a href="#4-安装-RStan" class="headerlink" title="4. 安装 RStan"></a>4. 安装 RStan</h4><ul>
-<li>安装最新版本的 RStan 及其依赖包，代码如下：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 如果 https 下载不成功，可改为 http</span></div><div class="line"><span class="comment"># 确保 dependencies=TRUE ，安装依赖包</span></div><div class="line">install.packages(<span class="string">"rstan"</span>, repos = <span class="string">"https://cloud.r-project.org/"</span>, dependencies=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>如果上述过程均失败，可通过下列代码按源码安装：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 可根据你想使用的内核数来更改数字“4”</span></div><div class="line">Sys.setenv(MAKEFLAGS = <span class="string">"-j4"</span>) </div><div class="line">install.packages(<span class="string">"rstan"</span>, type = <span class="string">"source"</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>安装完成后，<strong>重启 R</strong> 。并在载入 RStan 前，确认没有旧版本 RStan 所创建（可能是自动创建）的产物已被载入 R 中。</li>
-<li>通过运行如下代码，确认工具链已生效，代码应当返回值<code>10</code>:</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fx &lt;- inline::cxxfunction( signature(x = <span class="string">"integer"</span>, y = <span class="string">"numeric"</span> ) , <span class="string">'</span></div><div class="line">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</div><div class="line">' )</div><div class="line">fx( <span class="number">2L</span>, <span class="number">5</span> ) <span class="comment"># 应当返回值 10</span></div></pre></td></tr></table></figure>
-<p><em>注：</em>以上命令都是在 R 中输入运行的。</p>
-<h3 id="二、安装-Prophet-包"><a href="#二、安装-Prophet-包" class="headerlink" title="二、安装 Prophet 包"></a>二、安装 Prophet 包</h3><p>在 R 中运行如下代码：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R </span></div><div class="line">install.packages(<span class="string">'prophet'</span>)</div></pre></td></tr></table></figure>
-<h2 id="在-Python-上安装-Prophet"><a href="#在-Python-上安装-Prophet" class="headerlink" title="在 Python 上安装 Prophet"></a>在 Python 上安装 Prophet</h2><h3 id="一、安装-Prophet-前的准备工作"><a href="#一、安装-Prophet-前的准备工作" class="headerlink" title="一、安装 Prophet 前的准备工作"></a>一、安装 Prophet 前的准备工作</h3><p>Python 中的 Prophet 最主要的依赖库是 <code>pystan</code>。不管什么系统，都需按照 <a href="http://pystan.readthedocs.io/en/latest/installation_beginner.html" target="_blank" rel="external">安装教程</a> 先安装<code>pystan</code>。</p>
-<h4 id="1-安装-Python"><a href="#1-安装-Python" class="headerlink" title="1. 安装 Python"></a>1. 安装 Python</h4><p>推荐使用 Anaconda 。Anaconda 是一个开源的 Python 发行版本，内置<code>conda</code>来实现<code>pip</code>库管理的功能。</p>
-<h4 id="2-安装-Pthon-的依赖库"><a href="#2-安装-Pthon-的依赖库" class="headerlink" title="2. 安装 Pthon 的依赖库"></a>2. 安装 Pthon 的依赖库</h4><p>如果你使用的是 Anaconda , numpy 和 cython 库已经内置在其中。但是以防万一，你也可以使用<code>conda</code>去安装它们：</p>
-<ul>
-<li><p>打开一个命令行程序</p>
-</li>
-<li><p>使用<code>conda install numpy</code>命令去安装 numpy ; 使用<code>conda install cython</code>命令去安装 cython</p>
-</li>
-</ul>
-<h4 id="3-安装-PyStan-库"><a href="#3-安装-PyStan-库" class="headerlink" title="3. 安装 PyStan 库"></a>3. 安装 PyStan 库</h4><p>  Mac/Linux 用户按照下述步骤安装 PyStan 即可。</p>
-<ul>
-<li>打开一个命令行程序</li>
-<li><p>使用<code>pip install pystan</code>去安装 PyStan</p>
-<p>Windows 用户请按照“Windows 系统安装 PyStan”中的步骤进行安装。</p>
-</li>
-</ul>
-<h4 id="Windows-系统安装-PyStan"><a href="#Windows-系统安装-PyStan" class="headerlink" title="** Windows 系统安装 PyStan"></a>** Windows 系统安装 PyStan</h4><p>如果是 Windows 系统，在安装 PyStan 前需要按照 <a href="http://pystan.readthedocs.io/en/latest/windows.html" target="_blank" rel="external">安装教程</a> 给 PyStan 安装一个编译器。其中，最为关键的一步就是先安装  <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">C++ 编译器</a> 。</p>
-<p>Windows 系统下使用 PyStan 有下列<em>注意事项</em>：</p>
-<ol>
-<li><p>需要使用 Python 3.5 或更高版本</p>
-</li>
-<li><p>抽取样本时，必须使用<code>n_jobs=1</code>（Windows 系统下的 PyStan 不能使用并行多线程运算）</p>
-</li>
-<li><p>安装 C++ 编译器</p>
-<p>进入 <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">Visual C++ Build Tools</a> 网页，点击“Download Visual C++ Build Tools 2015”。</p>
-<p>如果你遇到了安装的问题，可以去 Python维基下的 <a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">Windows Compilers</a> 寻求解决办法。</p>
-<p>如果你使用的 Windows 7 系统，可能需要在安装 Visual C++ Build Tools 下先更新 Microsoft .NET Framework 。</p>
-</li>
-<li><p>安装 PyStan</p>
-<p>打开命令行程序，输入下列命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pystan</div></pre></td></tr></table></figure>
-<p>可通过在 python 中输入下列抽样的代码，验证安装成功：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pystan</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model_code = <span class="string">'parameters &#123;real y;&#125; model &#123;y ~ normal(0,1);&#125;'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model = pystan.StanModel(model_code=model_code)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = model.sampling(n_jobs=<span class="number">1</span>).extract()[<span class="string">'y'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y.mean()  <span class="comment"># 结果应当在 0 附近</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="二、安装-Prophet"><a href="#二、安装-Prophet" class="headerlink" title="二、安装 Prophet"></a>二、安装 Prophet</h3><p>使用命令行程序运行下列<code>pip</code>命令安装即可：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bash</div><div class="line">$ pip install fbprophet</div></pre></td></tr></table></figure>
-<h4 id="Ubuntu-系统安装注意事项"><a href="#Ubuntu-系统安装注意事项" class="headerlink" title="Ubuntu 系统安装注意事项"></a>Ubuntu 系统安装注意事项</h4><ol>
-<li><p>在 Ubuntu 16.04 系统下，使用系统内置的 python 2.7 安装上 fbprophet 后，导入 <code>import fbprophet</code> 时提示需要安装 <code>matplotlib</code> 库和 <code>python-tk</code>。打开一个终端，输入下列命令即可：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~ sudo pip install matplotlib</div><div class="line">~ sudo apt-get install tk-dev</div><div class="line">~ sudo apt-get install python-tk</div></pre></td></tr></table></figure>
-</li>
-<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装 fbprophet ，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
-<p>运行检验代码后的错误信息：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-28-15d1abb9774a&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    model = pystan.StanModel(model_code=model_code)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /tmp/tmpgc2vTO/stanfit4anon_model_5944bb5b3a93728ca2bf_765485408593311.so: undefined symbol: _ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</div></pre></td></tr></table></figure>
-<p>后尝试在 Anaconda 的 Spyder 中将 console 的 python 路径更改为 <code>/usr/bin/python</code> ，运行检验代码仍然报错：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line">    </div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line"></div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line">    </div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /home/username/anaconda2/lib/python2<span class="number">.7</span>/site-packages/numexpr/../../../libstdc++.so<span class="number">.6</span>: version `GLIBCXX_3<span class="number">.4</span><span class="number">.20</span><span class="string">' not found (required by /tmp/tmptEazgR/stanfit4anon_model_5944b02c79788fa8ca2bf_7654287730157512986.so)</span></div></pre></td></tr></table></figure>
-<p>在网上查询后，发现是由于 Anaconda 中未安装 <code>libgcc</code> 库。打开一个命令行，运行下列代码安装即可：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install libgcc</div></pre></td></tr></table></figure>
-<p>安装 <code>libgcc</code> 库后，就可以成功运行检验代码了。</p>
-<p>机缘巧合下，发现安装 <code>libgcc</code> 库后，使用Anaconda 自带的 python ，也可以成功安装 <code>PyStan</code> 和 <code>fbprophet</code> 了。遂将 Spyder 中 console 的 python 路径更改为原来默认的。</p>
-</li>
-</ol>
-<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
-<p>错误信息：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     </p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
-
-&lt;blockq
-    
-    </summary>
-    
-      <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
-    
-    
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
-    
-      <category term="安装" scheme="https://vectorf.github.io/tags/%E5%AE%89%E8%A3%85/"/>
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
   </entry>
   
@@ -990,42 +946,169 @@
   </entry>
   
   <entry>
+    <title>Prophet 之安装篇</title>
+    <link href="https://vectorf.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
+    <id>https://vectorf.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
+    <published>2017-03-08T08:30:30.000Z</published>
+    <updated>2018-01-31T14:54:25.734Z</updated>
+    
+    <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
+
+<blockquote>
+<p>本安装文档主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/installation.html" target="_blank" rel="external">Prophet Installation</a> 官方安装文档。</p>
+</blockquote>
+<h2 id="在-R-上安装-Prophet"><a href="#在-R-上安装-Prophet" class="headerlink" title="在 R 上安装 Prophet"></a>在 R 上安装 Prophet</h2><h3 id="一、Windows-系统安装-Prophet-前的准备工作"><a href="#一、Windows-系统安装-Prophet-前的准备工作" class="headerlink" title="一、Windows 系统安装 Prophet 前的准备工作"></a>一、Windows 系统安装 Prophet 前的准备工作</h3><p>如果是 Windows 系统，需要按照 <a href="https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Windows" target="_blank" rel="external">rstan</a> 提供的教程给 R 安装一个编译器。其中，最为关键的一步就是先安装 <a href="http://cran.r-project.org/bin/windows/Rtools/" target="_blank" rel="external">Rtools</a> 。</p>
+<h4 id="1-安装-R-和-RStudio"><a href="#1-安装-R-和-RStudio" class="headerlink" title="1. 安装 R 和 RStudio"></a>1. 安装 R 和 RStudio</h4><h4 id="2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。"><a href="#2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。" class="headerlink" title="2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。"></a>2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。</h4><p>假如 Rtools 安装在 C 盘，则运行<code>Sys.getenv(&#39;PATH&#39;)</code>后，输出应包含如下所示的结果（<em>注：</em>原文教程中结果为”C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;”）；运行<code>system(&#39;g++ -v&#39;)</code>和<code>system(&#39;where make&#39;)</code>后输出结果正常，如下所示。</p>
+<p>否则，请确保 Rtools 安装目录已添加至系统环境变量中。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; Sys.getenv(<span class="string">'PATH'</span>)</div><div class="line">C:\\Rtools\\bin;C:\\Rtools\\mingw_64\\bin;</div><div class="line">&gt; system(<span class="string">'g++ -v'</span>)</div><div class="line">Using built-<span class="keyword">in</span> specs.</div><div class="line">COLLECT_GCC=C:\Rtools\mingw_64\bin\G__~<span class="number">1.</span>EXE</div><div class="line"><span class="comment"># 已省略部分输出结果</span></div><div class="line">gcc version <span class="number">4.9</span><span class="number">.3</span> (x86_64-posix-seh, Built by MinGW-W64 project) </div><div class="line">&gt; system(<span class="string">'where make'</span>)</div><div class="line">C:\Rtools\bin\make.exe</div></pre></td></tr></table></figure>
+<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h4><p><del>非必须操作</del>，不会影响 RStan 正常工作，但强烈推荐。</p>
+<ul>
+<li>创建一个 Makevars 文件，代码如下：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dotR &lt;- file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".R"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(dotR)) </div><div class="line">  dir.create(dotR)</div><div class="line">M &lt;- file.path(dotR, <span class="string">"Makevars"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(M)) </div><div class="line">  file.create(M)</div><div class="line">cat(<span class="string">"\nCXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用的是 Rtools33 （或更高版本），则需要运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">'Sys.setenv(BINPREF = "C:/Rtools/mingw_$(WIN)/bin/")'</span>,</div><div class="line">    file = file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".Rprofile"</span>), </div><div class="line">    sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用的 g++ 版本号在 6 或以上，且希望关掉和 Stan 不相关的一些警告信息，可以运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">"\nCXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>确认配置成功，可运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看配置的信息</span></div><div class="line">cat(readLines(M), sep = <span class="string">"\n"</span>)</div><div class="line"><span class="comment"># 或是找到该配置文件的路径，自行打开查看</span></div><div class="line">cat(M)</div></pre></td></tr></table></figure>
+<h4 id="4-安装-RStan"><a href="#4-安装-RStan" class="headerlink" title="4. 安装 RStan"></a>4. 安装 RStan</h4><ul>
+<li>安装最新版本的 RStan 及其依赖包，代码如下：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 如果 https 下载不成功，可改为 http</span></div><div class="line"><span class="comment"># 确保 dependencies=TRUE ，安装依赖包</span></div><div class="line">install.packages(<span class="string">"rstan"</span>, repos = <span class="string">"https://cloud.r-project.org/"</span>, dependencies=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果上述过程均失败，可通过下列代码按源码安装：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 可根据你想使用的内核数来更改数字“4”</span></div><div class="line">Sys.setenv(MAKEFLAGS = <span class="string">"-j4"</span>) </div><div class="line">install.packages(<span class="string">"rstan"</span>, type = <span class="string">"source"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>安装完成后，<strong>重启 R</strong> 。并在载入 RStan 前，确认没有旧版本 RStan 所创建（可能是自动创建）的产物已被载入 R 中。</li>
+<li>通过运行如下代码，确认工具链已生效，代码应当返回值<code>10</code>:</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fx &lt;- inline::cxxfunction( signature(x = <span class="string">"integer"</span>, y = <span class="string">"numeric"</span> ) , <span class="string">'</span></div><div class="line">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</div><div class="line">' )</div><div class="line">fx( <span class="number">2L</span>, <span class="number">5</span> ) <span class="comment"># 应当返回值 10</span></div></pre></td></tr></table></figure>
+<p><em>注：</em>以上命令都是在 R 中输入运行的。</p>
+<h3 id="二、安装-Prophet-包"><a href="#二、安装-Prophet-包" class="headerlink" title="二、安装 Prophet 包"></a>二、安装 Prophet 包</h3><p>在 R 中运行如下代码：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R </span></div><div class="line">install.packages(<span class="string">'prophet'</span>)</div></pre></td></tr></table></figure>
+<h2 id="在-Python-上安装-Prophet"><a href="#在-Python-上安装-Prophet" class="headerlink" title="在 Python 上安装 Prophet"></a>在 Python 上安装 Prophet</h2><h3 id="一、安装-Prophet-前的准备工作"><a href="#一、安装-Prophet-前的准备工作" class="headerlink" title="一、安装 Prophet 前的准备工作"></a>一、安装 Prophet 前的准备工作</h3><p>Python 中的 Prophet 最主要的依赖库是 <code>pystan</code>。不管什么系统，都需按照 <a href="http://pystan.readthedocs.io/en/latest/installation_beginner.html" target="_blank" rel="external">安装教程</a> 先安装<code>pystan</code>。</p>
+<h4 id="1-安装-Python"><a href="#1-安装-Python" class="headerlink" title="1. 安装 Python"></a>1. 安装 Python</h4><p>推荐使用 Anaconda 。Anaconda 是一个开源的 Python 发行版本，内置<code>conda</code>来实现<code>pip</code>库管理的功能。</p>
+<h4 id="2-安装-Pthon-的依赖库"><a href="#2-安装-Pthon-的依赖库" class="headerlink" title="2. 安装 Pthon 的依赖库"></a>2. 安装 Pthon 的依赖库</h4><p>如果你使用的是 Anaconda , numpy 和 cython 库已经内置在其中。但是以防万一，你也可以使用<code>conda</code>去安装它们：</p>
+<ul>
+<li><p>打开一个命令行程序</p>
+</li>
+<li><p>使用<code>conda install numpy</code>命令去安装 numpy ; 使用<code>conda install cython</code>命令去安装 cython</p>
+</li>
+</ul>
+<h4 id="3-安装-PyStan-库"><a href="#3-安装-PyStan-库" class="headerlink" title="3. 安装 PyStan 库"></a>3. 安装 PyStan 库</h4><p>  Mac/Linux 用户按照下述步骤安装 PyStan 即可。</p>
+<ul>
+<li>打开一个命令行程序</li>
+<li><p>使用<code>pip install pystan</code>去安装 PyStan</p>
+<p>Windows 用户请按照“Windows 系统安装 PyStan”中的步骤进行安装。</p>
+</li>
+</ul>
+<h4 id="Windows-系统安装-PyStan"><a href="#Windows-系统安装-PyStan" class="headerlink" title="** Windows 系统安装 PyStan"></a>** Windows 系统安装 PyStan</h4><p>如果是 Windows 系统，在安装 PyStan 前需要按照 <a href="http://pystan.readthedocs.io/en/latest/windows.html" target="_blank" rel="external">安装教程</a> 给 PyStan 安装一个编译器。其中，最为关键的一步就是先安装  <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">C++ 编译器</a> 。</p>
+<p>Windows 系统下使用 PyStan 有下列<em>注意事项</em>：</p>
+<ol>
+<li><p>需要使用 Python 3.5 或更高版本</p>
+</li>
+<li><p>抽取样本时，必须使用<code>n_jobs=1</code>（Windows 系统下的 PyStan 不能使用并行多线程运算）</p>
+</li>
+<li><p>安装 C++ 编译器</p>
+<p>进入 <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">Visual C++ Build Tools</a> 网页，点击“Download Visual C++ Build Tools 2015”。</p>
+<p>如果你遇到了安装的问题，可以去 Python维基下的 <a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">Windows Compilers</a> 寻求解决办法。</p>
+<p>如果你使用的 Windows 7 系统，可能需要在安装 Visual C++ Build Tools 下先更新 Microsoft .NET Framework 。</p>
+</li>
+<li><p>安装 PyStan</p>
+<p>打开命令行程序，输入下列命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pystan</div></pre></td></tr></table></figure>
+<p>可通过在 python 中输入下列抽样的代码，验证安装成功：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pystan</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model_code = <span class="string">'parameters &#123;real y;&#125; model &#123;y ~ normal(0,1);&#125;'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model = pystan.StanModel(model_code=model_code)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = model.sampling(n_jobs=<span class="number">1</span>).extract()[<span class="string">'y'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y.mean()  <span class="comment"># 结果应当在 0 附近</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="二、安装-Prophet"><a href="#二、安装-Prophet" class="headerlink" title="二、安装 Prophet"></a>二、安装 Prophet</h3><p>使用命令行程序运行下列<code>pip</code>命令安装即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bash</div><div class="line">$ pip install fbprophet</div></pre></td></tr></table></figure>
+<h4 id="Ubuntu-系统安装注意事项"><a href="#Ubuntu-系统安装注意事项" class="headerlink" title="Ubuntu 系统安装注意事项"></a>Ubuntu 系统安装注意事项</h4><ol>
+<li><p>在 Ubuntu 16.04 系统下，使用系统内置的 python 2.7 安装上 fbprophet 后，导入 <code>import fbprophet</code> 时提示需要安装 <code>matplotlib</code> 库和 <code>python-tk</code>。打开一个终端，输入下列命令即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~ sudo pip install matplotlib</div><div class="line">~ sudo apt-get install tk-dev</div><div class="line">~ sudo apt-get install python-tk</div></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装 fbprophet ，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
+<p>运行检验代码后的错误信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-28-15d1abb9774a&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    model = pystan.StanModel(model_code=model_code)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /tmp/tmpgc2vTO/stanfit4anon_model_5944bb5b3a93728ca2bf_765485408593311.so: undefined symbol: _ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</div></pre></td></tr></table></figure>
+<p>后尝试在 Anaconda 的 Spyder 中将 console 的 python 路径更改为 <code>/usr/bin/python</code> ，运行检验代码仍然报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line">    </div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line"></div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line">    </div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /home/username/anaconda2/lib/python2<span class="number">.7</span>/site-packages/numexpr/../../../libstdc++.so<span class="number">.6</span>: version `GLIBCXX_3<span class="number">.4</span><span class="number">.20</span><span class="string">' not found (required by /tmp/tmptEazgR/stanfit4anon_model_5944b02c79788fa8ca2bf_7654287730157512986.so)</span></div></pre></td></tr></table></figure>
+<p>在网上查询后，发现是由于 Anaconda 中未安装 <code>libgcc</code> 库。打开一个命令行，运行下列代码安装即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install libgcc</div></pre></td></tr></table></figure>
+<p>安装 <code>libgcc</code> 库后，就可以成功运行检验代码了。</p>
+<p>机缘巧合下，发现安装 <code>libgcc</code> 库后，使用Anaconda 自带的 python ，也可以成功安装 <code>PyStan</code> 和 <code>fbprophet</code> 了。遂将 Spyder 中 console 的 python 路径更改为原来默认的。</p>
+</li>
+</ol>
+<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
+<p>错误信息：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     </p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;blockq
+    
+    </summary>
+    
+      <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
+    
+    
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+    
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）</title>
     <link href="https://vectorf.github.io/2017/02/21/20170221-%E8%A6%81%E4%BC%98%E9%9B%85%EF%BC%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%20R%20%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%EF%BC%81%EF%BC%88%E4%BD%BF%E7%94%A8%20stargazer%20%E5%8C%85%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/</id>
     <published>2017-02-21T08:30:30.000Z</published>
-    <updated>2017-03-08T14:17:52.000Z</updated>
+    <updated>2018-01-31T14:50:45.621Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>本文于 2017/02/08 发表在 <a href="http://datartisan.com/article/detail/202.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
-</blockquote>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>使用<code>stargazer</code>包可以将 R 构建的模型结果以<code>LATEX</code>、<code>HTML</code>和<code>ASCII</code>格式输出，方便我们生成标准格式的表格。</p>
+    <content type="html"><![CDATA[<h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>使用<code>stargazer</code>包可以将 R 构建的模型结果以<code>LATEX</code>、<code>HTML</code>和<code>ASCII</code>格式输出，方便我们生成标准格式的表格。</p>
 <p>再结合<code>rmarkdown</code>，你就可以轻轻松松输出一篇优雅的文章啦~</p>
 <p>本文“使用说明”部分主要参考<code>stargazer</code>的<a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf" title="stargezer.pdf" target="_blank" rel="external">说明文档</a>。</p>
-<h2 id="安装及加载"><a href="#安装及加载" class="headerlink" title="安装及加载"></a>安装及加载</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">install.packages(<span class="string">"stargazer"</span>)</div><div class="line"><span class="keyword">library</span>(stargazer)</div></pre></td></tr></table></figure>
-<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>**注意：<code>stargazer</code>包的输出结果是相应格式的，例如输出<code>LATEX</code>格式，可以直接将结果粘贴进<code>WinEdt</code>等编辑器中输出表格。下文直接将结果以表格的形式展示。</p>
+<hr>
+<h2 id="二、安装及加载"><a href="#二、安装及加载" class="headerlink" title="二、安装及加载"></a>二、安装及加载</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">install.packages(<span class="string">"stargazer"</span>)</div><div class="line"><span class="keyword">library</span>(stargazer)</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、使用说明"><a href="#三、使用说明" class="headerlink" title="三、使用说明"></a>三、使用说明</h2><p><em>注：</em> <code>stargazer</code>包的输出结果是相应格式的，例如输出<code>LATEX</code>格式，可以直接将结果粘贴进<code>WinEdt</code>等编辑器中输出表格。下文直接将结果以表格的形式展示。</p>
 <p>我们使用 R 中自带的数据集<code>attitude</code>来简要说明<code>stargazer</code>包的用法。</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data(<span class="string">"attitude"</span>)</div></pre></td></tr></table></figure>
 <p><code>attitude</code>数据集中包括<code>rating</code>、<code>complaints</code>等八个变量：</p>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/0.png" alt="0"><br><br></div>
 
-<p>1.展示数据集的描述性分析和部分数据集内容</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 展示数据集的描述性分析</span></div><div class="line">stargazer(attitude,header = <span class="literal">F</span>)</div></pre></td></tr></table></figure>
+<h3 id="1-展示数据集的描述性分析和部分数据集内容"><a href="#1-展示数据集的描述性分析和部分数据集内容" class="headerlink" title="1. 展示数据集的描述性分析和部分数据集内容"></a>1. 展示数据集的描述性分析和部分数据集内容</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 展示数据集的描述性分析</span></div><div class="line">stargazer(attitude,header = <span class="literal">F</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/1.png" alt="1"><br><br></div>
 
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 展示attitude数据集的前四行</span></div><div class="line">stargazer(attitude[<span class="number">1</span>:<span class="number">4</span>,], summary=<span class="literal">FALSE</span>, rownames=<span class="literal">FALSE</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/2.png" alt="2"><br><br></div>
 
 <p>怎么样？！是不是感觉还不错~</p>
-<p>2.展示线性模型结果，并加上表名</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 构建线性和Probit模型</span></div><div class="line">linear.1 &lt;- lm(rating ~ complaints + privileges + learning + raises + critical,data=attitude)</div><div class="line">linear.2 &lt;- lm(rating ~ complaints + privileges + learning, data=attitude)</div><div class="line">attitude$high.rating &lt;- (attitude$rating &gt; <span class="number">70</span>)</div><div class="line">probit.model &lt;- glm(high.rating ~ learning + critical + advance, data=attitude,family = binomial(link = <span class="string">"probit"</span>))</div><div class="line"><span class="comment"># 展示模型结果</span></div><div class="line">stargazer(linear.1, linear.2, probit.model, title=<span class="string">"Results"</span>,align=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<h3 id="2-展示线性模型结果，并加上表名"><a href="#2-展示线性模型结果，并加上表名" class="headerlink" title="2. 展示线性模型结果，并加上表名"></a>2. 展示线性模型结果，并加上表名</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 构建线性和Probit模型</span></div><div class="line">linear.1 &lt;- lm(rating ~ complaints + privileges + learning + raises + critical,data=attitude)</div><div class="line">linear.2 &lt;- lm(rating ~ complaints + privileges + learning, data=attitude)</div><div class="line">attitude$high.rating &lt;- (attitude$rating &gt; <span class="number">70</span>)</div><div class="line">probit.model &lt;- glm(high.rating ~ learning + critical + advance, data=attitude,family = binomial(link = <span class="string">"probit"</span>))</div><div class="line"><span class="comment"># 展示模型结果</span></div><div class="line">stargazer(linear.1, linear.2, probit.model, title=<span class="string">"Results"</span>,align=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/3.png" alt="3"><br><br></div>
 
 <p>我们构建了两个线性模型和一个 Probit 模型，并将结果输出。</p>
 <p>使用<code>title</code>参数将其命名为“Results”；</p>
 <p>使用<code>align</code>参数使数字排列整齐。</p>
-<p>3.对模型结果输出做部分调整：</p>
-<ul>
+<h3 id="3-对模型结果输出做部分调整："><a href="#3-对模型结果输出做部分调整：" class="headerlink" title="3. 对模型结果输出做部分调整："></a>3. 对模型结果输出做部分调整：</h3><ul>
 <li>更改变量名；</li>
 <li>删除极大似然统计量、残差标准差、F统计量；</li>
 <li>删除表中的空行。</li>
@@ -1036,36 +1119,32 @@
 <p>使用<code>dep.var.labels</code>和<code>covariate.lables</code>参数分别将因变量和自变量重命名为容易理解的形式；</p>
 <p>使用<code>omit.stat</code>参数控制对数似然比（“LL”）、标准化残差（“ser”）和F统计量（“f”），这三个统计量不在输出结果中展示；</p>
 <p>使用<code>no.space</code>参数将输出表格中的空行删去。</p>
-<p>4.展示置信区间</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">targazer(linear.1, linear.2, </div><div class="line">          title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>),</div><div class="line">         ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<h3 id="4-展示置信区间"><a href="#4-展示置信区间" class="headerlink" title="4. 展示置信区间"></a>4. 展示置信区间</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">targazer(linear.1, linear.2, </div><div class="line">          title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>),</div><div class="line">         ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/5.png" alt="5"><br><br></div>
 
 <p>使用<code>ci</code>和<code>ci.level</code>参数展示90%的置信区间；</p>
 <p>使用<code>single.row</code>参数使估计量与置信区间并排展示。</p>
-<p>5.调整变量展示顺序，加上样本量，并移除其他统计量</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          order=c(<span class="string">"learning"</span>, <span class="string">"privileges"</span>),</div><div class="line">          keep.stat=<span class="string">"n"</span>, ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<h3 id="5-调整变量展示顺序，加上样本量，并移除其他统计量"><a href="#5-调整变量展示顺序，加上样本量，并移除其他统计量" class="headerlink" title="5. 调整变量展示顺序，加上样本量，并移除其他统计量"></a>5. 调整变量展示顺序，加上样本量，并移除其他统计量</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          order=c(<span class="string">"learning"</span>, <span class="string">"privileges"</span>),</div><div class="line">          keep.stat=<span class="string">"n"</span>, ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/6.png" alt="6"><br><br></div>
 
 <p>使用<code>order</code>参数控制自变量展示的顺序，即将<code>learning</code>和<code>privileges</code>放在表的前两行；</p>
 <p>使用<code>keep.stat</code>参数控制要展示的统计量，<code>keep.stat=&quot;n&quot;</code>即只展示样本量的大小，并移除其他统计量。</p>
-<p>6.以<code>ASCII</code>格式输出：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, type=<span class="string">"text"</span>, title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>), ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<h3 id="6-以ASCII格式输出："><a href="#6-以ASCII格式输出：" class="headerlink" title="6. 以ASCII格式输出："></a>6. 以<code>ASCII</code>格式输出：</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stargazer(linear.1, linear.2, type=<span class="string">"text"</span>, title=<span class="string">"Regression Results"</span>,</div><div class="line">          dep.var.labels=c(<span class="string">"Overall Rating"</span>,<span class="string">"High Rating"</span>),</div><div class="line">          covariate.labels=c(<span class="string">"Handling of Complaints"</span>,<span class="string">"No Special Privileges"</span>,<span class="string">"Opportunity to Learn"</span>,<span class="string">"Performance-Based Raises"</span>,<span class="string">"Too Critical"</span>,<span class="string">"Advancement"</span>),</div><div class="line">          omit.stat=c(<span class="string">"LL"</span>,<span class="string">"ser"</span>,<span class="string">"f"</span>), ci=<span class="literal">TRUE</span>, ci.level=<span class="number">0.90</span>, single.row=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/7.png" alt="7"><br><br></div>
 
 <p>使用<code>type</code>参数控制以<code>ASCII</code>格式输出，还可以选择输出<code>HTML</code>格式。默认为<code>LATEX</code>格式。</p>
 <p>相应地，将<code>type</code>参数分别设置为<code>text</code>、<code>html</code>、<code>latex</code>即可。</p>
-<p>7.展示矩阵</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">correlation.matrix &lt;-cor(attitude[,c(<span class="string">"rating"</span>,<span class="string">"complaints"</span>,<span class="string">"privileges"</span>)])</div><div class="line">stargazer(correlation.matrix, title=<span class="string">"Correlation Matrix"</span>)</div></pre></td></tr></table></figure>
+<h3 id="7-展示矩阵"><a href="#7-展示矩阵" class="headerlink" title="7. 展示矩阵"></a>7. 展示矩阵</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">correlation.matrix &lt;-cor(attitude[,c(<span class="string">"rating"</span>,<span class="string">"complaints"</span>,<span class="string">"privileges"</span>)])</div><div class="line">stargazer(correlation.matrix, title=<span class="string">"Correlation Matrix"</span>)</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/8.png" alt="8"><br><br></div>
 
 <p><code>stargazer</code>也可以用来展示向量、矩阵或者数据框的内容。</p>
 <p>我们建立了<code>attitude</code>数据集中变量<code>rating</code>、<code>complaints</code>、<code>privileges</code>的相关系数矩阵，并展示出来。</p>
-<p>8.自定义变量</p>
-<p>我们使用<code>sandwich</code>包来计算异方差-稳健标准误，并将其与默认计算的标准差一同展示。</p>
+<h3 id="8-自定义变量"><a href="#8-自定义变量" class="headerlink" title="8. 自定义变量"></a>8. 自定义变量</h3><p>我们使用<code>sandwich</code>包来计算异方差-稳健标准误，并将其与默认计算的标准差一同展示。</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装及加载"sandwich"包</span></div><div class="line">install.packages(<span class="string">"sandwich"</span>)</div><div class="line"><span class="keyword">library</span>(sandwich)</div><div class="line"><span class="comment"># 计算异方差-稳健标准误</span></div><div class="line">cov&lt;-vcovHC(linear.1,type=<span class="string">"HC"</span>)</div><div class="line">robust.se&lt;-sqrt(diag(cov))</div><div class="line">stargazer(linear.1,linear.1,se=list(<span class="literal">NULL</span>,robust.se),column.labels = c(<span class="string">"default"</span>,<span class="string">"robust"</span>))</div></pre></td></tr></table></figure>
 <div align="center"><br><br><img src="http://ogs78tgts.bkt.clouddn.com/9.png" alt="9"><br><br></div>
 
-<h2 id="与-rmarkdown-一起食用"><a href="#与-rmarkdown-一起食用" class="headerlink" title="与 rmarkdown 一起食用"></a>与 <code>rmarkdown</code> 一起食用</h2><p><code>rmarkdown</code>包可直接在<code>RStudio</code>中编辑符合 <code>markdown</code>语法的文档，并兼容<code>LATEX</code>格式。而且可以直接输出成<code>HTML</code>、<code>pdf</code>等格式的文档。</p>
+<hr>
+<h2 id="四、与-rmarkdown-一起食用"><a href="#四、与-rmarkdown-一起食用" class="headerlink" title="四、与 rmarkdown 一起食用"></a>四、与 <code>rmarkdown</code> 一起食用</h2><p><code>rmarkdown</code>包可直接在<code>RStudio</code>中编辑符合 <code>markdown</code>语法的文档，并兼容<code>LATEX</code>格式。而且可以直接输出成<code>HTML</code>、<code>pdf</code>等格式的文档。</p>
 <p>因此，<code>stargazer</code>与<code>rmarkdown</code>一起食用，风味更佳~</p>
 <p>首先，你需要在<code>Rstudio</code>中安装<code>rmarkdown</code>。</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">install.packages(<span class="string">"rmarkdown"</span>)</div></pre></td></tr></table></figure>
@@ -1080,7 +1159,8 @@
 <li>加上参数<code>header=F</code>，以避免输出关于包作者的一些信息。</li>
 </ul>
 <p>其余用法与上述使用说明基本相同。这样就可以直接输出如上所示的表格了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>stargazer</code>用一行代码就可以解决模型结果输出成表格的问题，而且支持大量模型。具体可查看该包的<a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf" title="stargezer.pdf" target="_blank" rel="external">说明文档</a>。</p>
+<hr>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p><code>stargazer</code>用一行代码就可以解决模型结果输出成表格的问题，而且支持大量模型。具体可查看该包的<a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf" title="stargezer.pdf" target="_blank" rel="external">说明文档</a>。</p>
 <p>最后，如果在你的文章中有使用了<code>stargazer</code>包。记得附注以下作者的信息哦。</p>
 <blockquote>
 <p>Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.<br>R package version 5.2. <a href="http://CRAN.R-project.org/package=stargazer" target="_blank" rel="external">http://CRAN.R-project.org/package=stargazer</a></p>
@@ -1092,20 +1172,16 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;本文于 2017/02/08 发表在 &lt;a href=&quot;http://datartisan.com/article/detail/202.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;数据工匠&lt;/a&gt; 网站中&lt;/p&gt;
-&lt;
+      &lt;h2 id=&quot;一、引言&quot;&gt;&lt;a href=&quot;#一、引言&quot; class=&quot;headerlink&quot; title=&quot;一、引言&quot;&gt;&lt;/a&gt;一、引言&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;stargazer&lt;/code&gt;包可以将 R 构建的模型结果以&lt;code&gt;LATEX&lt;/code&gt;、&lt;cod
     
     </summary>
     
-      <category term="R 语言" scheme="https://vectorf.github.io/categories/R-%E8%AF%AD%E8%A8%80/"/>
+      <category term="R" scheme="https://vectorf.github.io/categories/R/"/>
     
-    
-      <category term="教程" scheme="https://vectorf.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="R 语言" scheme="https://vectorf.github.io/tags/R-%E8%AF%AD%E8%A8%80/"/>
     
       <category term="stargazer" scheme="https://vectorf.github.io/tags/stargazer/"/>
+    
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
   </entry>
   
@@ -1114,11 +1190,10 @@
     <link href="https://vectorf.github.io/2017/02/20/20170221-%E6%8F%AD%E5%BC%80%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9D%A2%E7%BA%B1/"/>
     <id>https://vectorf.github.io/2017/02/20/20170221-揭开机器学习的面纱/</id>
     <published>2017-02-20T08:30:30.000Z</published>
-    <updated>2017-02-21T03:59:57.000Z</updated>
+    <updated>2018-01-31T14:47:04.389Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/03/machine-learning-a-brief-breakdown/" target="_blank" rel="external">Machine Learning: A Brief Breakdown</a>   原文作者：libesa</p>
-<p>译文于 2017/01/19 发表在 <a href="http://datartisan.com/article/detail/197.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
 </blockquote>
 <div align="center"><br><br><img src="http://ofnqcf09s.bkt.clouddn.com/0.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -1201,7 +1276,7 @@
     
     </summary>
     
-      <category term="翻译" scheme="https://vectorf.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="数据科学" scheme="https://vectorf.github.io/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
     
       <category term="机器学习" scheme="https://vectorf.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
@@ -1215,67 +1290,14 @@
   </entry>
   
   <entry>
-    <title>ECharts 测试</title>
-    <link href="https://vectorf.github.io/2016/12/29/20161229-ECharts%E6%B5%8B%E8%AF%95/"/>
-    <id>https://vectorf.github.io/2016/12/29/20161229-ECharts测试/</id>
-    <published>2016-12-29T12:30:30.000Z</published>
-    <updated>2017-03-08T15:50:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
-<div id="main" style="width: 600px;height:400px;" align="center"></div>
-<script type="text/javascript">
-var myChart = echarts.init(document.getElementById('main'));
-
-var option = {
-title: {
-text: 'ECharts 入门示例'
-},
-tooltip: {},
-legend: {
-data:['销量']
-},
-xAxis: {
-data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-},
-yAxis: {},
-series: [{
-name: '销量',
-type: 'bar',
-data: [5, 20, 36, 10, 10, 20]
-}]
-};
-
-myChart.setOption(option);
-</script>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;script src=&quot;http://oiy82v3pb.bkt.clouddn.com/echarts.js&quot;&gt;&lt;/script&gt;
-&lt;div id=&quot;main&quot; style=&quot;width: 600px;height:400px;&quot; align=&quot;center&quot;&gt;&lt;/div&gt;
-
-    
-    </summary>
-    
-      <category term="ECharts" scheme="https://vectorf.github.io/categories/ECharts/"/>
-    
-    
-      <category term="ECharts" scheme="https://vectorf.github.io/tags/ECharts/"/>
-    
-      <category term="测试" scheme="https://vectorf.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>机器学习与 Dota2 英雄属性</title>
     <link href="https://vectorf.github.io/2016/12/11/20161210-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8EDota2%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7/"/>
     <id>https://vectorf.github.io/2016/12/11/20161210-机器学习与Dota2英雄属性/</id>
     <published>2016-12-11T08:30:30.000Z</published>
-    <updated>2017-02-21T03:57:45.000Z</updated>
+    <updated>2018-01-31T14:52:28.882Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">《 Gavagai 》</a>   原文作者：Federico Vaggi</p>
-<p>译文于 2016/12/10 发表在 <a href="http://datartisan.com/article/detail/181.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
 </blockquote>
 <div align="center"><br><br><img src="http://ohz7hgskn.bkt.clouddn.com/fenmian.jpg" width="800" height="350" alt="dota2"><br><br></div>
 
@@ -1330,18 +1352,18 @@ myChart.setOption(option);
     
     </summary>
     
-      <category term="翻译" scheme="https://vectorf.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="数据科学" scheme="https://vectorf.github.io/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
     
       <category term="机器学习" scheme="https://vectorf.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="翻译" scheme="https://vectorf.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
-      <category term="dota2" scheme="https://vectorf.github.io/tags/dota2/"/>
-    
       <category term="自然语言处理" scheme="https://vectorf.github.io/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
       <category term="词向量" scheme="https://vectorf.github.io/tags/%E8%AF%8D%E5%90%91%E9%87%8F/"/>
+    
+      <category term="翻译" scheme="https://vectorf.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="Dota2" scheme="https://vectorf.github.io/tags/Dota2/"/>
     
   </entry>
   
@@ -1350,15 +1372,15 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/"/>
     <id>https://vectorf.github.io/2016/11/06/20161106-Git 教程/</id>
     <published>2016-11-06T12:30:30.000Z</published>
-    <updated>2017-03-02T08:37:01.000Z</updated>
+    <updated>2018-01-31T14:42:30.557Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/git.jpg" alt="git"><br><br></div>
 
 <blockquote>
-<p>本 Git 教程根据<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的 Git 教程</a> 整理总结而来，其中代码和说明均来源于廖大神，非原创。</p>
+<p>本 Git 教程根据 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的 Git 教程</a> 整理总结而来，非原创。</p>
 </blockquote>
-<h2 id="安装后的配置"><a href="#安装后的配置" class="headerlink" title="安装后的配置"></a><strong>安装后的配置</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
-<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a><strong>创建版本库</strong></h2><p>1.创建新的目录</p>
+<h2 id="一、安装后的配置"><a href="#一、安装后的配置" class="headerlink" title="一、安装后的配置"></a><strong>一、安装后的配置</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
+<h2 id="二、创建版本库"><a href="#二、创建版本库" class="headerlink" title="二、创建版本库"></a><strong>二、创建版本库</strong></h2><p>1.创建新的目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir gittest</div><div class="line">$ cd ngittest</div><div class="line">$ pwd</div></pre></td></tr></table></figure>
 <p><code>mkdir</code>创建新目录，<code>cd</code>定位到该目录，<code>pwd</code>显示当前目录。</p>
 <p>2.<code>git init</code>将该目录变成git可以管理的仓库</p>
@@ -1405,7 +1427,7 @@ myChart.setOption(option);
 <li>如果是在工作区误删了文件，则需通过版本库恢复到最新版本。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout --test.txt</div></pre></td></tr></table></figure>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a><strong>远程仓库</strong></h2><p>1.创建 SSH key</p>
+<h2 id="三、远程仓库"><a href="#三、远程仓库" class="headerlink" title="三、远程仓库"></a><strong>三、远程仓库</strong></h2><p>1.创建 SSH key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div></pre></td></tr></table></figure>
 <p>在用户主目录中找到<code>id_rsa.pub</code>，粘贴进 Github。</p>
 <p>2.添加远程库</p>
@@ -1420,7 +1442,7 @@ myChart.setOption(option);
 <p>用命令<code>git clone</code>克隆一个本地库。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone git@github.com:yourusername/gitskills.git</div><div class="line">$ cd gitskills</div><div class="line">$ ls</div></pre></td></tr></table></figure>
 <p>**注意：Git支持多种协议，包括<code>https</code>，但通过<code>ssh</code>支持的原生<code>git</code>协议速度最快。</p>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a><strong>分支管理</strong></h2><p>1.创建与合并分支</p>
+<h2 id="四、分支管理"><a href="#四、分支管理" class="headerlink" title="四、分支管理"></a><strong>四、分支管理</strong></h2><p>1.创建与合并分支</p>
 <ul>
 <li>创建<code>dev</code>分支，并切换到<code>dev</code>分支：</li>
 </ul>
@@ -1605,7 +1627,7 @@ myChart.setOption(option);
 <p>**注意：原教程中使用的是<code>git branch --set-upstream dev origin/&lt;branch&gt;</code>命令。</p>
 <p>这回<code>git pull</code>成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的”解决冲突”完全一样。解决后，提交，再push：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;merge &amp; fix devtest.txt&quot;</div><div class="line">$ git push origin dev</div></pre></td></tr></table></figure>
-<h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a><strong>标签管理</strong></h2><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），标签也是版本库的一个快照。</p>
+<h2 id="五、标签管理"><a href="#五、标签管理" class="headerlink" title="五、标签管理"></a><strong>五、标签管理</strong></h2><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），标签也是版本库的一个快照。</p>
 <p>标签是指向某个 commit 的指针（和分支相似，但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。</p>
 <p>tag 就是一个让人容易记住的有意义的名字，它跟某个 commit 绑在一起。</p>
 <p>1.创建标签</p>
@@ -1645,13 +1667,13 @@ myChart.setOption(option);
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git push origin v1.0</div><div class="line">$ git push origin --tags</div></pre></td></tr></table></figure>
 <p>如果标签已经推送到远程，先从本地删除，再从远程删除，使用命令<code>git push origin :refs/tags/</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag -d v0.9</div><div class="line">$ git push origin :refs/tags/v0.9</div></pre></td></tr></table></figure>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a><strong>Github</strong></h2><p>访问想要 Fork 的仓库，在自己的账号下克隆，然后使用<code>git clone &lt;address&gt;</code>命令 clone 到本地进行修改。</p>
+<h2 id="六、Github"><a href="#六、Github" class="headerlink" title="六、Github"></a><strong>六、Github</strong></h2><p>访问想要 Fork 的仓库，在自己的账号下克隆，然后使用<code>git clone &lt;address&gt;</code>命令 clone 到本地进行修改。</p>
 <ul>
 <li>在GitHub上，可以任意Fork开源仓库；</li>
 <li>自己拥有Fork后的仓库的读写权限；</li>
 <li>可以推送pull request给官方仓库来贡献代码。</li>
 </ul>
-<h2 id="自定义-Git"><a href="#自定义-Git" class="headerlink" title="自定义 Git"></a><strong>自定义 Git</strong></h2><p>在“安装Git”一节中，已经配置了<code>user.name</code>和<code>user.email</code>。</p>
+<h2 id="七、自定义-Git"><a href="#七、自定义-Git" class="headerlink" title="七、自定义 Git"></a><strong>七、自定义 Git</strong></h2><p>在“安装Git”一节中，已经配置了<code>user.name</code>和<code>user.email</code>。</p>
 <p>如果想让 Git 显示颜色，让命令输出看起来更醒目：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global color.ui true</div></pre></td></tr></table></figure>
 <p>1.忽略特殊文件</p>
@@ -1704,6 +1726,8 @@ myChart.setOption(option);
 <p>配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。</p>
 <p>3.搭建 Git 服务器</p>
 <p>等我装个 ubuntu 再试试……</p>
+<hr>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1711,11 +1735,11 @@ myChart.setOption(option);
       &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/git.jpg&quot; alt=&quot;git&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;本 Git 教程根据&lt;a href=
+&lt;p&gt;本 Git 教程根据 &lt;a href
     
     </summary>
     
-      <category term="教程" scheme="https://vectorf.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+      <category term="Git" scheme="https://vectorf.github.io/categories/Git/"/>
     
     
       <category term="Git" scheme="https://vectorf.github.io/tags/Git/"/>
@@ -1729,11 +1753,10 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/"/>
     <id>https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/</id>
     <published>2016-10-21T13:27:17.000Z</published>
-    <updated>2017-02-21T03:57:32.000Z</updated>
+    <updated>2018-01-31T14:37:06.079Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/04/k-means-vs-k-medoids/" target="_blank" rel="external">《”K-Means never fails”, they said…》</a> &ensp; 原文作者：Fjrodriguez2</p>
-<p>译文于 2016/09/14 发表在 <a href="http://datartisan.com/article/detail/168.html" target="_blank" rel="external">数据工匠</a> 网站中</p>
 </blockquote>
 <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>众所周知，数据挖掘算法并非十全十美，在某些情况下他们也会失效。 使用 K 均值算法（K-Means）时就可能会出现这种情况，当然此时你可以尝试一下另一种方法—— K 中心聚类算法（K-Medoids），也许效果会更好。</p>
 <p>在该网站之前的文章《揭开机器学习的面纱》中，已经指出， K 均值算法用于聚类时效果良好，而且在数据挖掘和机器学习领域，它也有着重要的地位。Psanchezcri 就曾在他的文章《将 K 均值方法用于金融时序回报率聚类》中，将 K 均值算法用于分析金融时间序列的趋势。</p>
@@ -1780,16 +1803,16 @@ myChart.setOption(option);
     
     </summary>
     
-      <category term="翻译" scheme="https://vectorf.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="数据科学" scheme="https://vectorf.github.io/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
-    
-      <category term="K均值" scheme="https://vectorf.github.io/tags/K%E5%9D%87%E5%80%BC/"/>
-    
-      <category term="聚类" scheme="https://vectorf.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
     
       <category term="机器学习" scheme="https://vectorf.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="翻译" scheme="https://vectorf.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="聚类" scheme="https://vectorf.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
+    
+      <category term="K 均值" scheme="https://vectorf.github.io/tags/K-%E5%9D%87%E5%80%BC/"/>
     
   </entry>
   
@@ -1798,14 +1821,14 @@ myChart.setOption(option);
     <link href="https://vectorf.github.io/2016/10/19/20161019-my-first-post/"/>
     <id>https://vectorf.github.io/2016/10/19/20161019-my-first-post/</id>
     <published>2016-10-19T05:31:17.000Z</published>
-    <updated>2016-10-19T13:18:13.000Z</updated>
+    <updated>2018-01-31T14:35:59.921Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello,world!"></a>Hello,world!</h2><p><a id="more"></a>你好呀！</p>
+    <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world !"></a>Hello, world !</h2><p><a id="more"></a>你好呀！</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Hello-world&quot;&gt;&lt;a href=&quot;#Hello-world&quot; class=&quot;headerlink&quot; title=&quot;Hello,world!&quot;&gt;&lt;/a&gt;Hello,world!&lt;/h2&gt;&lt;p&gt;
+      &lt;h2 id=&quot;Hello-world&quot;&gt;&lt;a href=&quot;#Hello-world&quot; class=&quot;headerlink&quot; title=&quot;Hello, world !&quot;&gt;&lt;/a&gt;Hello, world !&lt;/h2&gt;&lt;p&gt;
     
     </summary>
     

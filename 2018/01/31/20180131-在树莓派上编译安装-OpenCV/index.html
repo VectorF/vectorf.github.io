@@ -8,7 +8,7 @@
 	<meta name="baidu-site-verification" content="9NcVUM8ayz" />
     
 
-    <title>ECharts 测试 | Vector Blog</title>
+    <title>在树莓派上编译安装 OpenCV | Vector Blog</title>
     <meta name="author" content="VectorF">
     
     <meta name="description" content="Here is Vector&#39;s blog, thanks for your reading!">
@@ -16,7 +16,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="ECharts 测试"/>
+    <meta property="og:title" content="在树莓派上编译安装 OpenCV"/>
     <meta property="og:site_name" content="Vector Blog"/>
 
     
@@ -69,14 +69,6 @@
                             <i class="fa fa-bookmark "></i>
                             
                             分类
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            读书
                         </a>
                     </li>
                 
@@ -141,14 +133,6 @@
             </li>
         
             <li class="no-padding">
-                <a class="waves-effect menu-reading " href="/reading" >
-                    <i class="fa fa-book "></i>
-                    
-                    读书
-                </a>
-            </li>
-        
-            <li class="no-padding">
                 <a class="waves-effect menu-about " href="/about" >
                     <i class="fa fa-user "></i>
                     
@@ -180,32 +164,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/翻译/">
-                    翻译 <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/ECharts/">
-                    ECharts <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/教程/">
-                    教程 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/R-语言/">
-                    R-语言 <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/Prophet/">
+                    Prophet <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -213,15 +173,31 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Python/">
-                    Python <span class="right">1 篇</span></a>
+                    Python <span class="right">2 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Prophet/">
-                    Prophet <span class="right">8 篇</span></a>
+                <a class="no-padding" href="/categories/R/">
+                    R <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/数据科学/">
+                    数据科学 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Git/">
+                    Git <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -257,7 +233,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/ECharts/">ECharts</a>
+    <a class="breadcrumb" href="/categories/Python/">Python</a>
 
 
         
@@ -274,12 +250,12 @@
             <div class="article-title">
                 
     
-        <h1>ECharts 测试</h1>
+        <h1>在树莓派上编译安装 OpenCV</h1>
     
 
 
             </div>
-            <time class="red-link-context" datetime="2016-12-29T12:30:30.000Z"><a href="/2016/12/29/20161229-ECharts测试/">2016-12-29</a></time>
+            <time class="red-link-context" datetime="2018-01-31T13:18:56.000Z"><a href="/2018/01/31/20180131-在树莓派上编译安装-OpenCV/">2018-01-31</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -289,58 +265,86 @@
             
     <div class="tags-row">
         
-            <a href="/tags/ECharts/" class="chip red">ECharts</a>
+            <a href="/tags/Python/" class="chip red">Python</a>
         
-            <a href="/tags/测试/" class="chip red">测试</a>
+            <a href="/tags/树莓派/" class="chip red">树莓派</a>
+        
+            <a href="/tags/OpenCV/" class="chip red">OpenCV</a>
         
     </div>
 
 
             <div class="toc red-link-context hide-on-med-and-down">
-    
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-扩展可用空间（可选）"><span class="section table-of-contents-text">1. 扩展可用空间（可选）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-安装依赖项"><span class="section table-of-contents-text">2. 安装依赖项</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-1-升级现有包"><span class="section table-of-contents-text">2.1 升级现有包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-2-安装编译工具"><span class="section table-of-contents-text">2.2 安装编译工具</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-3-安装图像和视频相关接口包"><span class="section table-of-contents-text">2.3 安装图像和视频相关接口包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-4-安装-GTK-库，用以编译-OpenCV-中的-highgui-模块"><span class="section table-of-contents-text">2.4 安装 GTK 库，用以编译 OpenCV 中的 highgui 模块</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-5-安装加速-OpenCV-运算的额外包"><span class="section table-of-contents-text">2.5 安装加速 OpenCV 运算的额外包</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-6-安装-python-头文件"><span class="section table-of-contents-text">2.6 安装 python 头文件</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-下载-OpenCV-源代码"><span class="section table-of-contents-text">3. 下载 OpenCV 源代码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-选择-python-版本，并创建新环境-（可选）"><span class="section table-of-contents-text">4. 选择 python 版本，并创建新环境 （可选）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-编译安装-OpenCV"><span class="section table-of-contents-text">5. 编译安装 OpenCV</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#5-1-定位到-OpenCV-源代码文件下，并使用-CMake-进行编译："><span class="section table-of-contents-text">5.1 定位到 OpenCV 源代码文件下，并使用 CMake 进行编译：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#5-2-编译-OpenCV"><span class="section table-of-contents-text">5.2 编译 OpenCV</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#5-3-如有意外"><span class="section table-of-contents-text">5.3 如有意外</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#5-4-安装-OpenCV"><span class="section table-of-contents-text">5.4 安装 OpenCV</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-安装-OpenCV-的收尾工作（可选）"><span class="section table-of-contents-text">6. 安装 OpenCV 的收尾工作（可选）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#7-确认-OpenCV-成功安装"><span class="section table-of-contents-text">7. 确认 OpenCV 成功安装</span></a></li></ol>
 </div>
 
 
             <div class="entry red-link-context">
-                <script src="http://oiy82v3pb.bkt.clouddn.com/echarts.js"></script>
-<div id="main" style="width: 600px;height:400px;" align="center"></div>
-<script type="text/javascript">
-var myChart = echarts.init(document.getElementById('main'));
-
-var option = {
-title: {
-text: 'ECharts 入门示例'
-},
-tooltip: {},
-legend: {
-data:['销量']
-},
-xAxis: {
-data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-},
-yAxis: {},
-series: [{
-name: '销量',
-type: 'bar',
-data: [5, 20, 36, 10, 10, 20]
-}]
-};
-
-myChart.setOption(option);
-</script>
+                <ul>
+<li>本次使用的树莓派版本为 <strong>Raspberry Pi 3 Model B</strong>，搭载 <strong>Raspbian</strong> 系统</li>
+<li><strong>OpenCV</strong> 版本为 3.1.0</li>
+<li><strong>Python</strong> 版本为 3.5</li>
+</ul>
+<p>参考博客为：<a href="https://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/" title="Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3" target="_blank" rel="external">Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3</a></p>
+<hr>
+<p>开始之前，请先确保你可以连接上树莓派，下面两种方式可以二选一：</p>
+<ul>
+<li>将树莓派连接上一个显示器，直接在命令行中操作</li>
+<li>通过 ssh 方式登陆连接上树莓派</li>
+</ul>
+<hr>
+<h2 id="1-扩展可用空间（可选）"><a href="#1-扩展可用空间（可选）" class="headerlink" title="1. 扩展可用空间（可选）"></a>1. 扩展可用空间（可选）</h2><p>如果使用的是一个崭新的树莓派，可以通过扩展可用空间的方式确保储存空间够用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo raspi-config</div></pre></td></tr></table></figure>
+<p>选择第一个选项 <strong>1. Expand Filesystem</strong>，回车确认后，跳转至 <strong>Finish</strong> 结束即可。</p>
+<p>由于系统版本问题，笔者的该选项卡是在 <strong>Advanced Options</strong> 下的。</p>
+<p>之后重启树莓派：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo reboot</div></pre></td></tr></table></figure>
+<p>还可以通过卸载 Wolfram engine 获得更多的可用空间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get purge wolfram-engine</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-安装依赖项"><a href="#2-安装依赖项" class="headerlink" title="2. 安装依赖项"></a>2. 安装依赖项</h2><h3 id="2-1-升级现有包"><a href="#2-1-升级现有包" class="headerlink" title="2.1 升级现有包"></a>2.1 升级现有包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get upgrade</div></pre></td></tr></table></figure>
+<h3 id="2-2-安装编译工具"><a href="#2-2-安装编译工具" class="headerlink" title="2.2 安装编译工具"></a>2.2 安装编译工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install build-essential cmake pkg-config</div></pre></td></tr></table></figure>
+<h3 id="2-3-安装图像和视频相关接口包"><a href="#2-3-安装图像和视频相关接口包" class="headerlink" title="2.3 安装图像和视频相关接口包"></a>2.3 安装图像和视频相关接口包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev</div><div class="line">$ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev</div><div class="line">$ sudo apt-get install libxvidcore-dev libx264-dev</div></pre></td></tr></table></figure>
+<h3 id="2-4-安装-GTK-库，用以编译-OpenCV-中的-highgui-模块"><a href="#2-4-安装-GTK-库，用以编译-OpenCV-中的-highgui-模块" class="headerlink" title="2.4 安装 GTK 库，用以编译 OpenCV 中的 highgui 模块"></a>2.4 安装 GTK 库，用以编译 OpenCV 中的 highgui 模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
+<h3 id="2-5-安装加速-OpenCV-运算的额外包"><a href="#2-5-安装加速-OpenCV-运算的额外包" class="headerlink" title="2.5 安装加速 OpenCV 运算的额外包"></a>2.5 安装加速 OpenCV 运算的额外包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libatlas-base-dev gfortran</div></pre></td></tr></table></figure>
+<h3 id="2-6-安装-python-头文件"><a href="#2-6-安装-python-头文件" class="headerlink" title="2.6 安装 python 头文件"></a>2.6 安装 python 头文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python2.7-dev python3.5-dev</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-下载-OpenCV-源代码"><a href="#3-下载-OpenCV-源代码" class="headerlink" title="3. 下载 OpenCV 源代码"></a>3. 下载 OpenCV 源代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip</div><div class="line">$ unzip opencv.zip</div><div class="line"></div><div class="line">$ wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip</div><div class="line">$ unzip opencv_contrib.zip</div></pre></td></tr></table></figure>
+<p><em>注：</em>请务必保证 OpenCV 和 OpenCV_Contrib 的版本一致</p>
+<hr>
+<h2 id="4-选择-python-版本，并创建新环境-（可选）"><a href="#4-选择-python-版本，并创建新环境-（可选）" class="headerlink" title="4. 选择 python 版本，并创建新环境 （可选）"></a>4. 选择 python 版本，并创建新环境 （可选）</h2><p>参考博客的教程中使用 <strong>virtualenv  &amp; virtualenvwrapper</strong> 工具在系统的 python 下创建了新的环境，用以编译安装 OpenCV，感兴趣的话可以跳转至 <a href="https://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/" title="Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3" target="_blank" rel="external">该教程</a> 进行查看。</p>
+<p>本次，笔者直接在系统 python ( python = 3.5 )的环境下直接编译安装 OpenCV，因此这一步可以省略，不过需要保证该 python 环境下已有 <strong>numpy</strong> 库和 <strong>pip</strong> 库。</p>
+<hr>
+<h2 id="5-编译安装-OpenCV"><a href="#5-编译安装-OpenCV" class="headerlink" title="5. 编译安装 OpenCV"></a>5. 编译安装 OpenCV</h2><h3 id="5-1-定位到-OpenCV-源代码文件下，并使用-CMake-进行编译："><a href="#5-1-定位到-OpenCV-源代码文件下，并使用-CMake-进行编译：" class="headerlink" title="5.1 定位到 OpenCV 源代码文件下，并使用 CMake 进行编译："></a>5.1 定位到 OpenCV 源代码文件下，并使用 CMake 进行编译：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ cd ~/opencv-3.1.0/</div><div class="line">$ mkdir build</div><div class="line">$ cd build</div><div class="line">$ cmake -D CMAKE_BUILD_TYPE=RELEASE \</div><div class="line">    -D INSTALL_PYTHON_EXAMPLES=ON \</div><div class="line">    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.1.0/modules \</div><div class="line">    -D BUILD_EXAMPLES=ON \</div><div class="line">	-D WITH_CUDA=OFF \</div><div class="line">	-D BUILD_TESTS=OFF \</div><div class="line">	-D CMAKE_INSTALL_PREFIX=/usr/local \</div><div class="line">	-D BUILD_DOCS=OFF \</div><div class="line">	-D ENABLE_PRECOMPILED_HEADERS=OFF \</div><div class="line">	-D WITH_OPENMP=ON </div><div class="line">	-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 ..</div></pre></td></tr></table></figure>
+<p>顺利的话，在 CMake 的输出里可以看到 python3 的 <strong>Interpreter</strong> 、<strong>Libraries</strong> 、<strong>numpy</strong> 、<strong>packages path</strong> 路径均正常。</p>
+<h3 id="5-2-编译-OpenCV"><a href="#5-2-编译-OpenCV" class="headerlink" title="5.2 编译 OpenCV"></a>5.2 编译 OpenCV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make -j4</div></pre></td></tr></table></figure>
+<p><code>-j4</code> 指的是使用 4 核。</p>
+<p>这个过程会持续较长的时间。</p>
+<h3 id="5-3-如有意外"><a href="#5-3-如有意外" class="headerlink" title="5.3 如有意外"></a>5.3 如有意外</h3><p>如果脸不黑的话，<code>make</code> 将会顺利结束。但如果有错误发生的话，需要清除当前编译的结果，重新编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make clean</div></pre></td></tr></table></figure>
+<p>特别是，多核编译时，可能会出错。可尝试单核编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make</div></pre></td></tr></table></figure>
+<p>当然，也有可能是其他错误导致的，这就需要你耐心检查谷歌去解决。</p>
+<h3 id="5-4-安装-OpenCV"><a href="#5-4-安装-OpenCV" class="headerlink" title="5.4 安装 OpenCV"></a>5.4 安装 OpenCV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo make install</div><div class="line">$ sudo ldconfig</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-安装-OpenCV-的收尾工作（可选）"><a href="#6-安装-OpenCV-的收尾工作（可选）" class="headerlink" title="6. 安装 OpenCV 的收尾工作（可选）"></a>6. 安装 OpenCV 的收尾工作（可选）</h2><p>对于 python3：</p>
+<p>在成功运行 <code>make install</code> 之后，OpenCV 与 python3 的链接应当安装在了 <code>/usr/local/lib/python3.5/dist-packages</code> ，你可以使用 <code>ls</code> 命令确认：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -l /usr/local/lib/python3.5/dist-packages/</div></pre></td></tr></table></figure>
+<p>但是输出的 <code>.so</code> 文件名并非是 <code>cv2.so</code> ，而是 <code>cv2.cpython-35m-arm-linux-gnueabinf.so</code> ，还需要做一点小调整（ <del>非必须</del> ）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local/lib/python3.5/dist-packages/</div><div class="line">$ sudo mv cv2.cpython-35m-arm-linux-gnueabinf.so cv2.so</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-确认-OpenCV-成功安装"><a href="#7-确认-OpenCV-成功安装" class="headerlink" title="7. 确认 OpenCV 成功安装"></a>7. 确认 OpenCV 成功安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python3</div><div class="line">&gt;&gt;&gt; import cv2</div><div class="line">&gt;&gt;&gt; cv2.__version__</div><div class="line">&apos;3.1.0&apos;</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>参考博客：<a href="https://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/" title="Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3" target="_blank" rel="external">Install guide: Raspberry Pi 3 + Raspbian Jessie + OpenCV 3</a><br>转载请注明来自 <a href="https://vectorf.github.io">Vector Blog</a></p>
+</blockquote>
 
                 
-<p class="red-link-context">
-    <a href="/2017/02/20/20170221-揭开机器学习的面纱/" rel="next" title="揭开机器学习的面纱">
-    上一篇：揭开机器学习的面纱
-  </a>
-</p>
-
 
 
 <p class="red-link-context">
-    <a href="/2016/12/11/20161210-机器学习与Dota2英雄属性/" rel="next" title="机器学习与 Dota2 英雄属性">
-    下一篇：机器学习与 Dota2 英雄属性
+    <a href="/2017/07/10/20170710-初探RSelenium/" rel="next" title="初探 RSelenium —— 基于豆瓣电影的爬虫实例">
+    下一篇：初探 RSelenium —— 基于豆瓣电影的爬虫实例
   </a>
 </p>
 
@@ -358,33 +362,6 @@ myChart.setOption(option);
  
 
 
-
-    <section id="comment">
-        <div class="card">
-            <div class="card-content">
-                <!-- Duoshuo Comment BEGIN -->
-                <div class="ds-thread" data-thread-key="2016/12/29/20161229-ECharts测试/" data-title="ECharts 测试" data-url="https://vectorf.github.io/2016/12/29/20161229-ECharts测试/"></div>
-
-                <script type="text/javascript">
-                    console.log(document.querySelector('.ds-thread'));
-                    var duoshuoQuery = {
-                        short_name: 'vectorblogcomment'
-                    };
-                    (function() {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';
-                        ds.async = true;
-                        ds.src = (document.location.protocol == 'https:'
-                            ? 'https:'
-                            : 'http:') + '//static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                <!-- Duoshuo Comment END -->
-            </div>
-        </div>
-    </section>
 
 
 
@@ -436,7 +413,7 @@ myChart.setOption(option);
             <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
-                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">该博客主题raytaylorism作者</a>
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">博客主题 raytaylorism 作者</a>
                 
             </div>
             
@@ -446,7 +423,7 @@ myChart.setOption(option);
 
     <div class="footer-copyright red-link-context">
         <div class="container">
-            © 2016 example.com, All rights reserved.
+            © 2018 vectorf.github.io, All rights reserved.
             <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
         </div>
     </div>
