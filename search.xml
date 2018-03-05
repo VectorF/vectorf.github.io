@@ -4,6 +4,73 @@
   
     
     <entry>
+      <title><![CDATA[Linux 常用命令汇总（持续更新）]]></title>
+      <url>https://vectorf.github.io/2018/02/20/20180220-Linux%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p>记录 <strong>Linux</strong> 环境使用过程中遇到的常用命令，本文持续更新。</p>
+<p>Linux 环境： Ubuntu 系统</p>
+<hr>
+<h2 id="1-配置网络环境"><a href="#1-配置网络环境" class="headerlink" title="1. 配置网络环境"></a>1. 配置网络环境</h2><p>连接网络环境需要 <strong>ip 地址</strong>、<strong>子网掩码</strong>、<strong>网关</strong>、<strong>DNS</strong>。这些都可以向网管咨询后得到。在得到这些参数之后，就需要对本机网络环境进行配置。</p>
+<p>Ubuntu 桌面版配置网络环境较为简单，直接在设置中对于联网参数进行设置即可。</p>
+<p>而 Ubuntu Server 版由于没有可视化界面，只能通过命令行操作，记录配置命如下。</p>
+<p>###1.1 添加 ip 地址、子网掩码和网关参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/network/interfaces</div></pre></td></tr></table></figure>
+<p> 在文件中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">iface eno1 inet static</div><div class="line">address ip 地址</div><div class="line">netmask 子网掩码</div><div class="line">gateway 网关</div></pre></td></tr></table></figure>
+<p><em>注：</em><code>eno1</code> 代表本机的网卡名称，需根据自身实际情况设置。</p>
+<h3 id="1-2-添加-DNS"><a href="#1-2-添加-DNS" class="headerlink" title="1.2 添加 DNS"></a>1.2 添加 DNS</h3><p>如果直接在 DNS 配置文件 <code>/etc/resolv.conf</code> 中添加 DNS 信息，在机器重启后，该文件又会恢复默认。为了保证重启后 DNS 信息的稳定，可新建并保存 <code>/etc/resolvconf/resolv.conf.d/tail</code> 文件信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/resolvconf/resolv.conf.d/tail</div></pre></td></tr></table></figure>
+<p>在文件中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nameservers DNS信息1</div><div class="line">nameservers DNS信息2</div><div class="line">nameservers DNS信息3</div></pre></td></tr></table></figure>
+<h3 id="1-3-重启网络配置环境文件"><a href="#1-3-重启网络配置环境文件" class="headerlink" title="1.3 重启网络配置环境文件"></a>1.3 重启网络配置环境文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo /etc/init.d/resolvconf restart</div><div class="line">$ sudo /etc/init.d/networking restart</div></pre></td></tr></table></figure>
+<h3 id="1-4-确认修改"><a href="#1-4-确认修改" class="headerlink" title="1.4 确认修改"></a>1.4 确认修改</h3><p>查询本机当前网络配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ifconfig</div></pre></td></tr></table></figure>
+<p>查询 DNS 信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/resolv.conf</div></pre></td></tr></table></figure>
+<p>确认网络连接通畅：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ping 127.0.0.1</div><div class="line">$ ping www.baidu.com</div></pre></td></tr></table></figure>
+<h2 id="2-读取-U-盘"><a href="#2-读取-U-盘" class="headerlink" title="2. 读取 U 盘"></a>2. 读取 U 盘</h2><p>插入 U 盘后，需要挂载。</p>
+<p>首先，查看所插入 U 盘对应的名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo fdisk -l</div></pre></td></tr></table></figure>
+<p>假设得到的是 <code>/dev/sdc1</code> ，将其挂载到 <code>/mnt</code> 下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo mount /dev/sdc1 /mnt</div></pre></td></tr></table></figure>
+<p>查看 <code>/mnt</code> 内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ll /mnt</div></pre></td></tr></table></figure>
+<p>卸载 <code>/mnt</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo umount /mnt</div></pre></td></tr></table></figure>
+<h2 id="3-开启-ssh-server"><a href="#3-开启-ssh-server" class="headerlink" title="3. 开启 ssh server"></a>3. 开启 ssh server</h2><p>首先，安装 ssh server ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<p>开启 ssh server ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo service ssh start</div><div class="line">$ sudo /etc/init.d/ssh start</div></pre></td></tr></table></figure>
+<p>检查 ssh server 服务开启状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -s | grep ssh</div></pre></td></tr></table></figure>
+<h2 id="4-gcc-和-g-安装及版本切换"><a href="#4-gcc-和-g-安装及版本切换" class="headerlink" title="4. gcc 和 g++ 安装及版本切换"></a>4. gcc 和 g++ 安装及版本切换</h2><p>在需要编译安装程序的时候，往往对 gcc 和 g++ 版本有所要求，过高或过低都不行。</p>
+<p>以安装版本为 5 的  gcc 和 g++ 为例。</p>
+<p>首先进行安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install gcc-5 gcc-5-multilib g++-5 g++-5-multilib</div></pre></td></tr></table></figure>
+<p>添加该版本 gcc 和 g++ 信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 40 </div><div class="line">$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 40</div></pre></td></tr></table></figure>
+<p><em>注：</em> 其中 40 是自己设置的参数，对于不同版本应设置不同数值，以便区分。</p>
+<p>切换系统默认版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo update-alternatives --config gcc</div><div class="line">$ sudo update-alternatives --config g++</div></pre></td></tr></table></figure>
+<p>根据提示，输入相应数值，切换版本即可。</p>
+<h2 id="5-代理设置"><a href="#5-代理设置" class="headerlink" title="5. 代理设置"></a>5. 代理设置</h2><p>Ubuntu 系统下系统代理文件设置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/apt/apt.conf</div></pre></td></tr></table></figure>
+<h2 id="6-查看端口占用"><a href="#6-查看端口占用" class="headerlink" title="6. 查看端口占用"></a>6. 查看端口占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo netstat -apn | grep 80</div></pre></td></tr></table></figure>
+<h2 id="7-查询-GPU-及内存使用情况"><a href="#7-查询-GPU-及内存使用情况" class="headerlink" title="7. 查询 GPU 及内存使用情况"></a>7. 查询 GPU 及内存使用情况</h2><p>查询 GPU 使用情况的几种方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ lspci  | grep -i vga</div><div class="line">$ nvidia-smi</div><div class="line">$ watch -n 2 nvidia-smi</div></pre></td></tr></table></figure>
+<p><em>注：</em> <code>watch -n 2 nvidia-smi</code> 为每隔两秒循环更新 GPU 使用情况。</p>
+<p>查询内存使用情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ dmidecode|grep -P -A5 &quot;Memory\s+Device&quot;|grep Size|grep -v Range</div></pre></td></tr></table></figure>
+<h2 id="8-统计某文件夹下文件的个数"><a href="#8-统计某文件夹下文件的个数" class="headerlink" title="8. 统计某文件夹下文件的个数"></a>8. 统计某文件夹下文件的个数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -l |grep &quot;^-&quot;|wc -l</div></pre></td></tr></table></figure>
+<h2 id="9-管理员添加用户"><a href="#9-管理员添加用户" class="headerlink" title="9. 管理员添加用户"></a>9. 管理员添加用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo adduser 新增的用户名称</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>转载请注明来自 <a href="https://vectorf.github.io">Vector Blog</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[在树莓派上编译安装 OpenCV]]></title>
       <url>https://vectorf.github.io/2018/01/31/20180131-%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85-OpenCV/</url>
       <content type="html"><![CDATA[<ul>
