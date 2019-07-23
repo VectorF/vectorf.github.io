@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vectorf.github.io/"/>
-  <updated>2018-03-05T01:51:56.424Z</updated>
+  <updated>2018-03-05T01:51:56.000Z</updated>
   <id>https://vectorf.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://vectorf.github.io/2018/02/20/20180220-Linux%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
     <id>https://vectorf.github.io/2018/02/20/20180220-Linux 常用命令汇总（持续更新）/</id>
     <published>2018-02-20T13:18:56.000Z</published>
-    <updated>2018-03-05T01:51:56.424Z</updated>
+    <updated>2018-03-05T01:51:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>记录 <strong>Linux</strong> 环境使用过程中遇到的常用命令，本文持续更新。</p>
 <p>Linux 环境： Ubuntu 系统</p>
@@ -110,7 +110,7 @@
     <link href="https://vectorf.github.io/2018/01/31/20180131-%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85-OpenCV/"/>
     <id>https://vectorf.github.io/2018/01/31/20180131-在树莓派上编译安装-OpenCV/</id>
     <published>2018-01-31T13:18:56.000Z</published>
-    <updated>2018-01-31T13:28:59.739Z</updated>
+    <updated>2018-01-31T13:28:59.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>本次使用的树莓派版本为 <strong>Raspberry Pi 3 Model B</strong>，搭载 <strong>Raspbian</strong> 系统</li>
@@ -196,7 +196,7 @@
     <link href="https://vectorf.github.io/2017/07/10/20170710-%E5%88%9D%E6%8E%A2RSelenium/"/>
     <id>https://vectorf.github.io/2017/07/10/20170710-初探RSelenium/</id>
     <published>2017-07-10T15:32:08.000Z</published>
-    <updated>2018-01-31T14:57:49.899Z</updated>
+    <updated>2018-01-31T14:57:49.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包可通过 R 实现对浏览器的自动控制，完成诸如“点击”，“输入”等操作，从而爬取动态页面，解放你的双手！ </p>
 <p>本文基于 <a href="https://movie.douban.com" target="_blank" rel="external">豆瓣电影</a> 网站的爬虫实例， 对 <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html" target="_blank" rel="external">RSelenium</a> 包的使用做了初步的介绍。</p>
@@ -328,7 +328,7 @@
     <link href="https://vectorf.github.io/2017/05/04/20170504-PythonvsR%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
     <id>https://vectorf.github.io/2017/05/04/20170504-PythonvsR在机器学习和数据分析领域中的对比/</id>
     <published>2017-05-04T14:00:30.000Z</published>
-    <updated>2018-01-31T14:59:40.111Z</updated>
+    <updated>2018-01-31T14:59:40.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="封面图.png" width="800" height="400" alt="0"><br><br></div>
 
@@ -385,7 +385,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（七）/</id>
     <published>2017-03-14T13:21:11.000Z</published>
-    <updated>2018-01-31T14:54:05.543Z</updated>
+    <updated>2018-01-31T14:54:05.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -423,9 +423,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -436,7 +436,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（六）/</id>
     <published>2017-03-14T13:21:04.000Z</published>
-    <updated>2018-01-31T14:54:08.030Z</updated>
+    <updated>2018-01-31T14:54:08.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -485,9 +485,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -498,7 +498,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（五）/</id>
     <published>2017-03-14T13:20:58.000Z</published>
-    <updated>2018-01-31T14:53:54.272Z</updated>
+    <updated>2018-01-31T14:53:54.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -542,9 +542,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -555,7 +555,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（四）/</id>
     <published>2017-03-14T13:20:51.000Z</published>
-    <updated>2018-01-31T14:54:01.371Z</updated>
+    <updated>2018-01-31T14:54:01.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -610,9 +610,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -623,7 +623,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（三）/</id>
     <published>2017-03-14T13:20:43.000Z</published>
-    <updated>2018-01-31T14:53:57.400Z</updated>
+    <updated>2018-01-31T14:53:57.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -678,9 +678,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -691,7 +691,7 @@
     <link href="https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/14/20170314-Prophet之使用篇（二）/</id>
     <published>2017-03-14T13:18:12.000Z</published>
-    <updated>2018-01-31T14:53:38.080Z</updated>
+    <updated>2018-01-31T14:53:38.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -739,9 +739,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -752,7 +752,7 @@
     <link href="https://vectorf.github.io/2017/03/12/20170312-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/03/12/20170312-Prophet之使用篇（一）/</id>
     <published>2017-03-12T06:02:12.000Z</published>
-    <updated>2018-01-31T14:53:44.568Z</updated>
+    <updated>2018-01-31T14:53:44.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
 
@@ -834,140 +834,9 @@
     
       <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
     
-      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
       <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
-      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Prophet 之安装篇</title>
-    <link href="https://vectorf.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
-    <id>https://vectorf.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
-    <published>2017-03-08T08:30:30.000Z</published>
-    <updated>2018-01-31T14:54:25.734Z</updated>
-    
-    <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
-
-<blockquote>
-<p>本安装文档主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/installation.html" target="_blank" rel="external">Prophet Installation</a> 官方安装文档。</p>
-</blockquote>
-<h2 id="在-R-上安装-Prophet"><a href="#在-R-上安装-Prophet" class="headerlink" title="在 R 上安装 Prophet"></a>在 R 上安装 Prophet</h2><h3 id="一、Windows-系统安装-Prophet-前的准备工作"><a href="#一、Windows-系统安装-Prophet-前的准备工作" class="headerlink" title="一、Windows 系统安装 Prophet 前的准备工作"></a>一、Windows 系统安装 Prophet 前的准备工作</h3><p>如果是 Windows 系统，需要按照 <a href="https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Windows" target="_blank" rel="external">rstan</a> 提供的教程给 R 安装一个编译器。其中，最为关键的一步就是先安装 <a href="http://cran.r-project.org/bin/windows/Rtools/" target="_blank" rel="external">Rtools</a> 。</p>
-<h4 id="1-安装-R-和-RStudio"><a href="#1-安装-R-和-RStudio" class="headerlink" title="1. 安装 R 和 RStudio"></a>1. 安装 R 和 RStudio</h4><h4 id="2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。"><a href="#2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。" class="headerlink" title="2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。"></a>2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。</h4><p>假如 Rtools 安装在 C 盘，则运行<code>Sys.getenv(&#39;PATH&#39;)</code>后，输出应包含如下所示的结果（<em>注：</em>原文教程中结果为”C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;”）；运行<code>system(&#39;g++ -v&#39;)</code>和<code>system(&#39;where make&#39;)</code>后输出结果正常，如下所示。</p>
-<p>否则，请确保 Rtools 安装目录已添加至系统环境变量中。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; Sys.getenv(<span class="string">'PATH'</span>)</div><div class="line">C:\\Rtools\\bin;C:\\Rtools\\mingw_64\\bin;</div><div class="line">&gt; system(<span class="string">'g++ -v'</span>)</div><div class="line">Using built-<span class="keyword">in</span> specs.</div><div class="line">COLLECT_GCC=C:\Rtools\mingw_64\bin\G__~<span class="number">1.</span>EXE</div><div class="line"><span class="comment"># 已省略部分输出结果</span></div><div class="line">gcc version <span class="number">4.9</span><span class="number">.3</span> (x86_64-posix-seh, Built by MinGW-W64 project) </div><div class="line">&gt; system(<span class="string">'where make'</span>)</div><div class="line">C:\Rtools\bin\make.exe</div></pre></td></tr></table></figure>
-<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h4><p><del>非必须操作</del>，不会影响 RStan 正常工作，但强烈推荐。</p>
-<ul>
-<li>创建一个 Makevars 文件，代码如下：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dotR &lt;- file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".R"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(dotR)) </div><div class="line">  dir.create(dotR)</div><div class="line">M &lt;- file.path(dotR, <span class="string">"Makevars"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(M)) </div><div class="line">  file.create(M)</div><div class="line">cat(<span class="string">"\nCXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>如果你使用的是 Rtools33 （或更高版本），则需要运行下列代码：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">'Sys.setenv(BINPREF = "C:/Rtools/mingw_$(WIN)/bin/")'</span>,</div><div class="line">    file = file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".Rprofile"</span>), </div><div class="line">    sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>如果你使用的 g++ 版本号在 6 或以上，且希望关掉和 Stan 不相关的一些警告信息，可以运行下列代码：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">"\nCXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>确认配置成功，可运行下列代码：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看配置的信息</span></div><div class="line">cat(readLines(M), sep = <span class="string">"\n"</span>)</div><div class="line"><span class="comment"># 或是找到该配置文件的路径，自行打开查看</span></div><div class="line">cat(M)</div></pre></td></tr></table></figure>
-<h4 id="4-安装-RStan"><a href="#4-安装-RStan" class="headerlink" title="4. 安装 RStan"></a>4. 安装 RStan</h4><ul>
-<li>安装最新版本的 RStan 及其依赖包，代码如下：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 如果 https 下载不成功，可改为 http</span></div><div class="line"><span class="comment"># 确保 dependencies=TRUE ，安装依赖包</span></div><div class="line">install.packages(<span class="string">"rstan"</span>, repos = <span class="string">"https://cloud.r-project.org/"</span>, dependencies=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>如果上述过程均失败，可通过下列代码按源码安装：</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 可根据你想使用的内核数来更改数字“4”</span></div><div class="line">Sys.setenv(MAKEFLAGS = <span class="string">"-j4"</span>) </div><div class="line">install.packages(<span class="string">"rstan"</span>, type = <span class="string">"source"</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>安装完成后，<strong>重启 R</strong> 。并在载入 RStan 前，确认没有旧版本 RStan 所创建（可能是自动创建）的产物已被载入 R 中。</li>
-<li>通过运行如下代码，确认工具链已生效，代码应当返回值<code>10</code>:</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fx &lt;- inline::cxxfunction( signature(x = <span class="string">"integer"</span>, y = <span class="string">"numeric"</span> ) , <span class="string">'</span></div><div class="line">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</div><div class="line">' )</div><div class="line">fx( <span class="number">2L</span>, <span class="number">5</span> ) <span class="comment"># 应当返回值 10</span></div></pre></td></tr></table></figure>
-<p><em>注：</em>以上命令都是在 R 中输入运行的。</p>
-<h3 id="二、安装-Prophet-包"><a href="#二、安装-Prophet-包" class="headerlink" title="二、安装 Prophet 包"></a>二、安装 Prophet 包</h3><p>在 R 中运行如下代码：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R </span></div><div class="line">install.packages(<span class="string">'prophet'</span>)</div></pre></td></tr></table></figure>
-<h2 id="在-Python-上安装-Prophet"><a href="#在-Python-上安装-Prophet" class="headerlink" title="在 Python 上安装 Prophet"></a>在 Python 上安装 Prophet</h2><h3 id="一、安装-Prophet-前的准备工作"><a href="#一、安装-Prophet-前的准备工作" class="headerlink" title="一、安装 Prophet 前的准备工作"></a>一、安装 Prophet 前的准备工作</h3><p>Python 中的 Prophet 最主要的依赖库是 <code>pystan</code>。不管什么系统，都需按照 <a href="http://pystan.readthedocs.io/en/latest/installation_beginner.html" target="_blank" rel="external">安装教程</a> 先安装<code>pystan</code>。</p>
-<h4 id="1-安装-Python"><a href="#1-安装-Python" class="headerlink" title="1. 安装 Python"></a>1. 安装 Python</h4><p>推荐使用 Anaconda 。Anaconda 是一个开源的 Python 发行版本，内置<code>conda</code>来实现<code>pip</code>库管理的功能。</p>
-<h4 id="2-安装-Pthon-的依赖库"><a href="#2-安装-Pthon-的依赖库" class="headerlink" title="2. 安装 Pthon 的依赖库"></a>2. 安装 Pthon 的依赖库</h4><p>如果你使用的是 Anaconda , numpy 和 cython 库已经内置在其中。但是以防万一，你也可以使用<code>conda</code>去安装它们：</p>
-<ul>
-<li><p>打开一个命令行程序</p>
-</li>
-<li><p>使用<code>conda install numpy</code>命令去安装 numpy ; 使用<code>conda install cython</code>命令去安装 cython</p>
-</li>
-</ul>
-<h4 id="3-安装-PyStan-库"><a href="#3-安装-PyStan-库" class="headerlink" title="3. 安装 PyStan 库"></a>3. 安装 PyStan 库</h4><p>  Mac/Linux 用户按照下述步骤安装 PyStan 即可。</p>
-<ul>
-<li>打开一个命令行程序</li>
-<li><p>使用<code>pip install pystan</code>去安装 PyStan</p>
-<p>Windows 用户请按照“Windows 系统安装 PyStan”中的步骤进行安装。</p>
-</li>
-</ul>
-<h4 id="Windows-系统安装-PyStan"><a href="#Windows-系统安装-PyStan" class="headerlink" title="** Windows 系统安装 PyStan"></a>** Windows 系统安装 PyStan</h4><p>如果是 Windows 系统，在安装 PyStan 前需要按照 <a href="http://pystan.readthedocs.io/en/latest/windows.html" target="_blank" rel="external">安装教程</a> 给 PyStan 安装一个编译器。其中，最为关键的一步就是先安装  <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">C++ 编译器</a> 。</p>
-<p>Windows 系统下使用 PyStan 有下列<em>注意事项</em>：</p>
-<ol>
-<li><p>需要使用 Python 3.5 或更高版本</p>
-</li>
-<li><p>抽取样本时，必须使用<code>n_jobs=1</code>（Windows 系统下的 PyStan 不能使用并行多线程运算）</p>
-</li>
-<li><p>安装 C++ 编译器</p>
-<p>进入 <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">Visual C++ Build Tools</a> 网页，点击“Download Visual C++ Build Tools 2015”。</p>
-<p>如果你遇到了安装的问题，可以去 Python维基下的 <a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">Windows Compilers</a> 寻求解决办法。</p>
-<p>如果你使用的 Windows 7 系统，可能需要在安装 Visual C++ Build Tools 下先更新 Microsoft .NET Framework 。</p>
-</li>
-<li><p>安装 PyStan</p>
-<p>打开命令行程序，输入下列命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pystan</div></pre></td></tr></table></figure>
-<p>可通过在 python 中输入下列抽样的代码，验证安装成功：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pystan</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model_code = <span class="string">'parameters &#123;real y;&#125; model &#123;y ~ normal(0,1);&#125;'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model = pystan.StanModel(model_code=model_code)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = model.sampling(n_jobs=<span class="number">1</span>).extract()[<span class="string">'y'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y.mean()  <span class="comment"># 结果应当在 0 附近</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="二、安装-Prophet"><a href="#二、安装-Prophet" class="headerlink" title="二、安装 Prophet"></a>二、安装 Prophet</h3><p>使用命令行程序运行下列<code>pip</code>命令安装即可：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bash</div><div class="line">$ pip install fbprophet</div></pre></td></tr></table></figure>
-<h4 id="Ubuntu-系统安装注意事项"><a href="#Ubuntu-系统安装注意事项" class="headerlink" title="Ubuntu 系统安装注意事项"></a>Ubuntu 系统安装注意事项</h4><ol>
-<li><p>在 Ubuntu 16.04 系统下，使用系统内置的 python 2.7 安装上 fbprophet 后，导入 <code>import fbprophet</code> 时提示需要安装 <code>matplotlib</code> 库和 <code>python-tk</code>。打开一个终端，输入下列命令即可：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~ sudo pip install matplotlib</div><div class="line">~ sudo apt-get install tk-dev</div><div class="line">~ sudo apt-get install python-tk</div></pre></td></tr></table></figure>
-</li>
-<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装 fbprophet ，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
-<p>运行检验代码后的错误信息：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-28-15d1abb9774a&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    model = pystan.StanModel(model_code=model_code)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /tmp/tmpgc2vTO/stanfit4anon_model_5944bb5b3a93728ca2bf_765485408593311.so: undefined symbol: _ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</div></pre></td></tr></table></figure>
-<p>后尝试在 Anaconda 的 Spyder 中将 console 的 python 路径更改为 <code>/usr/bin/python</code> ，运行检验代码仍然报错：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line">    </div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line"></div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line">    </div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /home/username/anaconda2/lib/python2<span class="number">.7</span>/site-packages/numexpr/../../../libstdc++.so<span class="number">.6</span>: version `GLIBCXX_3<span class="number">.4</span><span class="number">.20</span><span class="string">' not found (required by /tmp/tmptEazgR/stanfit4anon_model_5944b02c79788fa8ca2bf_7654287730157512986.so)</span></div></pre></td></tr></table></figure>
-<p>在网上查询后，发现是由于 Anaconda 中未安装 <code>libgcc</code> 库。打开一个命令行，运行下列代码安装即可：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install libgcc</div></pre></td></tr></table></figure>
-<p>安装 <code>libgcc</code> 库后，就可以成功运行检验代码了。</p>
-<p>机缘巧合下，发现安装 <code>libgcc</code> 库后，使用Anaconda 自带的 python ，也可以成功安装 <code>PyStan</code> 和 <code>fbprophet</code> 了。遂将 Spyder 中 console 的 python 路径更改为原来默认的。</p>
-</li>
-</ol>
-<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
-<p>错误信息：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     </p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
-
-&lt;blockq
-    
-    </summary>
-    
-      <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
-    
-    
-      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
-    
       <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
-    
-      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
     
       <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
@@ -1167,11 +1036,142 @@
   </entry>
   
   <entry>
+    <title>Prophet 之安装篇</title>
+    <link href="https://vectorf.github.io/2017/03/08/20170308-Prophet%20%E4%B9%8B%E5%AE%89%E8%A3%85%E7%AF%87/"/>
+    <id>https://vectorf.github.io/2017/03/08/20170308-Prophet 之安装篇/</id>
+    <published>2017-03-08T08:30:30.000Z</published>
+    <updated>2018-01-31T14:54:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg" width="800" height="350" alt="0"><br><br></div>
+
+<blockquote>
+<p>本安装文档主要翻译整理自 <a href="https://facebookincubator.github.io/prophet/docs/installation.html" target="_blank" rel="external">Prophet Installation</a> 官方安装文档。</p>
+</blockquote>
+<h2 id="在-R-上安装-Prophet"><a href="#在-R-上安装-Prophet" class="headerlink" title="在 R 上安装 Prophet"></a>在 R 上安装 Prophet</h2><h3 id="一、Windows-系统安装-Prophet-前的准备工作"><a href="#一、Windows-系统安装-Prophet-前的准备工作" class="headerlink" title="一、Windows 系统安装 Prophet 前的准备工作"></a>一、Windows 系统安装 Prophet 前的准备工作</h3><p>如果是 Windows 系统，需要按照 <a href="https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Windows" target="_blank" rel="external">rstan</a> 提供的教程给 R 安装一个编译器。其中，最为关键的一步就是先安装 <a href="http://cran.r-project.org/bin/windows/Rtools/" target="_blank" rel="external">Rtools</a> 。</p>
+<h4 id="1-安装-R-和-RStudio"><a href="#1-安装-R-和-RStudio" class="headerlink" title="1. 安装 R 和 RStudio"></a>1. 安装 R 和 RStudio</h4><h4 id="2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。"><a href="#2-安装-Rtools-，确保其安装目录已添加至系统环境变量中。" class="headerlink" title="2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。"></a>2. 安装 Rtools ，确保其安装目录已添加至系统环境变量中。</h4><p>假如 Rtools 安装在 C 盘，则运行<code>Sys.getenv(&#39;PATH&#39;)</code>后，输出应包含如下所示的结果（<em>注：</em>原文教程中结果为”C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;”）；运行<code>system(&#39;g++ -v&#39;)</code>和<code>system(&#39;where make&#39;)</code>后输出结果正常，如下所示。</p>
+<p>否则，请确保 Rtools 安装目录已添加至系统环境变量中。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; Sys.getenv(<span class="string">'PATH'</span>)</div><div class="line">C:\\Rtools\\bin;C:\\Rtools\\mingw_64\\bin;</div><div class="line">&gt; system(<span class="string">'g++ -v'</span>)</div><div class="line">Using built-<span class="keyword">in</span> specs.</div><div class="line">COLLECT_GCC=C:\Rtools\mingw_64\bin\G__~<span class="number">1.</span>EXE</div><div class="line"><span class="comment"># 已省略部分输出结果</span></div><div class="line">gcc version <span class="number">4.9</span><span class="number">.3</span> (x86_64-posix-seh, Built by MinGW-W64 project) </div><div class="line">&gt; system(<span class="string">'where make'</span>)</div><div class="line">C:\Rtools\bin\make.exe</div></pre></td></tr></table></figure>
+<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h4><p><del>非必须操作</del>，不会影响 RStan 正常工作，但强烈推荐。</p>
+<ul>
+<li>创建一个 Makevars 文件，代码如下：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dotR &lt;- file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".R"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(dotR)) </div><div class="line">  dir.create(dotR)</div><div class="line">M &lt;- file.path(dotR, <span class="string">"Makevars"</span>)</div><div class="line"><span class="keyword">if</span> (!file.exists(M)) </div><div class="line">  file.create(M)</div><div class="line">cat(<span class="string">"\nCXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用的是 Rtools33 （或更高版本），则需要运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">'Sys.setenv(BINPREF = "C:/Rtools/mingw_$(WIN)/bin/")'</span>,</div><div class="line">    file = file.path(Sys.getenv(<span class="string">"HOME"</span>), <span class="string">".Rprofile"</span>), </div><div class="line">    sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用的 g++ 版本号在 6 或以上，且希望关掉和 Stan 不相关的一些警告信息，可以运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat(<span class="string">"\nCXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations"</span>, </div><div class="line">    file = M, sep = <span class="string">"\n"</span>, append = <span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>确认配置成功，可运行下列代码：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看配置的信息</span></div><div class="line">cat(readLines(M), sep = <span class="string">"\n"</span>)</div><div class="line"><span class="comment"># 或是找到该配置文件的路径，自行打开查看</span></div><div class="line">cat(M)</div></pre></td></tr></table></figure>
+<h4 id="4-安装-RStan"><a href="#4-安装-RStan" class="headerlink" title="4. 安装 RStan"></a>4. 安装 RStan</h4><ul>
+<li>安装最新版本的 RStan 及其依赖包，代码如下：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 如果 https 下载不成功，可改为 http</span></div><div class="line"><span class="comment"># 确保 dependencies=TRUE ，安装依赖包</span></div><div class="line">install.packages(<span class="string">"rstan"</span>, repos = <span class="string">"https://cloud.r-project.org/"</span>, dependencies=<span class="literal">TRUE</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果上述过程均失败，可通过下列代码按源码安装：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: 可根据你想使用的内核数来更改数字“4”</span></div><div class="line">Sys.setenv(MAKEFLAGS = <span class="string">"-j4"</span>) </div><div class="line">install.packages(<span class="string">"rstan"</span>, type = <span class="string">"source"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>安装完成后，<strong>重启 R</strong> 。并在载入 RStan 前，确认没有旧版本 RStan 所创建（可能是自动创建）的产物已被载入 R 中。</li>
+<li>通过运行如下代码，确认工具链已生效，代码应当返回值<code>10</code>:</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fx &lt;- inline::cxxfunction( signature(x = <span class="string">"integer"</span>, y = <span class="string">"numeric"</span> ) , <span class="string">'</span></div><div class="line">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</div><div class="line">' )</div><div class="line">fx( <span class="number">2L</span>, <span class="number">5</span> ) <span class="comment"># 应当返回值 10</span></div></pre></td></tr></table></figure>
+<p><em>注：</em>以上命令都是在 R 中输入运行的。</p>
+<h3 id="二、安装-Prophet-包"><a href="#二、安装-Prophet-包" class="headerlink" title="二、安装 Prophet 包"></a>二、安装 Prophet 包</h3><p>在 R 中运行如下代码：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># R </span></div><div class="line">install.packages(<span class="string">'prophet'</span>)</div></pre></td></tr></table></figure>
+<h2 id="在-Python-上安装-Prophet"><a href="#在-Python-上安装-Prophet" class="headerlink" title="在 Python 上安装 Prophet"></a>在 Python 上安装 Prophet</h2><h3 id="一、安装-Prophet-前的准备工作"><a href="#一、安装-Prophet-前的准备工作" class="headerlink" title="一、安装 Prophet 前的准备工作"></a>一、安装 Prophet 前的准备工作</h3><p>Python 中的 Prophet 最主要的依赖库是 <code>pystan</code>。不管什么系统，都需按照 <a href="http://pystan.readthedocs.io/en/latest/installation_beginner.html" target="_blank" rel="external">安装教程</a> 先安装<code>pystan</code>。</p>
+<h4 id="1-安装-Python"><a href="#1-安装-Python" class="headerlink" title="1. 安装 Python"></a>1. 安装 Python</h4><p>推荐使用 Anaconda 。Anaconda 是一个开源的 Python 发行版本，内置<code>conda</code>来实现<code>pip</code>库管理的功能。</p>
+<h4 id="2-安装-Pthon-的依赖库"><a href="#2-安装-Pthon-的依赖库" class="headerlink" title="2. 安装 Pthon 的依赖库"></a>2. 安装 Pthon 的依赖库</h4><p>如果你使用的是 Anaconda , numpy 和 cython 库已经内置在其中。但是以防万一，你也可以使用<code>conda</code>去安装它们：</p>
+<ul>
+<li><p>打开一个命令行程序</p>
+</li>
+<li><p>使用<code>conda install numpy</code>命令去安装 numpy ; 使用<code>conda install cython</code>命令去安装 cython</p>
+</li>
+</ul>
+<h4 id="3-安装-PyStan-库"><a href="#3-安装-PyStan-库" class="headerlink" title="3. 安装 PyStan 库"></a>3. 安装 PyStan 库</h4><p>  Mac/Linux 用户按照下述步骤安装 PyStan 即可。</p>
+<ul>
+<li>打开一个命令行程序</li>
+<li><p>使用<code>pip install pystan</code>去安装 PyStan</p>
+<p>Windows 用户请按照“Windows 系统安装 PyStan”中的步骤进行安装。</p>
+</li>
+</ul>
+<h4 id="Windows-系统安装-PyStan"><a href="#Windows-系统安装-PyStan" class="headerlink" title="** Windows 系统安装 PyStan"></a>** Windows 系统安装 PyStan</h4><p>如果是 Windows 系统，在安装 PyStan 前需要按照 <a href="http://pystan.readthedocs.io/en/latest/windows.html" target="_blank" rel="external">安装教程</a> 给 PyStan 安装一个编译器。其中，最为关键的一步就是先安装  <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">C++ 编译器</a> 。</p>
+<p>Windows 系统下使用 PyStan 有下列<em>注意事项</em>：</p>
+<ol>
+<li><p>需要使用 Python 3.5 或更高版本</p>
+</li>
+<li><p>抽取样本时，必须使用<code>n_jobs=1</code>（Windows 系统下的 PyStan 不能使用并行多线程运算）</p>
+</li>
+<li><p>安装 C++ 编译器</p>
+<p>进入 <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">Visual C++ Build Tools</a> 网页，点击“Download Visual C++ Build Tools 2015”。</p>
+<p>如果你遇到了安装的问题，可以去 Python维基下的 <a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">Windows Compilers</a> 寻求解决办法。</p>
+<p>如果你使用的 Windows 7 系统，可能需要在安装 Visual C++ Build Tools 下先更新 Microsoft .NET Framework 。</p>
+</li>
+<li><p>安装 PyStan</p>
+<p>打开命令行程序，输入下列命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pystan</div></pre></td></tr></table></figure>
+<p>可通过在 python 中输入下列抽样的代码，验证安装成功：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pystan</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model_code = <span class="string">'parameters &#123;real y;&#125; model &#123;y ~ normal(0,1);&#125;'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>model = pystan.StanModel(model_code=model_code)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = model.sampling(n_jobs=<span class="number">1</span>).extract()[<span class="string">'y'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y.mean()  <span class="comment"># 结果应当在 0 附近</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="二、安装-Prophet"><a href="#二、安装-Prophet" class="headerlink" title="二、安装 Prophet"></a>二、安装 Prophet</h3><p>使用命令行程序运行下列<code>pip</code>命令安装即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bash</div><div class="line">$ pip install fbprophet</div></pre></td></tr></table></figure>
+<h4 id="Ubuntu-系统安装注意事项"><a href="#Ubuntu-系统安装注意事项" class="headerlink" title="Ubuntu 系统安装注意事项"></a>Ubuntu 系统安装注意事项</h4><ol>
+<li><p>在 Ubuntu 16.04 系统下，使用系统内置的 python 2.7 安装上 fbprophet 后，导入 <code>import fbprophet</code> 时提示需要安装 <code>matplotlib</code> 库和 <code>python-tk</code>。打开一个终端，输入下列命令即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~ sudo pip install matplotlib</div><div class="line">~ sudo apt-get install tk-dev</div><div class="line">~ sudo apt-get install python-tk</div></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu 16.04 系统使用内置的 python 可以成功安装 fbprophet ，但使用 Anaconda 成功安装 PyStan 库后，检验代码无法成功运行， Prophet 库也无法正确安装：</p>
+<p>运行检验代码后的错误信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-28-15d1abb9774a&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    model = pystan.StanModel(model_code=model_code)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line"></div><div class="line">  File <span class="string">"/home/username/anaconda2/lib/python2.7/site-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /tmp/tmpgc2vTO/stanfit4anon_model_5944bb5b3a93728ca2bf_765485408593311.so: undefined symbol: _ZTVNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE</div></pre></td></tr></table></figure>
+<p>后尝试在 Anaconda 的 Spyder 中将 console 的 python 路径更改为 <code>/usr/bin/python</code> ，运行检验代码仍然报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line">    </div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line"></div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">315</span>, <span class="keyword">in</span> __init__</div><div class="line">    self.module = load_module(self.module_name, lib_dir)</div><div class="line">    </div><div class="line">  File <span class="string">"/usr/local/lib/python2.7/dist-packages/pystan/model.py"</span>, line <span class="number">54</span>, <span class="keyword">in</span> load_module</div><div class="line">    <span class="keyword">return</span> imp.load_module(module_name, *module_info)</div><div class="line"></div><div class="line">ImportError: /home/username/anaconda2/lib/python2<span class="number">.7</span>/site-packages/numexpr/../../../libstdc++.so<span class="number">.6</span>: version `GLIBCXX_3<span class="number">.4</span><span class="number">.20</span><span class="string">' not found (required by /tmp/tmptEazgR/stanfit4anon_model_5944b02c79788fa8ca2bf_7654287730157512986.so)</span></div></pre></td></tr></table></figure>
+<p>在网上查询后，发现是由于 Anaconda 中未安装 <code>libgcc</code> 库。打开一个命令行，运行下列代码安装即可：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install libgcc</div></pre></td></tr></table></figure>
+<p>安装 <code>libgcc</code> 库后，就可以成功运行检验代码了。</p>
+<p>机缘巧合下，发现安装 <code>libgcc</code> 库后，使用Anaconda 自带的 python ，也可以成功安装 <code>PyStan</code> 和 <code>fbprophet</code> 了。遂将 Spyder 中 console 的 python 路径更改为原来默认的。</p>
+</li>
+</ol>
+<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a><em>待解决问题</em></h3><p>Windows 10 系统已安装上 C++ 编译器和 PyStan 库且检验代码成功运行后，无法安装 Prophet 库：</p>
+<p>错误信息：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">error: <span class="title">command</span> '<span class="title">C</span>:\\<span class="title">Program</span> <span class="title">Files</span> (<span class="title">x86</span>)\\<span class="title">Microsoft</span> <span class="title">Visual</span> <span class="title">Studio</span> 14.0\\<span class="title">VC</span>\\<span class="title">BIN</span>\\<span class="title">x86_amd64</span>\\<span class="title">cl.exe</span>' <span class="title">failed</span> <span class="title">with</span> <span class="title">exit</span> <span class="title">status</span> 2</span></div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>转载请注明来自 <a href="https://vectorf.github.io/">Vector Blog</a>     </p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://ofa07l4yq.bkt.clouddn.com/Prophet.jpg&quot; width=&quot;800&quot; height=&quot;350&quot; alt=&quot;0&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;blockq
+    
+    </summary>
+    
+      <category term="Prophet" scheme="https://vectorf.github.io/categories/Prophet/"/>
+    
+    
+      <category term="R" scheme="https://vectorf.github.io/tags/R/"/>
+    
+      <category term="Prophet" scheme="https://vectorf.github.io/tags/Prophet/"/>
+    
+      <category term="Python" scheme="https://vectorf.github.io/tags/Python/"/>
+    
+      <category term="时间序列" scheme="https://vectorf.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）</title>
     <link href="https://vectorf.github.io/2017/02/21/20170221-%E8%A6%81%E4%BC%98%E9%9B%85%EF%BC%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%20R%20%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%EF%BC%81%EF%BC%88%E4%BD%BF%E7%94%A8%20stargazer%20%E5%8C%85%EF%BC%89/"/>
     <id>https://vectorf.github.io/2017/02/21/20170221-要优雅！一行代码搞定 R 语言模型输出！（使用 stargazer 包）/</id>
     <published>2017-02-21T08:30:30.000Z</published>
-    <updated>2018-01-31T14:50:45.621Z</updated>
+    <updated>2018-01-31T14:50:45.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>使用<code>stargazer</code>包可以将 R 构建的模型结果以<code>LATEX</code>、<code>HTML</code>和<code>ASCII</code>格式输出，方便我们生成标准格式的表格。</p>
 <p>再结合<code>rmarkdown</code>，你就可以轻轻松松输出一篇优雅的文章啦~</p>
@@ -1280,7 +1280,7 @@
     <link href="https://vectorf.github.io/2017/02/20/20170221-%E6%8F%AD%E5%BC%80%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9D%A2%E7%BA%B1/"/>
     <id>https://vectorf.github.io/2017/02/20/20170221-揭开机器学习的面纱/</id>
     <published>2017-02-20T08:30:30.000Z</published>
-    <updated>2018-01-31T14:47:04.389Z</updated>
+    <updated>2018-01-31T14:47:04.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/03/machine-learning-a-brief-breakdown/" target="_blank" rel="external">Machine Learning: A Brief Breakdown</a>   原文作者：libesa</p>
@@ -1384,7 +1384,7 @@
     <link href="https://vectorf.github.io/2016/12/11/20161210-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8EDota2%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7/"/>
     <id>https://vectorf.github.io/2016/12/11/20161210-机器学习与Dota2英雄属性/</id>
     <published>2016-12-11T08:30:30.000Z</published>
-    <updated>2018-01-31T14:52:28.882Z</updated>
+    <updated>2018-01-31T14:52:28.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">《 Gavagai 》</a>   原文作者：Federico Vaggi</p>
@@ -1462,7 +1462,7 @@
     <link href="https://vectorf.github.io/2016/11/06/20161106-Git%20%E6%95%99%E7%A8%8B/"/>
     <id>https://vectorf.github.io/2016/11/06/20161106-Git 教程/</id>
     <published>2016-11-06T12:30:30.000Z</published>
-    <updated>2018-01-31T14:42:30.557Z</updated>
+    <updated>2018-01-31T14:42:30.000Z</updated>
     
     <content type="html"><![CDATA[<div align="center"><br><br><img src="http://ofa07l4yq.bkt.clouddn.com/git.jpg" alt="git"><br><br></div>
 
@@ -1843,7 +1843,7 @@
     <link href="https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/"/>
     <id>https://vectorf.github.io/2016/10/21/20161021-Translate-K-Means/</id>
     <published>2016-10-21T13:27:17.000Z</published>
-    <updated>2018-01-31T14:37:06.079Z</updated>
+    <updated>2018-01-31T14:37:06.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文地址：<a href="http://quantdare.com/2016/04/k-means-vs-k-medoids/" target="_blank" rel="external">《”K-Means never fails”, they said…》</a> &ensp; 原文作者：Fjrodriguez2</p>
@@ -1911,7 +1911,7 @@
     <link href="https://vectorf.github.io/2016/10/19/20161019-my-first-post/"/>
     <id>https://vectorf.github.io/2016/10/19/20161019-my-first-post/</id>
     <published>2016-10-19T05:31:17.000Z</published>
-    <updated>2018-01-31T14:35:59.921Z</updated>
+    <updated>2018-01-31T14:35:59.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world !"></a>Hello, world !</h2><p><a id="more"></a>你好呀！</p>
 ]]></content>
